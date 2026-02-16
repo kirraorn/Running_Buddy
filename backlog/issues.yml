@@ -1,17 +1,43 @@
 version: 1
+labels:
+- name: "Backend"
+  color: ededed
+  description: ""
+- name: "Frontend"
+  color: ededed
+  description: ""
+- name: "High"
+  color: ededed
+  description: ""
+
+milestones:
+- title: "Sprint 1"
+  description: ""
+  state: open
+- title: "Sprint 2"
+  description: ""
+  state: open
+- title: "Sprint 3"
+  description: ""
+  state: open
+
 issues:
 - id: ISSUE-1
-  title: Implement GPS location provider via .NET MAUI Geolocation
-  body: Integrate the Microsoft.Maui.Devices.Sensors Geolocation API to retrieve the user's current latitude and longitude.
+  title: "Implement GPS location provider via .NET MAUI Geolocation"
+  body: |
+    Integrate the Microsoft.Maui.Devices.Sensors Geolocation API to retrieve the user's current latitude and longitude.
   labels:
-  - High
-  - Backend
+  - "High"
+  - "Backend"
   milestone: "Sprint 2"
 - id: ISSUE-2
-  title: Implement Network Connectivity Monitor
+  title: "Implement Network Connectivity Monitor"
   body: |
-    To fulfill the Non-functional Requirement: Offline Functionality, the app must dynamically detect the device's internet status.
+    To fulfill the Non-functional Requirement: Offline Functionality, the app must dynamically detect the device's internet status. This detection will act as a "traffic controller" for the WeatherService and MapService. If the device is offline, the app should automatically bypass API calls to the National Weather Service and prompt the user for manual data or display cached routes. useing Microsoft.Maui.Networking.Connectivity On app launch/resume: Check Connectivity.Current.NetworkAccess.
+    If NetworkAccess != NetworkAccess.Internet:
+    Disable "Fetch Current Weather" button.
+    Enable ManualWeatherInputView.
   labels:
-  - High
-  - Backend
+  - "High"
+  - "Backend"
   milestone: "Sprint 2"
