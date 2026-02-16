@@ -23,9 +23,12 @@ jobs:
           python -m pip install --upgrade pip
           pip install pyyaml requests
 
-      - name: Populate labels, milestones, and issues (idempotent)
+      - name: Populate labels, milestones, and issues
         env:
-          GITHUB_TOKEN: "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"
-          BACKLOG_FILE: issues.yml
+          # Use the automatic GitHub token for security
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # Point to the correct folder where you moved the file
+          BACKLOG_FILE: "backlog/issues.yml"
+          GITHUB_REPOSITORY: ${{ github.repository }}
         run: |
           python populate_issues.py
