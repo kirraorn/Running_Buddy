@@ -3,13 +3,18 @@ labels:
 - name: "Backend"
   color: ededed
   description: ""
+- name: "Doc"
+  color: ededed
+  description: ""
+- name: "Foundation"
+  color: ededed
+  description: ""
 - name: "Frontend"
   color: ededed
   description: ""
 - name: "High"
   color: ededed
   description: ""
-
 milestones:
 - title: "Sprint 1"
   description: ""
@@ -20,7 +25,6 @@ milestones:
 - title: "Sprint 3"
   description: ""
   state: open
-
 issues:
 - id: ISSUE-1
   title: "Implement GPS location provider via .NET MAUI Geolocation"
@@ -37,6 +41,152 @@ issues:
     If NetworkAccess != NetworkAccess.Internet:
     Disable "Fetch Current Weather" button.
     Enable ManualWeatherInputView.
+  labels:
+  - "High"
+  - "Backend"
+  milestone: "Sprint 2"
+- id: ISSUE-3
+  title: "Create ManualWeatherInputView"
+  body: |
+    This should be enabled if NetworkAccess is not true. The user should be able to input the current weather (temperature, humidity, wind, hazards) . The Weather API should be bypassed. When the user enters the weather, hitting enter button, this screen should direct the users to the homescreen.
+  labels:
+  - "High"
+  - "Frontend"
+  milestone: "Sprint 2"
+- id: ISSUE-4
+  title: "Use GPS location to get weather from Weather API"
+  body: |
+    If NetworkAccess True, use GPS location data to get current weather (temerature, humidity, wind, hazards) 
+  labels:
+  - "High"
+  - "Frontend"
+  milestone: "Sprint 2"
+- id: ISSUE-5
+  title: "Create User Home Screen"
+  body: |
+    This screen should give the user a view of the current weather/ manual input weather data, display suggested clothing, display suggested route
+  labels:
+  - "High"
+  - "Frontend"
+  milestone: "Sprint 2"
+- id: ISSUE-6
+  title: "Implement clothing Suggestion Algorithm"
+  body: |
+    This algorithm should use current weather data (wind, temp, humidity, hazards)and user temperature preference (in profile) and suggest clothing. 
+  labels:
+  - "High"
+  - "Backend"
+  milestone: "Sprint 2"
+- id: ISSUE-7
+  title: "Finalize RD Document"
+  body: |
+    Complete functional/non-functional requirements and Class/Sequence diagrams.
+  labels:
+  - "Doc"
+  milestone: "Sprint 1"
+- id: ISSUE-8
+  title: "IT Document Sections 1 & 2"
+  body: |
+    Document programming languages and APIs used 
+  labels:
+  - "Doc"
+  milestone: "Sprint 1"
+- id: ISSUE-9
+  title: "Inc 1 Demo Video"
+  body: |
+    Record and host 5-7 minute project overview and demo
+  labels:
+  - "Doc"
+  milestone: "Sprint 1"
+- id: ISSUE-10
+  title: ".NET MAUI Project Initialization"
+  body: |
+    Initialize the repository with a basic .NET MAUI project shell. Verify the app builds and runs on a local machine
+  labels:
+  - "High"
+  - "Foundation"
+  milestone: "Sprint 1"
+- id: ISSUE-11
+  title: "Library Configuration"
+  body: |
+    Install and configure the CommunityToolkit.Mvvm and UraniumUI.Material NuGet packages
+  labels:
+  - "High"
+  - "Foundation"
+  milestone: "Sprint 1"
+- id: ISSUE-12
+  title: "Core Data Model Definition"
+  body: |
+    Create C# classes for User, Route, Weather, and Shoe entities based on the Class Diagram
+  labels:
+  - "High"
+  - "Foundation"
+  milestone: "Sprint 1"
+- id: ISSUE-13
+  title: "Apparel Logic Skeleton"
+  body: |
+    Implement a basic C# class that outputs a clothing recommendation based on hard-coded test weather values.
+  labels:
+  - "High"
+  - "Backend"
+  milestone: "Sprint 1"
+- id: ISSUE-14
+  title: "Home Dashboard Prototype"
+  body: |
+    Create the initial XAML page layout for the home screen to show in the demo video.
+  labels:
+  - "High"
+  - "Frontend"
+  milestone: "Sprint 1"
+- id: ISSUE-15
+  title: "Complete Progress Report document"
+  body: |
+    Needs to be completed each sprint, detailing what each team member accomplished, plans for the next increment, challenges, and an email to the stake holder
+  labels:
+  - "Doc"
+  milestone: "Sprint 1"
+- id: ISSUE-16
+  title: "Complete Progress Report document"
+  body: |
+    Needs to be completed each sprint, detailing what each team member accomplished, plans for the next increment, challenges, and an email to the stake holder
+  labels:
+  - "Doc"
+  milestone: "Sprint 2"
+- id: ISSUE-17
+  title: "Complete Progress Report document"
+  body: |
+    Needs to be completed each sprint, detailing what each team member accomplished, plans for the next increment, challenges, and an email to the stake holder
+  labels:
+  - "Doc"
+  milestone: "Sprint 3"
+- id: ISSUE-18
+  title: "Create the User Class"
+  body: |
+    This should contain Name, ColdPreference, total milage goals class and getters and setters
+  labels:
+  - "High"
+  - "Backend"
+  milestone: "Sprint 1"
+- id: ISSUE-19
+  title: "Create the Route Class"
+  body: |
+    This should contain route ID, Name,  Length, Terrain, Elevation and getters/setters
+  labels:
+  - "High"
+  - "Backend"
+  milestone: "Sprint 2"
+- id: ISSUE-20
+  title: "Create the Shoe Class"
+  body: |
+    This should contain Id , Name, milage (maximum and current). , Brand, Type and getters/setters
+  labels:
+  - "High"
+  - "Backend"
+  milestone: "Sprint 2"
+- id: ISSUE-21
+  title: "Create the Goals Class"
+  body: |
+    This should contain Distance, Time, Date and getters/setters
   labels:
   - "High"
   - "Backend"
