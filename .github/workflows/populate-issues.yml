@@ -26,6 +26,6 @@ jobs:
       - name: Populate labels, milestones, and issues (idempotent)
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          BACKLOG_FILE: backlog/issues.yml
+          BACKLOG_FILE: issues.yml
         run: |
           python populate_issues.py
