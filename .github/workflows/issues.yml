@@ -1,0 +1,127 @@
+---
+-
+    labels: High , Backend
+    title: Implement GPS location provider via .NET MAUI Geolocation
+    body: 'Integrate the Microsoft.Maui.Devices.Sensors Geolocation API to retrieve the user''s current latitude and longitude.'
+    Milestone: Sprint 2
+    id: 1
+-
+    labels: High, Backend
+    title: Implement Network Connectivity Monitor
+    body: "To fulfill the Non-functional Requirement: Offline Functionality, the app must dynamically detect the device's internet status. This detection will act as a \\"traffic controller\\" for the WeatherService and MapService. If the device is offline, the app should automatically bypass API calls to the National Weather Service and prompt the user for manual data or display cached routes. useing Microsoft.Maui.Networking.Connectivity On app launch/resume: Check Connectivity.Current.NetworkAccess.\nIf NetworkAccess != NetworkAccess.Internet:\nDisable \\"Fetch Current Weather\\" button.\nEnable ManualWeatherInputView.\n"
+    Milestone: Sprint 2
+    id: 2
+-
+    labels: High, Frontend
+    title: Create ManualWeatherInputView
+    body: This should be enabled if NetworkAccess is not true. The user should be able to input the current weather (temperature, humidity, wind, hazards) . The Weather API should be bypassed. When the user enters the weather, hitting enter button, this screen should direct the users to the homescreen.
+    Milestone: Sprint 2
+    id: 3
+-
+    labels: High, Frontend
+    title: Use GPS location to get weather from Weather API
+    body: If NetworkAccess True, use GPS location data to get current weather (temerature, humidity, wind, hazards) 
+    Milestone: Sprint 2
+    id: 4
+-
+    labels: High, Frontend
+    title: Create User Home Screen
+    body: This screen should give the user a view of the current weather/ manual input weather data, display suggested clothing, display suggested route
+    Milestone: Sprint 2
+    id: 5
+-
+    labels: High, Backend
+    title: Implement clothing Suggestion Algorithm
+    body: This algorithm should use current weather data (wind, temp, humidity, hazards)and user temperature preference (in profile) and suggest clothing. 
+    Milestone: Sprint 2
+    id: 6
+-
+    labels: Doc
+    title: Finalize RD Document
+    body: "Complete functional/non-functional requirements and Class/Sequence diagrams.\n"
+    Milestone: Sprint 1
+    id: 7
+-
+    labels: Doc
+    title: IT Document Sections 1 & 2
+    body: Document programming languages and APIs used 
+    Milestone: Sprint 1
+    id: 8
+-
+    labels: Doc
+    title: Inc 1 Demo Video
+    body: Record and host 5-7 minute project overview and demo
+    Milestone: Sprint 1
+    id: 9
+-
+    labels: High, Foundation
+    title: .NET MAUI Project Initialization
+    body: Initialize the repository with a basic .NET MAUI project shell. Verify the app builds and runs on a local machine
+    Milestone: Sprint 1
+    id: 10
+-
+    labels: High, Foundation
+    title: Library Configuration
+    body: Install and configure the CommunityToolkit.Mvvm and UraniumUI.Material NuGet packages
+    Milestone: Sprint 1
+    id: 11
+-
+    labels: High, Foundation
+    title: Core Data Model Definition
+    body: Create C# classes for User, Route, Weather, and Shoe entities based on the Class Diagram
+    Milestone: Sprint 1
+    id: 12
+-
+    labels: High, Backend
+    title: Apparel Logic Skeleton
+    body: Implement a basic C# class that outputs a clothing recommendation based on hard-coded test weather values.
+    Milestone: Sprint 1
+    id: 13
+-
+    labels: High, Frontend
+    title: Home Dashboard Prototype
+    body: Create the initial XAML page layout for the home screen to show in the demo video.
+    Milestone: Sprint 1
+    id: 14
+-
+    labels: Doc
+    title: Complete Progress Report document
+    body: Needs to be completed each sprint, detailing what each team member accomplished, plans for the next increment, challenges, and an email to the stake holder
+    Milestone: Sprint 1
+    id: 15
+-
+    labels: Doc
+    title: Complete Progress Report document
+    body: Needs to be completed each sprint, detailing what each team member accomplished, plans for the next increment, challenges, and an email to the stake holder
+    Milestone: Sprint 2
+    id: 16
+-
+    labels: Doc
+    title: Complete Progress Report document
+    body: Needs to be completed each sprint, detailing what each team member accomplished, plans for the next increment, challenges, and an email to the stake holder
+    Milestone: Sprint 3
+    id: 17
+-
+    labels: High, Backend
+    title: Create the User Class
+    body: This should contain Name, ColdPreference, total milage goals class and getters and setters
+    Milestone: Sprint 1
+    id: 18
+-
+    labels: High, Backend
+    title: Create the Route Class
+    body: This should contain route ID, Name,  Length, Terrain, Elevation and getters/setters
+    Milestone: Sprint 2
+    id: 19
+-
+    labels: High, Backend
+    title: Create the Shoe Class
+    body: This should contain Id , Name, milage (maximum and current). , Brand, Type and getters/setters
+    Milestone: Sprint 2
+    id: 20
+-
+    labels: High, Backend
+    title: Create the Goals Class
+    body: This should contain Distance, Time, Date and getters/setters
+    Milestone: Sprint 2
+    id: 21
