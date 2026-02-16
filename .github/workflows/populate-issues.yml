@@ -1,4 +1,4 @@
-name: Populate Issue Tracker from backlog/issues.yml
+name: Populate Issue Tracker from issues.yml
 
 on:
   workflow_dispatch:
@@ -28,4 +28,4 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           BACKLOG_FILE: backlog/issues.yml
         run: |
-          python scripts/populate_issues.py
+          python populate_issues.py
