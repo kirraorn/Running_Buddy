@@ -31,4 +31,4 @@ jobs:
           BACKLOG_FILE: "backlog/issues.yml"
           GITHUB_REPOSITORY: ${{ github.repository }}
         run: |
-          python populate_issues.py
+          python scripts/populate_issues.py
