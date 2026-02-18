@@ -6,7 +6,7 @@
     xmlns:local="clr-namespace:RunningBuddy"
     Shell.FlyoutBehavior="Disabled"
     Title="RunningBuddy">
-
+    
     <ShellContent
         Title="Home"
         ContentTemplate="{DataTemplate local:MainPage}"
