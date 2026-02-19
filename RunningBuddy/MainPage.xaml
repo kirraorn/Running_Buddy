@@ -1,0 +1,152 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="RunningBuddy.MainPage">
+
+
+    <Shell.TitleView>
+        <Grid ColumnDefinitions="*, Auto">
+            <Label Text="Running Buddy" 
+               VerticalOptions="Center" 
+               TextColor="White" 
+               FontAttributes="Bold" 
+               FontSize="18" />
+
+            <HorizontalStackLayout Grid.Column="1" Spacing="5" Margin="0,0,10,0">
+                <Button Text="Home" TextColor="Grey" BackgroundColor="Transparent" />
+                <Button Text="Calendar"  TextColor="Grey" BackgroundColor="Transparent" />
+                <Button Text="Shoes"  TextColor="Grey" BackgroundColor="Transparent" />
+                <Button Text="Routes" TextColor="Grey" BackgroundColor="Transparent" />
+                <Button Text="Profile" TextColor="Grey" BackgroundColor="Transparent" />
+            </HorizontalStackLayout>
+        </Grid>
+    </Shell.TitleView>
+
+    <ScrollView>
+        <VerticalStackLayout
+            Padding="30,0"
+            Spacing="25">
+            
+            
+            
+            
+            <Label
+            Text="Running Buddy"
+            Style="{StaticResource Headline}"
+            SemanticProperties.HeadingLevel="Level1" />
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/> <!--Weather-->
+                    <ColumnDefinition/> <!--Clothing-->
+                    <ColumnDefinition/> <!--Route-->
+                </Grid.ColumnDefinitions>
+                   
+                <!--Weather Column-->
+                <Label
+                    Text="Weather"
+                    Style="{StaticResource Headline}"
+                    SemanticProperties.HeadingLevel="Level5"
+                    TextColor="Aqua"
+                    Grid.Column="0"
+                    Grid.Row="0"/>
+
+                <Label
+                    Text="Temperature: 65° F"
+                    Style="{StaticResource SubHeadline}"
+                    SemanticProperties.HeadingLevel="Level3"
+                    Grid.Column="0"
+                    Grid.Row="1"/>
+                
+                <Label
+                    Text="Humidity: 50%"
+                    Style="{StaticResource SubHeadline}"
+                    SemanticProperties.HeadingLevel="Level3"
+                    Grid.Column="0"
+                    Grid.Row="2"/>
+                
+                <Label
+                    Text="Wind speed: 5 MPH"
+                    Style="{StaticResource SubHeadline}"
+                    SemanticProperties.HeadingLevel="Level3"
+                    Grid.Column="0"
+                    Grid.Row="3"/>
+
+                <Label
+                    Style="{StaticResource SubHeadline}"
+                    SemanticProperties.HeadingLevel="Level3"
+                    Grid.Column="0"
+                    Grid.Row="4">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Inclement weather: " />
+                            <Span Text="NONE" 
+                  TextColor="Green" 
+                  FontAttributes="Bold" />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+
+                <!--Clothing Column-->
+                <Label
+                    Text="Recommened Clothing"
+                    Style="{StaticResource Headline}"
+                    SemanticProperties.HeadingLevel="Level5"
+                    TextColor="Gray"
+                    Grid.Column="1"
+                    Grid.Row="0"/>
+                <Label
+                    Text="Hat and Gloves: None"
+                    Style="{StaticResource SubHeadline}"
+                    SemanticProperties.HeadingLevel="Level3"
+                    Grid.Column="1"
+                    Grid.Row="1"/>
+                <Label
+                    Text="Shirt: Short-sleeved"
+                    Style="{StaticResource SubHeadline}"
+                    SemanticProperties.HeadingLevel="Level3"
+                    Grid.Column="1"
+                    Grid.Row="2"/>
+                <Label
+                    Text= "Bottoms: Shorts"
+                    Style="{StaticResource SubHeadline}"
+                    SemanticProperties.HeadingLevel="Level3"
+                    Grid.Column="1"
+                    Grid.Row="3"/>
+
+                <!--Route Column-->
+                <Label
+                    Text="Recommended Route"
+                    Style="{StaticResource Headline}"
+                    SemanticProperties.HeadingLevel="Level5"
+                    TextColor="LightGreen"
+                    Grid.Column="2"
+                    Grid.Row="0"/>
+                <Label
+                    Text= "Next Workout: Aerobic Run"
+                    Style="{StaticResource SubHeadline}"
+                    SemanticProperties.HeadingLevel="Level3"
+                    Grid.Column="2"
+                    Grid.Row="1"/>
+                <Label
+                    Text= "Route: St. Marks Railroad Trail"
+                    Style="{StaticResource SubHeadline}"
+                    SemanticProperties.HeadingLevel="Level3"
+                    Grid.Column="2"
+                    Grid.Row="2"/>
+
+            </Grid>
+            
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>
