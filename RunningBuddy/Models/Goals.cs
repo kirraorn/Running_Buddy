@@ -11,7 +11,7 @@ namespace RunningBuddy.Models
         public int Id { get; set; }
         public double Distance { get; set; }
         public DateTime Time { get; set; }
-        public DateTime Date { get; set; }
+        public DateTime Date { get; set;}
 
     }
 }

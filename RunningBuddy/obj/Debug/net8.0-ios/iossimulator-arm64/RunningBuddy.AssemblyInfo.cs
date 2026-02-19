@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("RunningBuddy")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0+12d64573b747dd80c82d3b301a3ebf224d948eef")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0+7b557529d4be8d87688d364e2c0ab4d8119ccc32")]
 [assembly: System.Reflection.AssemblyProductAttribute("RunningBuddy")]
 [assembly: System.Reflection.AssemblyTitleAttribute("RunningBuddy")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
