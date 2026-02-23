@@ -6,9 +6,9 @@
 	<dict>
 		<key>output-files</key>
 		<array>
-			<string>/Users/kirraorndorff/Desktop/Running_Buddy/Running_Buddy/RunningBuddy/obj/Debug/net8.0-maccatalyst/maccatalyst-arm64/actool/bundle/Assets.car</string>
-			<string>/Users/kirraorndorff/Desktop/Running_Buddy/Running_Buddy/RunningBuddy/obj/Debug/net8.0-maccatalyst/maccatalyst-arm64/actool/bundle/appicon.icns</string>
-			<string>/Users/kirraorndorff/Desktop/Running_Buddy/Running_Buddy/RunningBuddy/obj/Debug/net8.0-maccatalyst/maccatalyst-arm64/actool/partial-info.plist</string>
+			<string>/Users/rileygalpin/programming/school/RunningBuddy1/Running_Buddy/RunningBuddy/obj/Debug/net8.0-maccatalyst/maccatalyst-arm64/actool/bundle/Assets.car</string>
+			<string>/Users/rileygalpin/programming/school/RunningBuddy1/Running_Buddy/RunningBuddy/obj/Debug/net8.0-maccatalyst/maccatalyst-arm64/actool/bundle/appicon.icns</string>
+			<string>/Users/rileygalpin/programming/school/RunningBuddy1/Running_Buddy/RunningBuddy/obj/Debug/net8.0-maccatalyst/maccatalyst-arm64/actool/partial-info.plist</string>
 		</array>
 	</dict>
 </dict>

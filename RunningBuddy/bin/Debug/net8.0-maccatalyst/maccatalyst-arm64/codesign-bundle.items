@@ -3,7 +3,7 @@
   <ItemGroup>
     <_CodesignBundle Include="RunningBuddy.app">
       <CodesignSigningKey>-</CodesignSigningKey>
-      <CodesignEntitlements>/Users/kirraorndorff/Desktop/Running_Buddy/Running_Buddy/RunningBuddy/obj/Debug/net8.0-maccatalyst/maccatalyst-arm64/Entitlements.xcent</CodesignEntitlements>
+      <CodesignEntitlements>/Users/rileygalpin/programming/school/RunningBuddy1/Running_Buddy/RunningBuddy/obj/Debug/net8.0-maccatalyst/maccatalyst-arm64/Entitlements.xcent</CodesignEntitlements>
       <CodesignUseSecureTimestamp></CodesignUseSecureTimestamp>
       <CodesignAllocate>/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/codesign_allocate</CodesignAllocate>
       <RequireCodeSigning>false</RequireCodeSigning>
@@ -12,7 +12,7 @@
       <CodesignDisableTimestamp>true</CodesignDisableTimestamp>
       <CodesignKeychain></CodesignKeychain>
       <CodesignUseHardenedRuntime></CodesignUseHardenedRuntime>
-      <SourceProjectPath>/Users/kirraorndorff/Desktop/Running_Buddy/Running_Buddy/RunningBuddy</SourceProjectPath>
+      <SourceProjectPath>/Users/rileygalpin/programming/school/RunningBuddy1/Running_Buddy/RunningBuddy</SourceProjectPath>
     </_CodesignBundle>
   </ItemGroup>
 </Project>

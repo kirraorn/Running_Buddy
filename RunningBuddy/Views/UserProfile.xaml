@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="RunningBuddy.Views.UserProfile"
+             Title="UserProfile">
+
+    <Shell.TitleView>
+        <Grid ColumnDefinitions="*, Auto" Padding="0,0,10,0">
+            <Label Grid.Column="0" 
+                   Text="User Profile" 
+                   VerticalOptions="Center" 
+                   TextColor="White" 
+                   FontAttributes="Bold" 
+                   FontSize="18" />
+
+            <Button Grid.Column="1" 
+                    Text="Home" 
+                    TextColor="Gray" 
+                    BackgroundColor="Transparent" />
+        </Grid>
+    </Shell.TitleView>
+
+    <ScrollView>
+        <Grid Padding="25" RowSpacing="25">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" /> <RowDefinition Height="Auto" /> <RowDefinition Height="Auto" /> <RowDefinition Height="Auto" /> </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0" ColumnDefinitions="Auto, *">
+                <Label Grid.Column="0" Text="Name: " FontSize="22" FontAttributes="Bold" />
+                <Label Grid.Column="1" Text="Riley" FontSize="22" Margin="5,0,0,0" VerticalOptions="Center" />
+            </Grid>
+
+            <Grid Grid.Row="1" RowDefinitions="Auto, Auto">
+                <Label Grid.Row="0" Text="Weekly Summary" FontSize="18" FontAttributes="Bold" TextColor="LightBlue" />
+                
+                <Frame Grid.Row="1" BackgroundColor="#2C2C2C" CornerRadius="8" Padding="15" Margin="0,10,0,0" BorderColor="Transparent">
+                    <Grid ColumnDefinitions="*, *, *">
+                        <VerticalStackLayout Grid.Column="0" HorizontalOptions="Center">
+                            <Label Text="Miles" FontSize="12" TextColor="Gray" HorizontalOptions="Center" />
+                            <Label Text="15.2" FontSize="18" FontAttributes="Bold" HorizontalOptions="Center" />
+                        </VerticalStackLayout>
+                        
+                        <VerticalStackLayout Grid.Column="1" HorizontalOptions="Center">
+                            <Label Text="Runs" FontSize="12" TextColor="Gray" HorizontalOptions="Center" />
+                            <Label Text="4" FontSize="18" FontAttributes="Bold" HorizontalOptions="Center" />
+                        </VerticalStackLayout>
+                        
+                        <VerticalStackLayout Grid.Column="2" HorizontalOptions="Center">
+                            <Label Text="Time" FontSize="12" TextColor="Gray" HorizontalOptions="Center" />
+                            <Label Text="2h 15m" FontSize="18" FontAttributes="Bold" HorizontalOptions="Center" />
+                        </VerticalStackLayout>
+                    </Grid>
+                </Frame>
+            </Grid>
+
+            <Grid Grid.Row="2" RowDefinitions="Auto, Auto">
+                <Label Grid.Row="0" Text="PR (Personal Records)" FontSize="18" FontAttributes="Bold" TextColor="LightGreen" />
+                
+                <Frame Grid.Row="1" BackgroundColor="#2C2C2C" CornerRadius="8" Padding="15" Margin="0,10,0,0" BorderColor="Transparent">
+                    <Grid RowDefinitions="Auto, Auto" ColumnDefinitions="*, *">
+                        <Label Grid.Row="0" Grid.Column="0" Text="5K:" FontAttributes="Bold" />
+                        <Label Grid.Row="0" Grid.Column="1" Text="22:30" HorizontalOptions="End" />
+                        
+                        <Label Grid.Row="1" Grid.Column="0" Text="10K:" FontAttributes="Bold" Margin="0,10,0,0"/>
+                        <Label Grid.Row="1" Grid.Column="1" Text="48:15" HorizontalOptions="End" Margin="0,10,0,0"/>
+                    </Grid>
+                </Frame>
+            </Grid>
+
+            <Grid Grid.Row="3" RowDefinitions="Auto, Auto, Auto">
+                <Label Grid.Row="0" Text="Cold Sensitivity Score" FontSize="18" FontAttributes="Bold" TextColor="Orange" />
+                
+                <Slider Grid.Row="1" 
+                        Minimum="1" 
+                        Maximum="10" 
+                        Value="5" 
+                        MinimumTrackColor="LightBlue" 
+                        MaximumTrackColor="DarkGray" 
+                        ThumbColor="White"
+                        Margin="0,15,0,5" />
+                
+                <Grid Grid.Row="2" ColumnDefinitions="*, *">
+                    <Label Grid.Column="0" Text="1 (Loves Cold)" FontSize="12" TextColor="Gray" />
+                    <Label Grid.Column="1" Text="10 (Hates Cold)" FontSize="12" TextColor="Gray" HorizontalOptions="End" />
+                </Grid>
+            </Grid>
+            
+        </Grid>
+    </ScrollView>
+</ContentPage>
