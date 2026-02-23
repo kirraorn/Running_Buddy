@@ -8,9 +8,9 @@
       <dSYMSourcePathExists>false</dSYMSourcePathExists>
       <NoSymbolStrip>true</NoSymbolStrip>
       <dSYMInfoPlistRelativePath>RunningBuddy.app.dSYM\Contents\Info.plist</dSYMInfoPlistRelativePath>
-      <SymbolFile>/Users/kirraorndorff/Desktop/Running_Buddy/Running_Buddy/RunningBuddy/obj/Debug/net8.0-maccatalyst/maccatalyst-arm64/mtouch-symbols.list</SymbolFile>
+      <SymbolFile>/Users/rileygalpin/programming/school/RunningBuddy1/Running_Buddy/RunningBuddy/obj/Debug/net8.0-maccatalyst/maccatalyst-arm64/mtouch-symbols.list</SymbolFile>
       <DSymName>RunningBuddy.app.dSYM</DSymName>
-      <SourceProjectPath>/Users/kirraorndorff/Desktop/Running_Buddy/Running_Buddy/RunningBuddy</SourceProjectPath>
+      <SourceProjectPath>/Users/rileygalpin/programming/school/RunningBuddy1/Running_Buddy/RunningBuddy</SourceProjectPath>
       <IsXPCService></IsXPCService>
     </_PostProcessingItem>
   </ItemGroup>

@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "ZYmtkSDSer4=",
+  "dgSpecHash": "nTf9GQkgs5c=",
   "success": true,
   "projectFilePath": "/Users/rileygalpin/programming/school/RunningBuddy1/Running_Buddy/RunningBuddy/RunningBuddy.csproj",
   "expectedPackageFiles": [
@@ -110,18 +110,13 @@
     "/Users/rileygalpin/.nuget/packages/microsoft.netcore.app.ref/8.0.16/microsoft.netcore.app.ref.8.0.16.nupkg.sha512",
     "/Users/rileygalpin/.nuget/packages/microsoft.aspnetcore.app.ref/8.0.16/microsoft.aspnetcore.app.ref.8.0.16.nupkg.sha512",
     "/Users/rileygalpin/.nuget/packages/microsoft.android.ref.34/34.0.154/microsoft.android.ref.34.34.0.154.nupkg.sha512",
-    "/Users/rileygalpin/.nuget/packages/microsoft.android.runtime.34.android-arm/34.0.154/microsoft.android.runtime.34.android-arm.34.0.154.nupkg.sha512",
-    "/Users/rileygalpin/.nuget/packages/microsoft.android.runtime.34.android-arm64/34.0.154/microsoft.android.runtime.34.android-arm64.34.0.154.nupkg.sha512",
-    "/Users/rileygalpin/.nuget/packages/microsoft.android.runtime.34.android-x86/34.0.154/microsoft.android.runtime.34.android-x86.34.0.154.nupkg.sha512",
-    "/Users/rileygalpin/.nuget/packages/microsoft.android.runtime.34.android-x64/34.0.154/microsoft.android.runtime.34.android-x64.34.0.154.nupkg.sha512",
     "/Users/rileygalpin/.nuget/packages/microsoft.netcore.app.ref/8.0.16/microsoft.netcore.app.ref.8.0.16.nupkg.sha512",
     "/Users/rileygalpin/.nuget/packages/microsoft.aspnetcore.app.ref/8.0.16/microsoft.aspnetcore.app.ref.8.0.16.nupkg.sha512",
     "/Users/rileygalpin/.nuget/packages/microsoft.ios.ref.net8.0_18.0/18.0.8324/microsoft.ios.ref.net8.0_18.0.18.0.8324.nupkg.sha512",
     "/Users/rileygalpin/.nuget/packages/microsoft.ios.runtime.iossimulator-arm64.net8.0_18.0/18.0.8324/microsoft.ios.runtime.iossimulator-arm64.net8.0_18.0.18.0.8324.nupkg.sha512",
     "/Users/rileygalpin/.nuget/packages/microsoft.netcore.app.ref/8.0.16/microsoft.netcore.app.ref.8.0.16.nupkg.sha512",
     "/Users/rileygalpin/.nuget/packages/microsoft.aspnetcore.app.ref/8.0.16/microsoft.aspnetcore.app.ref.8.0.16.nupkg.sha512",
-    "/Users/rileygalpin/.nuget/packages/microsoft.maccatalyst.ref.net8.0_18.0/18.0.8324/microsoft.maccatalyst.ref.net8.0_18.0.18.0.8324.nupkg.sha512",
-    "/Users/rileygalpin/.nuget/packages/microsoft.maccatalyst.runtime.maccatalyst-arm64.net8.0_18.0/18.0.8324/microsoft.maccatalyst.runtime.maccatalyst-arm64.net8.0_18.0.18.0.8324.nupkg.sha512"
+    "/Users/rileygalpin/.nuget/packages/microsoft.maccatalyst.ref.net8.0_18.0/18.0.8324/microsoft.maccatalyst.ref.net8.0_18.0.18.0.8324.nupkg.sha512"
   ],
   "logs": []
 }
