@@ -10,7 +10,7 @@ namespace RunningBuddy.Models
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public double ColdPreference { get; set; }
+        public double ColdPreference { get; set; } //currently asssuming user slider from 0-5 -Alex
         public double TotalMilage { get; set; }
 
     }
