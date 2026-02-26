@@ -16,7 +16,7 @@ namespace RunningBuddy.Models
 
         public double Elevation {get;set;}
 
-        public enum Terrain {Track,Asphault,Gravel,Trail,Dirt,Grass}
+        public enum Terrain {Track,Asphault,Gravel,Trail,Dirt,Grass} //Currently assuming a dropdown selection - Riley
 
     }
 }
