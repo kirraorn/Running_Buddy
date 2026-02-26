@@ -8,4 +8,10 @@ public partial class UserProfile : ContentPage
 		//  and a slider should be visible to edit the ColdSensitivityScore
 		InitializeComponent();
 	}
+
+    private void HomeClicked(object sender, EventArgs e)
+    {
+        Shell.Current.GoToAsync("//MainPage");
+    }
+
 }

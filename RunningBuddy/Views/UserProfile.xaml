@@ -5,18 +5,20 @@
              Title="UserProfile">
 
     <Shell.TitleView>
-        <Grid ColumnDefinitions="*, Auto" Padding="0,0,10,0">
-            <Label Grid.Column="0" 
-                   Text="User Profile" 
-                   VerticalOptions="Center" 
-                   TextColor="White" 
-                   FontAttributes="Bold" 
-                   FontSize="18" />
+        <Grid ColumnDefinitions="*, Auto">
+            <Label Text="Running Buddy" 
+       VerticalOptions="Center" 
+       TextColor="White" 
+       FontAttributes="Bold" 
+       FontSize="18" />
 
-            <Button Grid.Column="1" 
-                    Text="Home" 
-                    TextColor="Gray" 
-                    BackgroundColor="Transparent" />
+            <HorizontalStackLayout Grid.Column="1" Spacing="5" Margin="0,0,10,0">
+                <Button Text="Home" TextColor="Gray" BackgroundColor="Transparent" Clicked="HomeClicked"/>
+                <Button Text="Calendar"  TextColor="Gray" BackgroundColor="Transparent" />
+                <Button Text="Shoes"  TextColor="Gray" BackgroundColor="Transparent" />
+                <Button Text="Routes" TextColor="Gray" BackgroundColor="Transparent" />
+                <Button Text="Profile" TextColor="Gray" BackgroundColor="Transparent"/>
+            </HorizontalStackLayout>
         </Grid>
     </Shell.TitleView>
 
