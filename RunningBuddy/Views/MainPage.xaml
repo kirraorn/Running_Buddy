@@ -17,7 +17,7 @@
                 <Button Text="Calendar"  TextColor="Gray" BackgroundColor="Transparent" />
                 <Button Text="Shoes"  TextColor="Gray" BackgroundColor="Transparent" />
                 <Button Text="Routes" TextColor="Gray" BackgroundColor="Transparent" />
-                <Button Text="Profile" TextColor="Gray" BackgroundColor="Transparent" />
+                <Button Text="Profile" TextColor="Gray" BackgroundColor="Transparent" Clicked="ProfileClicked"/>
             </HorizontalStackLayout>
         </Grid>
     </Shell.TitleView>

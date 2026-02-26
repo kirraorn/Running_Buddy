@@ -9,5 +9,10 @@ public partial class MainPage : ContentPage
 		InitializeComponent();
 	}
 
+	private void ProfileClicked(object sender, EventArgs e)
+	{
+        Shell.Current.GoToAsync("//UserProfile");
+    }
+
 }
 
