@@ -13,7 +13,7 @@ namespace RunningBuddy.Models
         public double ColdPreference { get; set; } //currently asssuming user slider from 0-5 -Alex
         public double TotalMilage { get; set; }
 
-    
+        public bool NetworkAccess {get; set;}
     
 }
 
