@@ -4,7 +4,7 @@ namespace RunningBuddy.Views;
 
 public partial class MainPage : ContentPage
 {
-	Models.User user; //currently creating an instance of the user class, to check connectivity, this should probably be refactored
+	Models.User user = new Models.User(); //currently creating an instance of the user class, to check connectivity, this should probably be refactored
 	Models.Weather currentWeather;
 	int count = 0;
 	
