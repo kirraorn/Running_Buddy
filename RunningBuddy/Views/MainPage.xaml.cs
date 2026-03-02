@@ -1,13 +1,24 @@
-﻿namespace RunningBuddy.Views;
+﻿using System.Net.NetworkInformation;
+
+namespace RunningBuddy.Views;
 
 public partial class MainPage : ContentPage
 {
-	User user; //currently creating an instance of the user class, to check connectivity, this should probably be refactored
+	Models.User user; //currently creating an instance of the user class, to check connectivity, this should probably be refactored
+	Models.Weather currentWeather;
 	int count = 0;
+	
 	
 	public MainPage()
 	{
 		InitializeComponent();
+		
+        if (!isNetworkConnected()) //if offline go to manual weather input
+			{
+				Shell.Current.GoToAsync("//ManualWeatherInputView");
+			}
+		
+
 	}
 
 	private void ProfileClicked(object sender, EventArgs e)
@@ -17,7 +28,7 @@ public partial class MainPage : ContentPage
 
 	private bool isNetworkConnected() //need to call every time page is refreshed
     {
-        user.NetworkAccess = NetworkInterface.GetIsNetworkAvailable;
+       return user.NetworkAccess = NetworkInterface.GetIsNetworkAvailable();
     }
 
 }

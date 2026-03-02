@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="RunningBuddy.ViewModels.ManualWeatherInputView">
+    
+    <ScrollView>
+        <VerticalStackLayout Spacing="20" Padding="30">
+            
+            <Label Text="Log Weather" 
+                   FontSize="28" 
+                   FontAttributes="Bold" 
+                   HorizontalOptions="Center" 
+                   TextColor="{StaticResource Primary}"/>
+
+            <VerticalStackLayout Spacing="5">
+                <Label Text="Temperature (°F) *" FontAttributes="Bold" />
+                <Entry x:Name="TempEntry"
+                       Placeholder="e.g. 72.5" 
+                       Keyboard="Numeric"
+                       Text="{Binding currentWeather.currentTemp}" />
+                <Label Text="Required field" 
+                       TextColor="Red" 
+                       FontSize="Caption"
+                       IsVisible="{Binding currentWeather.IsTempMissing}" />
+            </VerticalStackLayout>
+
+            <VerticalStackLayout Spacing="5">
+                <Label Text="Humidity (%)" FontAttributes="Bold" />
+                <Entry Placeholder="e.g. 45" 
+                       Keyboard="Numeric"
+                       Text="{Binding currentWeather.Humidity}" />
+            </VerticalStackLayout>
+
+            <VerticalStackLayout Spacing="5">
+                <Label Text="Wind Speed (mph)" FontAttributes="Bold" />
+                <Entry Placeholder="e.g. 12.0" 
+                       Keyboard="Numeric" 
+                       Text="{Binding currentWeather.windSpeed}" />
+            </VerticalStackLayout>
+
+            <VerticalStackLayout Spacing="5">
+                <Label Text="Conditions / Warnings" FontAttributes="Bold" />
+                <Entry Placeholder="e.g. Heavy Rain, High UV" 
+                       Text="{Binding currentWeather.harshConditions}" />
+            </VerticalStackLayout>
+
+            <Button Text="Submit Weather"
+                    Command="{Binding SubmitClicked}"
+                    Margin="0,10,0,0"
+                    HeightRequest="50"
+                    CornerRadius="10" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentView>
