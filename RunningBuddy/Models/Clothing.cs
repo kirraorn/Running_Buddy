@@ -8,9 +8,9 @@ namespace RunningBuddy.Models
 {
     internal class Clothing
     {
-        public String hat_gloves {  get; set; }
-        public String top { get; set; }
-        public String bottom { get; set; }
+        public String hat_gloves {  get; set; } = "";
+                public String top { get; set; } = "";
+        public String bottom { get; set; } = "";
 
 
         //algorithm to recoment clothing based on weather and user preference

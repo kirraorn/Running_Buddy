@@ -11,6 +11,6 @@ namespace RunningBuddy.Models
         public double Humidity { get; set;}
         public double currentTemp { get; set;}
         public double windSpeed {get; set;}
-        public string harshConditions {get; set;}
+        public string harshConditions {get; set;} = "";
     }
 }
