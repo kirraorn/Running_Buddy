@@ -6,12 +6,16 @@ public partial class MainPage : ContentPage
 {
 	Models.User user; //currently creating an instance of the user class, to check connectivity, this should probably be refactored
 	Models.Weather currentWeather;
+	
+	
 	int count = 0;
 	
 	
 	public MainPage()
 	{
 		InitializeComponent();
+		user = new Models.User();
+		currentWeather = new Models.Weather();	
 		
         if (!isNetworkConnected()) //if offline go to manual weather input
 			{

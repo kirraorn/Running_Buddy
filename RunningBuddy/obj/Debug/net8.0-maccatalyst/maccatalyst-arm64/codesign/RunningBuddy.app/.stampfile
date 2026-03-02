@@ -1,1 +1,0 @@
--v --force --timestamp=none --sign - --entitlements /Users/rileygalpin/programming/school/RunningBuddy1/Running_Buddy/RunningBuddy/obj/Debug/net8.0-maccatalyst/maccatalyst-arm64/Entitlements.xcent /Users/rileygalpin/programming/school/RunningBuddy1/Running_Buddy/RunningBuddy/bin/Debug/net8.0-maccatalyst/maccatalyst-arm64/RunningBuddy.app
