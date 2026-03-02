@@ -1,16 +1,9 @@
-namespace RunningBuddy.Models;
-namespace System
-
-
+namespace RunningBuddy.Models 
 {
-    internal class PR
+    public class PR
     {
-        public double milage{get; set;}
-
-        public DateTime bestTime {get;set;}
-
-        public DateTime dateRan {get;set;}
-
-
+        public double Mileage { get; set; }
+        public TimeSpan BestTime { get; set; }
+        public DateTime DateRan { get; set; }
     }
 }
