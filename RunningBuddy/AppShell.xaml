@@ -16,5 +16,10 @@
         Title="Profile"
         ContentTemplate="{DataTemplate local:UserProfile}"
         Route="UserProfile" />
+    
+     <ShellContent
+        Title="ManualWeatherInputView"
+        ContentTemplate="{DataTemplate local:ManualWeatherInputView}"
+        Route="ManualWeatherInputView" />
 
 </Shell>

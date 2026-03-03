@@ -1,4 +1,4 @@
-namespace RunningBuddy.Views;
+namespace RunningBuddy.ViewModels;
 
 public class ManualWeatherInput : ContentView
 {
