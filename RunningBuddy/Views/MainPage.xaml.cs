@@ -1,4 +1,4 @@
-﻿using System.Net.NetworkInformation;
+﻿using Microsoft.Maui.Networking;
 
 namespace RunningBuddy.Views;
 
@@ -28,7 +28,13 @@ public partial class MainPage : ContentPage
 
 	private bool isNetworkConnected() //need to call every time page is refreshed
     {
-       return user.NetworkAccess = NetworkInterface.GetIsNetworkAvailable();
+		IEnumerable<ConnectionProfile> profiles = Connectivity.Current.ConnectionProfiles;
+		if (profiles.Contains(ConnectionProfile.WiFi))
+			{
+				return true;
+			}
+			return false;
+
     }
 
 }

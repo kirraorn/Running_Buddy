@@ -1,14 +1,15 @@
-namespace RunningBuddy.ViewModels;
+namespace RunningBuddy.Views;
 
-public partial class ManualWeatherInputView : ContentView
+public partial class ManualWeatherInputView : ContentPage
 {
 	public ManualWeatherInputView()
 	{
+		
 		InitializeComponent();
 	}
 
-	private void SubmitClicked(object sender, EventArgs e)
-	{
+    private void SubmitClicked(object sender, EventArgs e)
+    {
         Shell.Current.GoToAsync("//MainPage");
     }
 
