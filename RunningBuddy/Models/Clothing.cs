@@ -53,12 +53,12 @@ namespace RunningBuddy.Models
             {
                 hat_gloves = "Hat + Gloves";
                 top = "long sleeves";
-                bottom = "jacket";
+                bottom = "shorts";
             }
             else if (userTemp >= 40)
             {
                 hat_gloves = "Hat + Glooves";
-                top = "long sleeves";
+                top = "jacket";
                 bottom = "shorts";
             }
             else //temp is 30s or colder
