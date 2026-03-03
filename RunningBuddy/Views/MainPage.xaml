@@ -31,7 +31,7 @@
             
             
             <Label
-            Text="Running Buddy"
+            Text="{Binding UserName, StringFormat='Hello, {0}!'}"
             Style="{StaticResource Headline}"
             SemanticProperties.HeadingLevel="Level1" />
 
