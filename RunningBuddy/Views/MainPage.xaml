@@ -5,24 +5,7 @@
              BackgroundColor="#0F0F0F">
 
 
-<!-- Header to Switch Tabs -->
-    <Shell.TitleView>
-    <Grid ColumnDefinitions="*, Auto" Padding="10,0">
-        <Label Text="Running Buddy" 
-               VerticalOptions="Center" 
-               TextColor="White" 
-               FontAttributes="Bold" 
-               FontSize="20" />
 
-        <HorizontalStackLayout Grid.Column="1" Spacing="20" VerticalOptions="Center">
-            <Button Text="Home" TextColor="White" BackgroundColor="Transparent" FontAttributes="Bold" Clicked="HomeClicked" />
-            <Button Text="Calendar" TextColor="#888888" BackgroundColor="Transparent" Clicked="CalendarClicked" />
-            <Button Text="Shoes" TextColor="#888888" BackgroundColor="Transparent" Clicked="ShoesClicked" />
-            <Button Text="Routes" TextColor="#888888" BackgroundColor="Transparent" Clicked="RoutesClicked" />
-            <Button Text="Profile" TextColor="#888888" BackgroundColor="Transparent" Clicked="ProfileClicked" />
-        </HorizontalStackLayout>
-    </Grid>
-</Shell.TitleView>
 
 
 
