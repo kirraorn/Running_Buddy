@@ -12,18 +12,22 @@ using RunningBuddy.Services;
 namespace RunningBuddy.ViewModels;
 
 
-public class UserProfileViewModel : INotifyPropertyChanged
+internal class UserProfileViewModel : INotifyPropertyChanged
 {
     private UserServiceProxy _userSvc;
     private RouteServiceProxy _routSvc; //not implemented yet
     private ShoeDetailViewModel _shoeSvc; //not implemented yet
+    private PrServiceProxy _prSvc;
 
 
     public UserProfileViewModel()
     {
         _userSvc = UserServiceProxy.Current;
+        _prSvc = PrServiceProxy.Current;
+        _routSvc = RouteServiceProxy.Current;
     }
 
+    //USER DATA ACCESS---------------------------------------------------------
     public String UserName
     {
         get
@@ -33,6 +37,19 @@ public class UserProfileViewModel : INotifyPropertyChanged
         }
     }
 
+    //PR DATA ACCESS-----------------------------------------------------------
+    public PrDetailViewModel SelectedRoute { get; set; } //Will be used when there is a edit route screen
+    public ObservableCollection<PrDetailViewModel> PRs
+    {
+        get
+        {
+
+            var prs = _prSvc.PRList.Select(t => new PrDetailViewModel(t));
+            _prSvc.DisplayPRs();
+
+            return new ObservableCollection<PrDetailViewModel>(prs);
+        }
+    }
 
     public event PropertyChangedEventHandler? PropertyChanged;
 
