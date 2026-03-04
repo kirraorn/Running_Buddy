@@ -32,7 +32,7 @@
             
         <!-- The User Header -->
             <VerticalStackLayout Spacing="5">
-                <Label Text="Hello, Runner 👋" FontSize="40" FontAttributes="Bold" TextColor="White" />
+                <Label Text="{Binding UserName, StringFormat='Hello, {0}👋'}" FontSize="40" FontAttributes="Bold" TextColor="White" />
                 <Label Text="Tallahassee, FL · Today, 7:42 AM" TextColor="#888888" FontSize="16" />
             </VerticalStackLayout>
 

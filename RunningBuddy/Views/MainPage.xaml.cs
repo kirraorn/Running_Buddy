@@ -5,10 +5,21 @@ namespace RunningBuddy.Views;
 
 public partial class MainPage : ContentPage
 {
-    // Initialize user and weather
-    Models.User user = new Models.User(); 
-    // Made this nullable to fix the warning CS8618
-    Models.Weather? currentWeather;
+	//Models.User user = new Models.User(); //currently creating an instance of the user class, to check connectivity, this should probably be refactored
+	Models.Weather currentWeather;
+	int count = 0;
+	
+	
+	public MainPage()
+	{
+		InitializeComponent();
+        BindingContext = new MainPageViewModel();
+
+        if (!isNetworkConnected()) //if offline go to manual weather input
+			{
+				Shell.Current.GoToAsync("//ManualWeatherInputView");
+			}
+		
 
     public MainPage()
     {
