@@ -28,6 +28,7 @@ public class MainPageViewModel : INotifyPropertyChanged
         get
         {
             return _userSvc.MainUser.Name;
+            //return "test";
         }
     }
 

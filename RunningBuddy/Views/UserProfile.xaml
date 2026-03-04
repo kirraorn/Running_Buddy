@@ -4,23 +4,7 @@
              x:Class="RunningBuddy.Views.UserProfile"
              Title="UserProfile">
 
-    <Shell.TitleView>
-        <Grid ColumnDefinitions="*, Auto">
-            <Label Text="Running Buddy" 
-       VerticalOptions="Center" 
-       TextColor="White" 
-       FontAttributes="Bold" 
-       FontSize="18" />
-
-            <HorizontalStackLayout Grid.Column="1" Spacing="5" Margin="0,0,10,0">
-                <Button Text="Home" TextColor="Gray" BackgroundColor="Transparent" Clicked="HomeClicked"/>
-                <Button Text="Calendar"  TextColor="Gray" BackgroundColor="Transparent" />
-                <Button Text="Shoes"  TextColor="Gray" BackgroundColor="Transparent" />
-                <Button Text="Routes" TextColor="Gray" BackgroundColor="Transparent" />
-                <Button Text="Profile" TextColor="Gray" BackgroundColor="Transparent"/>
-            </HorizontalStackLayout>
-        </Grid>
-    </Shell.TitleView>
+    
 
     <ScrollView>
         <Grid Padding="25" RowSpacing="25">
