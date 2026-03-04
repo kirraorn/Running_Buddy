@@ -1,6 +1,6 @@
 ﻿using Microsoft.Maui.Networking;
 using System.Net.NetworkInformation; // Added this for NetworkInterface
-
+using RunningBuddy.ViewModels;
 namespace RunningBuddy.Views;
 
 public partial class MainPage : ContentPage
@@ -8,24 +8,17 @@ public partial class MainPage : ContentPage
 	//Models.User user = new Models.User(); //currently creating an instance of the user class, to check connectivity, this should probably be refactored
 	Models.Weather currentWeather;
 	int count = 0;
-	
-	
-	public MainPage()
-	{
-		InitializeComponent();
-        BindingContext = new MainPageViewModel();
 
-        if (!isNetworkConnected()) //if offline go to manual weather input
-			{
-				Shell.Current.GoToAsync("//ManualWeatherInputView");
-			}
-		
 
     public MainPage()
     {
         InitializeComponent();
+        BindingContext = new MainPageViewModel();
         CheckConnectivity();
     }
+		
+
+
 
     private void CheckConnectivity()
     {
