@@ -15,7 +15,8 @@ namespace RunningBuddy.ViewModels;
 public class UserProfileViewModel : INotifyPropertyChanged
 {
     private UserServiceProxy _userSvc;
-    //private RouteServiceProxy _routSvc; //does not exist yet
+    private RouteServiceProxy _routSvc; //not implemented yet
+    private ShoeDetailViewModel _shoeSvc; //not implemented yet
 
 
     public UserProfileViewModel()
