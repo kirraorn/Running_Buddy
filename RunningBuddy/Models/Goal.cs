@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace RunningBuddy.Models
 {
-    internal class Goals
+    internal class Goal
     {
         public int Id { get; set; }
         public double Distance { get; set; }
-        public DateTime Time { get; set; }
+        public TimeSpan Time { get; set; }
         public DateTime Date { get; set;}
 
     }
