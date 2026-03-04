@@ -100,30 +100,31 @@
         <!-- Recommended Routes Card -->
                 <VerticalStackLayout Grid.Column="1" Spacing="15">
                     <Label Text="📍 Recommended Routes" TextColor="#4CAF50" FontAttributes="Bold" FontSize="20"/>
-                    
-                    <Border StrokeShape="RoundRectangle 12" Padding="20" BackgroundColor="#1A1A1A" StrokeThickness="0">
-                        <Grid RowDefinitions="Auto, Auto" ColumnDefinitions="*, Auto" RowSpacing="5">
-                            <Label Text="St. Marks Railroad Trail" TextColor="White" Grid.Row="0" Grid.Column="0" FontAttributes="Bold"/>
-                            <Label Text="Perfect Conditions" TextColor="#4CAF50" FontSize="11" Grid.Row="0" Grid.Column="1" VerticalOptions="Center"/>
-                            <HorizontalStackLayout Grid.Row="1" Grid.Column="0" Spacing="10" Opacity="0.5">
-                                <Label Text="→ 16 mi" FontSize="12" TextColor="White"/>
-                                <Label Text="🌳 Trail" FontSize="12" TextColor="White"/>
-                                <Label Text="⛰️ 120 ft" FontSize="12" TextColor="White"/>
-                            </HorizontalStackLayout>
-                        </Grid>
-                    </Border>
-                    
-                    <Border StrokeShape="RoundRectangle 12" Padding="20" BackgroundColor="#1A1A1A" StrokeThickness="0">
-                        <Grid RowDefinitions="Auto, Auto" ColumnDefinitions="*, Auto" RowSpacing="5">
-                            <Label Text="Lafayette Park Trail" TextColor="White" Grid.Row="0" Grid.Column="0" FontAttributes="Bold"/>
-                           <Label Text="Perfect Conditions" TextColor="#4CAF50" FontSize="11" Grid.Row="0" Grid.Column="1" VerticalOptions="Center"/>
-                            <HorizontalStackLayout Grid.Row="1" Grid.Column="0" Spacing="10" Opacity="0.5">
-                                <Label Text="→ 3.1 mi" FontSize="12" TextColor="White"/>
-                                <Label Text="🏟️ Dirt" FontSize="12" TextColor="White"/>
-                                <Label Text="⛰️ 30 ft" FontSize="12" TextColor="White"/>
-                            </HorizontalStackLayout>
-                        </Grid>
-                    </Border>
+
+                    <CollectionView ItemsSource="{Binding Routes}" SelectionMode="None">
+                        <CollectionView.ItemsLayout>
+                            <LinearItemsLayout Orientation="Vertical" ItemSpacing="8" />
+                        </CollectionView.ItemsLayout>
+
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Border StrokeShape="RoundRectangle 12" 
+                                Padding="20" 
+                                BackgroundColor="#1A1A1A" 
+                                StrokeThickness="0">
+
+                                    <Grid RowDefinitions="Auto, Auto" ColumnDefinitions="*, Auto" RowSpacing="8">
+
+                                        <Label Grid.Row="0" Grid.Column="0" Text="{Binding Model.Name, StringFormat='{0}'}" FontSize="16" TextColor="White"/>
+                                        <Label Grid.Row="1" Grid.Column="0" Text="{Binding Model.Length, StringFormat='→ {0} miles'}" FontSize="12" TextColor="White"/>
+                                        <Label Grid.Row="1" Grid.Column="1" Text="{Binding Model.Elevation, StringFormat='⛰️ {0} ft'}" FontSize="12" TextColor="White"/>
+
+
+                                    </Grid>
+                                </Border>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
                 </VerticalStackLayout>
             </Grid>
 

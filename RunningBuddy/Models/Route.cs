@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RunningBuddy.Models
 {
-    internal class Routes
+    internal class Route
     {
         public int Id { get; set; }
         public string Name  {get; set;} = "";

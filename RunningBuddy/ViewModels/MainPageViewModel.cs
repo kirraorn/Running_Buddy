@@ -12,17 +12,20 @@ using RunningBuddy.Services;
 namespace RunningBuddy.ViewModels;
 
 
-public class MainPageViewModel : INotifyPropertyChanged
+internal class MainPageViewModel : INotifyPropertyChanged
 {
     private UserServiceProxy _userSvc;
-    //private RouteServiceProxy _routSvc; //does not exist yet
+    private RouteServiceProxy _routSvc;
 
 
     public MainPageViewModel()
     {
         _userSvc = UserServiceProxy.Current;
+        _routSvc = RouteServiceProxy.Current;
     }
 
+
+    //USER DATA ACCESS---------------------------------------------------------
     public String UserName
     {
         get
@@ -33,6 +36,21 @@ public class MainPageViewModel : INotifyPropertyChanged
     }
 
 
+    //ROUTE DATA ACCESS--------------------------------------------------------
+    public RouteDetailViewModel SelectedRoute { get; set; } //Will be used when there is a edit route screen
+    public ObservableCollection<RouteDetailViewModel> Routes
+    {
+        get
+        {
+            var Routes = _routSvc.RouteList.Select(t => new RouteDetailViewModel(t));
+            _routSvc.DisplayRoutes();
+
+            return new ObservableCollection<RouteDetailViewModel>(Routes);
+        }
+    }
+
+
+    //GENERAL FUNCTIONS--------------------------------------------------------
     public event PropertyChangedEventHandler? PropertyChanged;
 
     private void NotifyPropertyChanged([CallerMemberName] string propertyName = "")
