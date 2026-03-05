@@ -16,7 +16,7 @@ internal class UserProfileViewModel : INotifyPropertyChanged
 {
     private UserServiceProxy _userSvc;
     private RouteServiceProxy _routSvc; //not implemented yet
-    private ShoeDetailViewModel _shoeSvc; //not implemented yet
+    private ShoeClosetViewModel _shoeSvc; //not implemented yet
     private PrServiceProxy _prSvc;
 
 

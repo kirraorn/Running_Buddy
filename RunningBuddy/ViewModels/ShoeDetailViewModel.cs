@@ -14,7 +14,7 @@ namespace RunningBuddy.ViewModels
     {
         public ShoeDetailViewModel()
         {
-            Model = new Route();
+            Model = new Shoe();
 
             DeleteCommand = new Command(DoDelete);
 
@@ -22,16 +22,16 @@ namespace RunningBuddy.ViewModels
 
         public ShoeDetailViewModel(int id)
         {
-            Model = RouteServiceProxy.Current.GetById(id) ?? new Route();
+            Model = ShoeServiceProxy.Current.GetById(id) ?? new Shoe();
 
             DeleteCommand = new Command(DoDelete);
 
 
         }
 
-        public ShoeDetailViewModel(Route? model)
+        public ShoeDetailViewModel(Shoe? model)
         {
-            Model = model ?? new Route();
+            Model = model ?? new Shoe();
             DeleteCommand = new Command(DoDelete);
 
 
@@ -39,7 +39,7 @@ namespace RunningBuddy.ViewModels
 
         public void DoDelete()
         {
-            RouteServiceProxy.Current.DeleteRoute(Model.Id); //was ID, might cause problems
+            ShoeServiceProxy.Current.DeleteShoe(Model.Id); //was ID, might cause problems
         }
 
         // alex test fn
@@ -48,13 +48,13 @@ namespace RunningBuddy.ViewModels
             return Model.Id;
         }
 
-        public Route? Model { get; set; }
+        public Shoe? Model { get; set; }
         public ICommand? DeleteCommand { get; set; }
 
 
         public void AddOrUpdateTrip()
         {
-            RouteServiceProxy.Current.AddOrUpdate(Model);
+            ShoeServiceProxy.Current.AddOrUpdate(Model);
         }
 
 

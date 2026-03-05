@@ -22,6 +22,11 @@
         ContentTemplate="{DataTemplate local:ManualWeatherInputView}"
         Route="ManualWeatherInputView" />
 
+    <ShellContent
+        Title="ShoeCloset"
+        ContentTemplate="{DataTemplate local:ShoeClosetPage}"
+        Route="ShoeCloset" />
+
     <Shell.TitleView>
         <Grid ColumnDefinitions="*, Auto" Padding="10,0">
             <Label Text="Running Buddy" VerticalOptions="Center" FontAttributes="Bold" FontSize="20" />

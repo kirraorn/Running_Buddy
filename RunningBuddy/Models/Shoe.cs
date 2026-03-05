@@ -14,6 +14,20 @@ namespace RunningBuddy.Models
         public string ShoeType {get; set; } = "";
         public double CurrentMilage { get; set; }
         public double MaxMilage { get; set; }
+        public double percentUsed { get; set; }
+        public double MilesRemaining { get; set; }
+
+        //updates the percentUsed and MilesRemaining vars
+        public void setUsuage()
+        {
+            percentUsed = CurrentMilage / MaxMilage;
+            MilesRemaining = MaxMilage - CurrentMilage;
+        }
+
+        public bool isComplete()
+        {
+            return CurrentMilage >= MaxMilage;
+        }
 
     }
 }
