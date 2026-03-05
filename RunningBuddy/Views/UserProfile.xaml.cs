@@ -1,4 +1,7 @@
 namespace RunningBuddy.Views;
+
+using System.Threading.Tasks;
+using RunningBuddy.Services;
 using RunningBuddy.ViewModels;
 
 public partial class UserProfile : ContentPage
@@ -12,6 +15,19 @@ public partial class UserProfile : ContentPage
 	}
 
 
-    
+	public async void EditClickedAsync(object sender, EventArgs e)
+    {
+        string result = await DisplayPromptAsync("Update Profile", "Enter your new username:", "Save", "Cancel", "New Username");
+		if (!string.IsNullOrWhiteSpace(result))
+		{
+			// Cast the BindingContext to your ViewModel type
+			if (BindingContext is UserProfileViewModel viewModel)
+			{
+				// Setting this triggers the 'set' block in the ViewModel
+				viewModel.UserName = result; 
+			}
+		}
+	}
+
 
 }

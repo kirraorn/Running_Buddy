@@ -35,6 +35,17 @@ internal class UserProfileViewModel : INotifyPropertyChanged
             return _userSvc.MainUser.Name;
             //return "test";
         }
+        set { //allow editing username
+        if (_userSvc.MainUser.Name != value)
+        {
+    
+            _userSvc.MainUser.Name = value;
+            _userSvc.SaveAll();
+
+            NotifyPropertyChanged();
+            
+        }
+        }
     }
 
     //PR DATA ACCESS-----------------------------------------------------------
