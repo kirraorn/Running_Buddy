@@ -51,6 +51,14 @@ internal class MainPageViewModel : INotifyPropertyChanged
 
 
     //GENERAL FUNCTIONS--------------------------------------------------------
+
+    public void RefreshPage()
+    {
+        NotifyPropertyChanged(nameof(UserName));
+
+
+    }
+
     public event PropertyChangedEventHandler? PropertyChanged;
 
     private void NotifyPropertyChanged([CallerMemberName] string propertyName = "")

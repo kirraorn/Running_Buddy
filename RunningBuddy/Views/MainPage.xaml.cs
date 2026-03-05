@@ -18,8 +18,14 @@ public partial class MainPage : ContentPage
     }
 
 
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
 
-    
+        
+        (BindingContext as MainPageViewModel)?.RefreshPage();
+    }
+
     private void CheckConnectivity()
     {
         // Using MAUI's built-in Connectivity API
