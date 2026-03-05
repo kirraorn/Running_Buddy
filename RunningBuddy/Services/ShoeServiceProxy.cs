@@ -67,9 +67,9 @@ namespace RunningBuddy.Services
                 // 2. Initialize with default data if it's the first time running
                 _shoeList = new List<Shoe>
                 {
-                    new Shoe { Id = 0, Name = "Launch 12", BrandName = "Brooks", CurrentMilage = 121, MaxMilage = 400},
-                    new Shoe { Id = 1, Name = "Example Shoe 2", BrandName = "Nike", CurrentMilage = 200, MaxMilage = 300},
-                    new Shoe { Id = 2, Name = "Example Shoe 3", BrandName = "Addias", CurrentMilage = 65, MaxMilage = 500}
+                    new Shoe { Id = 0, Name = "Launch 12", BrandName = "Brooks", CurrentMilage = 121, MaxMilage = 400, percentUsed = 0.3025, MilesRemaining = 279},
+                    new Shoe { Id = 1, Name = "Example Shoe 2", BrandName = "Nike", CurrentMilage = 200, MaxMilage = 300, percentUsed = 0.67, MilesRemaining = 100},
+                    new Shoe { Id = 2, Name = "Example Shoe 3", BrandName = "Addias", CurrentMilage = 65, MaxMilage = 500, percentUsed = 0.13, MilesRemaining = 435}
                 };
 
                 // Optionally save this default file immediately

@@ -71,10 +71,10 @@
                                 </Grid>
 
                                 <VerticalStackLayout Grid.Row="3" Grid.ColumnSpan="2" Spacing="5">
-                                    <ProgressBar Progress="0.5" ProgressColor="#4DB6AC" HeightRequest="10" />
+                                    <ProgressBar Progress="{Binding Model.percentUsed}" ProgressColor="#4DB6AC" HeightRequest="10" ScaleY="4"/>
                                     <!--Need to calculate progress-->
 
-                                    <Label Text=" mi remaining" 
+                                    <Label Text="{Binding Model.MilesRemaining, StringFormat='{0} mi remaining'}" 
                            TextColor="#5C7C8C" 
                            FontSize="12" />
 

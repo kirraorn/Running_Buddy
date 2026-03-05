@@ -24,5 +24,10 @@ namespace RunningBuddy.Models
             MilesRemaining = MaxMilage - CurrentMilage;
         }
 
+        public bool isComplete()
+        {
+            return CurrentMilage >= MaxMilage;
+        }
+
     }
 }
