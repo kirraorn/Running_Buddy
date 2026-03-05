@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="RunningBuddy.Views.ShoeClosetPage"
+             BackgroundColor="#121212">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="25" Spacing="20">
+
+            <Grid ColumnDefinitions="*, Auto" Margin="0,0,0,10">
+                <VerticalStackLayout Grid.Column="0" Spacing="5">
+                    <Label Text="Shoe Closet" FontSize="32" FontAttributes="Bold" TextColor="#4DB6AC" />
+                    <Label Text="Track mileage across your shoe collection and get alerts." TextColor="#888888" FontSize="14" />
+                </VerticalStackLayout>
+
+                <Button Grid.Column="1" Text="+ Add Shoe" BackgroundColor="#81C784" TextColor="Black" 
+                        FontAttributes="Bold" CornerRadius="8" Padding="15,0" HeightRequest="45" />
+            </Grid>
+
+            <FlexLayout Wrap="Wrap" JustifyContent="Start" Margin="0,0,0,10">
+                <Button Text="All" BackgroundColor="#26A69A" TextColor="White" CornerRadius="15" HeightRequest="35" Margin="0,0,10,10" Padding="15,0"/>
+                <Button Text="Road" BackgroundColor="#2C2C2C" TextColor="#AAAAAA" CornerRadius="15" HeightRequest="35" Margin="0,0,10,10" Padding="15,0"/>
+                <Button Text="Trail" BackgroundColor="#2C2C2C" TextColor="#AAAAAA" CornerRadius="15" HeightRequest="35" Margin="0,0,10,10" Padding="15,0"/>
+                <Button Text="Mixed" BackgroundColor="#2C2C2C" TextColor="#AAAAAA" CornerRadius="15" HeightRequest="35" Margin="0,0,10,10" Padding="15,0"/>
+            </FlexLayout>
+
+            <Grid ColumnDefinitions="*, *, *" ColumnSpacing="15" HeightRequest="100">
+                <Border Grid.Column="0" StrokeShape="RoundRectangle 12" BackgroundColor="#1E1E1E" StrokeThickness="0">
+                    <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="5">
+                        <Label Text="Total-Shoes" TextColor="#4DB6AC" FontSize="24" FontAttributes="Bold" HorizontalTextAlignment="Center"/>
+                        <Label Text="Total Shoes" TextColor="#666666" FontSize="12" HorizontalTextAlignment="Center"/>
+                    </VerticalStackLayout>
+                </Border>
+
+                <Border Grid.Column="1" StrokeShape="RoundRectangle 12" BackgroundColor="#1E1E1E" StrokeThickness="0">
+                    <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="5">
+                        <Label Text="Total-Miles" TextColor="#4DB6AC" FontSize="24" FontAttributes="Bold" HorizontalTextAlignment="Center"/>
+                        <Label Text="Total Miles Logged" TextColor="#666666" FontSize="12" HorizontalTextAlignment="Center"/>
+                    </VerticalStackLayout>
+                </Border>
+
+                <Border Grid.Column="2" StrokeShape="RoundRectangle 12" BackgroundColor="#1E1E1E" StrokeThickness="0">
+                    <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="5">
+                        <Label Text="Needs-Replacing" TextColor="#E57373" FontSize="24" FontAttributes="Bold" HorizontalTextAlignment="Center"/>
+                        <Label Text="Need Replacing" TextColor="#666666" FontSize="12" HorizontalTextAlignment="Center"/>
+                    </VerticalStackLayout>
+                </Border>
+            </Grid>
+
+            <CollectionView ItemsSource="{Binding Shoes}" SelectionMode="None">
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Vertical" ItemSpacing="8" />
+                </CollectionView.ItemsLayout>
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Border StrokeShape="RoundRectangle 12" 
+                Padding="20" 
+                BackgroundColor="#1A1A1A" 
+                StrokeThickness="0">
+
+                            <Grid RowDefinitions="Auto, Auto, Auto, Auto" ColumnDefinitions="*, Auto" RowSpacing="8">
+
+                                <Label Grid.Row="0" Grid.Column="0" Text="{Binding Model.Name}" FontSize="16" TextColor="White" FontAttributes="Bold"/>
+                                <Label Grid.Row="0" Grid.Column="1" Text="🗑" TextColor="#444444" HorizontalOptions="End" />
+
+                                <Label Grid.Row="1" Grid.Column="0" Text="{Binding Model.CurrentMilage, StringFormat='{0} mi'}" TextColor="#4DB6AC" FontSize="14" />
+
+                                <Grid Grid.Row="2" Grid.ColumnSpan="2" ColumnDefinitions="*, *">
+                                    <Label Grid.Column="1" Text="{Binding Model.MaxMilage, StringFormat='Max: {0} mi'}" HorizontalOptions="End" TextColor="#888888" FontSize="14" />
+                                </Grid>
+
+                                <VerticalStackLayout Grid.Row="3" Grid.ColumnSpan="2" Spacing="5">
+                                    <ProgressBar Progress="0.5" ProgressColor="#4DB6AC" HeightRequest="10" />
+                                    <!--Need to calculate progress-->
+
+                                    <Label Text=" mi remaining" 
+                           TextColor="#5C7C8C" 
+                           FontSize="12" />
+
+                                    <Button Text="+ Log Mileage" 
+                            BackgroundColor="#2C2C2C" 
+                            TextColor="White" 
+                            HeightRequest="35" 
+                            WidthRequest="120" 
+                            HorizontalOptions="Start" 
+                            Margin="0,5,0,0"/>
+                                </VerticalStackLayout>
+
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

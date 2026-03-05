@@ -110,11 +110,15 @@ namespace RunningBuddy.Services
             {
                 shoe.Id = nextKey;
                 //Shoes.Add(shoe);
+                shoe.setUsuage();
                 _shoeList.Add(shoe);
 
             }
             else if (shoe != null)
             {
+                
+                shoe.setUsuage();
+
                 var existingShoe = _shoeList.FirstOrDefault(t => t.Id == shoe.Id);
 
                 if (existingShoe != null)

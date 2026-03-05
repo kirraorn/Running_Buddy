@@ -14,7 +14,7 @@ public partial class AppShell : Shell
     private async void CalendarClicked(object sender, EventArgs e) =>
             Shell.Current.GoToAsync("//CalendarPage");
     private async void ShoesClicked(object sender, EventArgs e) =>
-         await Shell.Current.GoToAsync("//ShoesPage");
+         await Shell.Current.GoToAsync("//ShoeCloset");
     private async void RoutesClicked(object sender, EventArgs e) =>
          await Shell.Current.GoToAsync("//RoutesPage");
 }
