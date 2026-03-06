@@ -27,6 +27,11 @@
         ContentTemplate="{DataTemplate local:ShoeClosetPage}"
         Route="ShoeCloset" />
 
+    <ShellContent
+        Title="Routes"
+        ContentTemplate="{DataTemplate local:RoutePage}"
+        Route="RoutePage" />
+
     <Shell.TitleView>
         <Grid ColumnDefinitions="*, Auto" Padding="10,0">
             <Label Text="Running Buddy" VerticalOptions="Center" FontAttributes="Bold" FontSize="20" />

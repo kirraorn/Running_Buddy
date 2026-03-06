@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RunningBuddy.Models
 {
-    internal class Route
+    public class Route
     {
         public int Id { get; set; }
         public string Name  {get; set;} = "";
@@ -15,6 +15,8 @@ namespace RunningBuddy.Models
         public DateTime Date { get; set;}
 
         public double Elevation {get;set;}
+
+        public bool IsFavorite {get;set;}
 
         public enum Terrain {Track,Asphault,Gravel,Trail,Dirt,Grass} //Currently assuming a dropdown selection - Riley
 

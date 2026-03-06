@@ -1,10 +1,14 @@
-﻿namespace RunningBuddy;
+﻿using RunningBuddy.Views;
+
+namespace RunningBuddy;
+
 
 public partial class AppShell : Shell
 {
 	public AppShell()
 	{
 		InitializeComponent();
+          Routing.RegisterRoute(nameof(RouteDetail), typeof(RouteDetail));
 	}
 
     private async void ProfileClicked(object sender, EventArgs e) =>
@@ -16,5 +20,10 @@ public partial class AppShell : Shell
     private async void ShoesClicked(object sender, EventArgs e) =>
          await Shell.Current.GoToAsync("//ShoeCloset");
     private async void RoutesClicked(object sender, EventArgs e) =>
-         await Shell.Current.GoToAsync("//RoutesPage");
+         await Shell.Current.GoToAsync("//RoutePage");
+
+    private async void AddorEditRoutesClicked(object sender, EventArgs e) =>
+         await Shell.Current.GoToAsync("RouteDetail");
+
+     
 }
