@@ -4,11 +4,6 @@
              x:Class="RunningBuddy.Views.MainPage"
              BackgroundColor="#0F0F0F">
 
-
-
-
-
-
 <!-- Main Page -->
     <ScrollView>
         <VerticalStackLayout Padding="30" Spacing="25">
@@ -16,7 +11,7 @@
         <!-- The User Header -->
             <VerticalStackLayout Spacing="5">
                 <Label Text="{Binding UserName, StringFormat='Hello, {0}👋'}" FontSize="40" FontAttributes="Bold" TextColor="White" />
-                <Label Text="Tallahassee, FL · Today, 7:42 AM" TextColor="#888888" FontSize="16" />
+                <!-- <Label Text="Tallahassee, FL · Today, 7:42 AM" TextColor="#888888" FontSize="16" /> -->
             </VerticalStackLayout>
 
 

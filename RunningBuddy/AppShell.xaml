@@ -27,7 +27,12 @@
         ContentTemplate="{DataTemplate local:ShoeClosetPage}"
         Route="ShoeCloset" />
 
-        <ShellContent
+    <ShellContent
+        Title="Routes"
+        ContentTemplate="{DataTemplate local:RoutePage}"
+        Route="RoutePage" />
+
+    <ShellContent
         Title="ShoeDetailView"
         ContentTemplate="{DataTemplate local:ShoeDetailView}"
         Route="ShoeDetailView" />
@@ -44,6 +49,4 @@
             </HorizontalStackLayout>
         </Grid>
     </Shell.TitleView>
-
-
 </Shell>

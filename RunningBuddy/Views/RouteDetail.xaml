@@ -1,0 +1,38 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="RunningBuddy.Views.RouteDetail"
+             Title="Route Details"
+             BackgroundColor="#1A1A1A">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="20">
+            <Label Text="Route Name" TextColor="White" FontAttributes="Bold" />
+            <Entry Text="{Binding Model.Name}" Placeholder="e.g., St. Marks Trail" 
+                   TextColor="White" BackgroundColor="#262626" />
+
+            <Grid ColumnDefinitions="*, *" ColumnSpacing="15">
+                <VerticalStackLayout Grid.Column="0">
+                    <Label Text="Distance (mi)" TextColor="White" FontAttributes="Bold" />
+                    <Entry Text="{Binding Model.Length}" Keyboard="Numeric" 
+                           TextColor="White" BackgroundColor="#262626" />
+                </VerticalStackLayout>
+                <VerticalStackLayout Grid.Column="1">
+                    <Label Text="Elevation (ft)" TextColor="White" FontAttributes="Bold" />
+                    <Entry Text="{Binding Model.Elevation}" Keyboard="Numeric" 
+                           TextColor="White" BackgroundColor="#262626" />
+                </VerticalStackLayout>
+            </Grid>
+
+            <Label Text="Terrain" TextColor="White" FontAttributes="Bold" />
+            <Picker x:Name="TerrainPicker" Title="Select Terrain" 
+                    TextColor="White" BackgroundColor="#262626" />
+
+            <HorizontalStackLayout Spacing="20" HorizontalOptions="Center" Margin="0,30,0,0">
+                <Button Text="Delete" Command="{Binding DeleteCommand}"
+                        BackgroundColor="#EF4444" TextColor="White" WidthRequest="120" />
+                <Button Text="Save Route" Clicked="OnSaveClicked"
+                        BackgroundColor="#A3E635" TextColor="Black" FontAttributes="Bold" WidthRequest="150" />
+            </HorizontalStackLayout>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

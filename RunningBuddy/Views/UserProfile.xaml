@@ -2,6 +2,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="RunningBuddy.Views.UserProfile"
+             BackgroundColor="#0F0F0F"
              Title="UserProfile">
 
     
@@ -12,8 +13,7 @@
                 <RowDefinition Height="Auto" /> <RowDefinition Height="Auto" /> <RowDefinition Height="Auto" /> <RowDefinition Height="Auto" /> </Grid.RowDefinitions>
 
             <Grid Grid.Row="0" ColumnDefinitions="Auto, *">
-                <Label Grid.Column="0" Text="Name: " FontSize="22" FontAttributes="Bold" />
-                <Label Grid.Column="1" Text="{Binding UserName, StringFormat='{0}'}" FontSize="22" Margin="5,0,0,0" VerticalOptions="Center" />
+                <Label Grid.Column="1" Text="{Binding UserName, StringFormat='{0}'}" FontSize="40" VerticalOptions="Center" FontAttributes="Bold" />
                 <Button Grid.Column="2" Text="Edit" Clicked ="EditClickedAsync" FontSize="12" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,5,0" />
                 
             </Grid>
@@ -21,7 +21,7 @@
             <Grid Grid.Row="1" RowDefinitions="Auto, Auto">
                 <Label Grid.Row="0" Text="Weekly Summary" FontSize="18" FontAttributes="Bold" TextColor="LightBlue" />
                 
-                <Frame Grid.Row="1" BackgroundColor="#2C2C2C" CornerRadius="8" Padding="15" Margin="0,10,0,0" BorderColor="Transparent">
+                <Frame Grid.Row="1" BackgroundColor="#1A1A1A" CornerRadius="8" Padding="15" Margin="0,10,0,0" BorderColor="Transparent">
                     <Grid ColumnDefinitions="*, *, *">
                         <VerticalStackLayout Grid.Column="0" HorizontalOptions="Center">
                             <Label Text="Miles" FontSize="12" TextColor="Gray" HorizontalOptions="Center" />

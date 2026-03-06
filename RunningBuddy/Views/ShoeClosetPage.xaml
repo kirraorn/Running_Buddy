@@ -2,15 +2,15 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="RunningBuddy.Views.ShoeClosetPage"
-             BackgroundColor="#121212">
+             BackgroundColor="#0F0F0F">
 
     <ScrollView>
         <VerticalStackLayout Padding="25" Spacing="20">
 
             <Grid ColumnDefinitions="*, Auto" Margin="0,0,0,10">
                 <VerticalStackLayout Grid.Column="0" Spacing="5">
-                    <Label Text="Shoe Closet" FontSize="32" FontAttributes="Bold" TextColor="#4DB6AC" />
-                    <Label Text="Track mileage across your shoe collection and get alerts." TextColor="#888888" FontSize="14" />
+                    <Label Text="Shoe Closet" FontSize="40" FontAttributes="Bold" TextColor="#FFFF" />
+                    <Label Text="Track mileage across your shoe collection and get alerts" TextColor="#888888" FontSize="14" />
                 </VerticalStackLayout>
 
                 <Button Grid.Column="1" Text="+ Add Shoe" Clicked="AddClicked" BackgroundColor="#81C784" TextColor="Black" 
@@ -19,27 +19,27 @@
 
             <FlexLayout Wrap="Wrap" JustifyContent="Start" Margin="0,0,0,10">
                 <Button Text="All" BackgroundColor="#26A69A" TextColor="White" CornerRadius="15" HeightRequest="35" Margin="0,0,10,10" Padding="15,0"/>
-                <Button Text="Road" BackgroundColor="#2C2C2C" TextColor="#AAAAAA" CornerRadius="15" HeightRequest="35" Margin="0,0,10,10" Padding="15,0"/>
-                <Button Text="Trail" BackgroundColor="#2C2C2C" TextColor="#AAAAAA" CornerRadius="15" HeightRequest="35" Margin="0,0,10,10" Padding="15,0"/>
-                <Button Text="Mixed" BackgroundColor="#2C2C2C" TextColor="#AAAAAA" CornerRadius="15" HeightRequest="35" Margin="0,0,10,10" Padding="15,0"/>
+                <Button Text="Road" BackgroundColor="#1A1A1A" TextColor="#AAAAAA" CornerRadius="15" HeightRequest="35" Margin="0,0,10,10" Padding="15,0"/>
+                <Button Text="Trail" BackgroundColor="#1A1A1A" TextColor="#AAAAAA" CornerRadius="15" HeightRequest="35" Margin="0,0,10,10" Padding="15,0"/>
+                <Button Text="Mixed" BackgroundColor="#1A1A1A" TextColor="#AAAAAA" CornerRadius="15" HeightRequest="35" Margin="0,0,10,10" Padding="15,0"/>
             </FlexLayout>
 
             <Grid ColumnDefinitions="*, *, *" ColumnSpacing="15" HeightRequest="100">
-                <Border Grid.Column="0" StrokeShape="RoundRectangle 12" BackgroundColor="#1E1E1E" StrokeThickness="0">
+                <Border Grid.Column="0" StrokeShape="RoundRectangle 12" BackgroundColor="#1A1A1A" StrokeThickness="0">
                     <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="5">
                         <Label Text="Total-Shoes" TextColor="#4DB6AC" FontSize="24" FontAttributes="Bold" HorizontalTextAlignment="Center"/>
                         <Label Text="Total Shoes" TextColor="#666666" FontSize="12" HorizontalTextAlignment="Center"/>
                     </VerticalStackLayout>
                 </Border>
 
-                <Border Grid.Column="1" StrokeShape="RoundRectangle 12" BackgroundColor="#1E1E1E" StrokeThickness="0">
+                <Border Grid.Column="1" StrokeShape="RoundRectangle 12" BackgroundColor="#1A1A1A" StrokeThickness="0">
                     <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="5">
                         <Label Text="Total-Miles" TextColor="#4DB6AC" FontSize="24" FontAttributes="Bold" HorizontalTextAlignment="Center"/>
                         <Label Text="Total Miles Logged" TextColor="#666666" FontSize="12" HorizontalTextAlignment="Center"/>
                     </VerticalStackLayout>
                 </Border>
 
-                <Border Grid.Column="2" StrokeShape="RoundRectangle 12" BackgroundColor="#1E1E1E" StrokeThickness="0">
+                <Border Grid.Column="2" StrokeShape="RoundRectangle 12" BackgroundColor="#1A1A1A" StrokeThickness="0">
                     <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="5">
                         <Label Text="Needs-Replacing" TextColor="#E57373" FontSize="24" FontAttributes="Bold" HorizontalTextAlignment="Center"/>
                         <Label Text="Need Replacing" TextColor="#666666" FontSize="12" HorizontalTextAlignment="Center"/>
@@ -79,7 +79,7 @@
                            FontSize="12" />
 
                                     <Button Text="+ Log Mileage" 
-                            BackgroundColor="#2C2C2C" 
+                            BackgroundColor="#1A1A1A" 
                             TextColor="White" 
                             HeightRequest="35" 
                             WidthRequest="120" 

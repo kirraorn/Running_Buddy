@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace RunningBuddy.Services
 {
-    internal class RouteServiceProxy
+    public class RouteServiceProxy
     {
         //public List<Route> routes;
 
