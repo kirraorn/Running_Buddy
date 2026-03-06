@@ -13,7 +13,7 @@
                     <Label Text="Track mileage across your shoe collection and get alerts." TextColor="#888888" FontSize="14" />
                 </VerticalStackLayout>
 
-                <Button Grid.Column="1" Text="+ Add Shoe" BackgroundColor="#81C784" TextColor="Black" 
+                <Button Grid.Column="1" Text="+ Add Shoe" Clicked="AddClicked" BackgroundColor="#81C784" TextColor="Black" 
                         FontAttributes="Bold" CornerRadius="8" Padding="15,0" HeightRequest="45" />
             </Grid>
 
