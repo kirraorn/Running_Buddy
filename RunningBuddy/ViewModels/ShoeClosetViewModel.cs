@@ -22,6 +22,7 @@ namespace RunningBuddy.ViewModels
         {
             _shoeSvc = ShoeServiceProxy.Current;
         }
+       
 
         //SHOE DATA ACCESS--------------------------------------------------------
         public ShoeDetailViewModel SelectedShoe { get; set; } //Will be used when there is a edit route screen
