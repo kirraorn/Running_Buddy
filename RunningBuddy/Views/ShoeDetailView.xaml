@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="RunningBuddy.Views.ShoeDetailView"
+             Title="ShoeDetailView">
+    
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="15">
+            
+            <Grid ColumnDefinitions="Auto, *" RowDefinitions="Auto, Auto, Auto" ColumnSpacing="10" RowSpacing="10">
+                <Label Text="Name:" VerticalOptions="Center" Grid.Row="0" Grid.Column="0"/>
+                <Entry Text="{Binding Model.Name}" Placeholder="e.g. Ghost 15" Grid.Row="0" Grid.Column="1"/>
+
+                <Label Text="Brand:" VerticalOptions="Center" Grid.Row="1" Grid.Column="0"/>
+                <Entry Text="{Binding Model.BrandName}" Placeholder="e.g. Brooks" Grid.Row="1" Grid.Column="1"/>
+
+                <Label Text="Type:" VerticalOptions="Center" Grid.Row="2" Grid.Column="0"/>
+                <Picker SelectedItem="{Binding Model.ShoeType}" Grid.Row="2" Grid.Column="1">
+                    <Picker.ItemsSource>
+                        <x:Array Type="{x:Type x:String}">
+                            <x:String>Road</x:String>
+                            <x:String>Trail</x:String>
+                            <x:String>Track</x:String>
+                            <x:String>Stability</x:String>
+                        </x:Array>
+                    </Picker.ItemsSource>
+                </Picker>
+            </Grid>
+
+            <Line X2="400" Stroke="Gray" StrokeThickness="1" HorizontalOptions="Center"/>
+
+            <Grid ColumnDefinitions="*, *" RowDefinitions="Auto, Auto" ColumnSpacing="15" RowSpacing="10">
+                <VerticalStackLayout Grid.Column="0">
+                    <Label Text="Current Miles" FontSize="Caption" HorizontalOptions="Center"/>
+                    <Entry Text="{Binding Model.CurrentMilage}" Keyboard="Numeric" HorizontalTextAlignment="Center"/>
+                </VerticalStackLayout>
+
+                <VerticalStackLayout Grid.Column="1">
+                    <Label Text="Max Miles" FontSize="Caption" HorizontalOptions="Center"/>
+                    <Entry Text="{Binding Model.MaxMilage}" Keyboard="Numeric" HorizontalTextAlignment="Center"/>
+                </VerticalStackLayout>
+            </Grid>
+
+            <VerticalStackLayout Spacing="5">
+                <Label Text="Life Remaining" HorizontalOptions="Center"/>
+                <ProgressBar Progress="{Binding Model.percentUsed}" 
+                             ProgressColor="{Binding ProgressBarColor}"
+                             HeightRequest="10"/>
+                <Label Text="{Binding Model.MilesRemaining, StringFormat='{0:F1} miles left'}" 
+                       FontSize="Small" 
+                       HorizontalOptions="Center"/>
+            </VerticalStackLayout>
+
+            <HorizontalStackLayout Spacing="10" HorizontalOptions="Center">
+                <Button Text="Save Shoe" 
+                        Clicked="OkClicked" 
+                        WidthRequest="120" 
+                        BackgroundColor="{StaticResource Primary}"/>
+                <Button Text="Cancel" 
+                        Clicked="CancelClicked" 
+                        WidthRequest="120" 
+                        BackgroundColor="Transparent" 
+                        TextColor="{StaticResource Primary}" 
+                        BorderColor="{StaticResource Primary}" 
+                        BorderWidth="1"/>
+            </HorizontalStackLayout>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
