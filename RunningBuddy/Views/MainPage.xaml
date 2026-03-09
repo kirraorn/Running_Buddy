@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="RunningBuddy.Views.MainPage"
@@ -11,7 +11,7 @@
         <!-- The User Header -->
             <VerticalStackLayout Spacing="5">
                 <Label Text="{Binding UserName, StringFormat='Hello, {0}👋'}" FontSize="40" FontAttributes="Bold" TextColor="White" />
-                <!-- <Label Text="Tallahassee, FL · Today, 7:42 AM" TextColor="#888888" FontSize="16" /> -->
+                <Label Text="{Binding LocationName}" TextColor="#888888" FontSize="16" />
             </VerticalStackLayout>
 
 
@@ -24,29 +24,41 @@
                     </LinearGradientBrush>
                 </Border.Background>
 
-                <Grid ColumnDefinitions="Auto, *" ColumnSpacing="30">
-                    <HorizontalStackLayout Grid.Column="0" Spacing="15" VerticalOptions="Center">
-                        <Label Text="☁️" FontSize="50" VerticalOptions="Center"/>
+                <Grid RowDefinitions="Auto, Auto" ColumnDefinitions="Auto, *" ColumnSpacing="30" RowSpacing="10">
+                    <HorizontalStackLayout Grid.Row="0" Grid.Column="0" Spacing="15" VerticalOptions="Center">
+                        <Image Source="{Binding WeatherIconUrl}" 
+                               WidthRequest="64" 
+                               HeightRequest="64" 
+                               VerticalOptions="Center"/>
                         <VerticalStackLayout>
-                            <Label Text="65°F" FontSize="48" FontAttributes="Bold" TextColor="White"/>
-                            <Label Text="Partly Cloudy" TextColor="#AAAAAA"/>
+                            <Label Text="{Binding WeatherTemp}" FontSize="48" FontAttributes="Bold" TextColor="White"/>
+                            <Label Text="{Binding WeatherCondition}" TextColor="#AAAAAA"/>
                         </VerticalStackLayout>
                     </HorizontalStackLayout>
 
-                    <FlexLayout Grid.Column="1" Wrap="Wrap" JustifyContent="SpaceEvenly" AlignItems="Center">
+                    <FlexLayout Grid.Row="0" Grid.Column="1" Wrap="Wrap" JustifyContent="SpaceEvenly" AlignItems="Center">
                         <VerticalStackLayout Margin="10">
                             <Label Text="💧 Humidity" FontSize="16" TextColor="#666666" Margin="0,0,0,5"/>
-                            <Label Text="52%" TextColor="White" FontAttributes="Bold"/>
+                            <Label Text="{Binding WeatherHumidity}" TextColor="White" FontAttributes="Bold"/>
                         </VerticalStackLayout>
                         <VerticalStackLayout Margin="10">
                             <Label Text="💨 Wind" FontSize="16" TextColor="#666666" Margin="0,0,0,5"/>
-                            <Label Text="7 MPH" TextColor="White" FontAttributes="Bold"/>
+                            <Label Text="{Binding WeatherWind}" TextColor="White" FontAttributes="Bold"/>
                         </VerticalStackLayout>
                         <VerticalStackLayout Margin="10">
                             <Label Text="👁️ Visibility" FontSize="16" TextColor="#666666" Margin="0,0,0,5"/>
-                            <Label Text="10 mi" TextColor="White" FontAttributes="Bold"/>
+                            <Label Text="{Binding WeatherVisibility}" TextColor="White" FontAttributes="Bold"/>
                         </VerticalStackLayout>
                     </FlexLayout>
+
+                    <!-- Change Location Button -->
+                    <Button Grid.Row="1" Grid.ColumnSpan="2"
+                            Text="📍 Change Location"
+                            TextColor="#4CAF50"
+                            BackgroundColor="Transparent"
+                            FontSize="13"
+                            HorizontalOptions="Start"
+                            Clicked="OnChangeLocationClicked"/>
                 </Grid>
             </Border>
 
