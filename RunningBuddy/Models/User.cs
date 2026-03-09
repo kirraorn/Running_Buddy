@@ -14,7 +14,7 @@ namespace RunningBuddy.Models
         public double TotalMilage { get; set; }
 
         public bool NetworkAccess {get; set;}
-    
+        public string ZipCode { get; set; } = "";   
 }
 
 }
