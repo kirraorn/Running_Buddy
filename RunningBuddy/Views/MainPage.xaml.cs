@@ -22,8 +22,22 @@ public partial class MainPage : ContentPage
     {
         base.OnAppearing();
 
-        
-        (BindingContext as MainPageViewModel)?.RefreshPage();
+        var vm = BindingContext as MainPageViewModel;
+        if (vm != null)
+        {
+            vm.RefreshPage();
+
+            // Check if user has a zip code saved; if not, prompt them
+            var user = RunningBuddy.Services.UserServiceProxy.Current.MainUser;
+            if (string.IsNullOrWhiteSpace(user.ZipCode))
+            {
+                await vm.SetZipCodeAsync();
+            }
+            else
+            {
+                await vm.LoadWeatherAsync();
+            }
+        }
     }
 
     private void CheckConnectivity()
@@ -49,6 +63,14 @@ public partial class MainPage : ContentPage
        return NetworkInterface.GetIsNetworkAvailable();
     }
     */
-    // Navigation methods
    
+    // Event handler for the Change Location button
+    private async void OnChangeLocationClicked(object sender, EventArgs e)
+    {
+        var vm = BindingContext as MainPageViewModel;
+        if (vm != null)
+        {
+            await vm.SetZipCodeAsync();
+        }
+    }
 }
