@@ -12,5 +12,8 @@ namespace RunningBuddy.Models
         public double currentTemp { get; set;}
         public double windSpeed {get; set;}
         public string harshConditions {get; set;} = "";
+        public string ConditionText { get; set; } = "";
+        public string ConditionIconUrl { get; set; } = "";
+        public double VisibilityMiles { get; set; }
     }
 }
