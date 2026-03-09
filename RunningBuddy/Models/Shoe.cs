@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RunningBuddy.Models
 {
-    internal class Shoe
+    public class Shoe
     {
         public int Id { get; set; }
         public string Name { get; set; } = "";

@@ -14,4 +14,7 @@ public partial class ShoeClosetPage : ContentPage
     {
         Shell.Current.GoToAsync("//ShoeDetailView");
     }
+
+
+
 }

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:RunningBuddy.ViewModels"
              x:Class="RunningBuddy.Views.ShoeClosetPage"
              BackgroundColor="#0F0F0F">
 
@@ -62,7 +63,14 @@
                             <Grid RowDefinitions="Auto, Auto, Auto, Auto" ColumnDefinitions="*, Auto" RowSpacing="8">
 
                                 <Label Grid.Row="0" Grid.Column="0" Text="{Binding Model.Name}" FontSize="16" TextColor="White" FontAttributes="Bold"/>
-                                <Label Grid.Row="0" Grid.Column="1" Text="🗑" TextColor="#444444" HorizontalOptions="End" />
+                               <ImageButton Grid.Row="0" Grid.Column="1"
+                                    Source="trash_icon.png" 
+                                    BackgroundColor="Transparent"
+                                    HeightRequest="24"
+                                    WidthRequest="24"
+                                    HorizontalOptions="End"
+                                    Command="{Binding Source={RelativeSource AncestorType={x:Type vm:ShoeClosetViewModel}}, Path=DeleteShoeCommand}"
+                                    CommandParameter="{Binding .}" />
 
                                 <Label Grid.Row="1" Grid.Column="0" Text="{Binding Model.CurrentMilage, StringFormat='{0} mi'}" TextColor="#4DB6AC" FontSize="14" />
 

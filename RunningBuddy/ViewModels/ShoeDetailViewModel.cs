@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 using System.Windows.Input;
 using RunningBuddy.Services;
 using RunningBuddy.Models;
@@ -10,7 +12,7 @@ using RunningBuddy.Models;
 
 namespace RunningBuddy.ViewModels
 {
-    internal class ShoeDetailViewModel
+    public class ShoeDetailViewModel
     {
         public ShoeDetailViewModel()
         {
@@ -52,10 +54,43 @@ namespace RunningBuddy.ViewModels
         public ICommand? DeleteCommand { get; set; }
 
 
-        public void AddOrUpdateTrip()
+        public async Task AddOrUpdateTrip()
         {
-            ShoeServiceProxy.Current.AddOrUpdate(Model);
+            try {
+                Model.setUsuage();
+             ShoeServiceProxy.Current.AddOrUpdate(Model);
+            }
+    catch (Exception ex) {
+        Console.WriteLine($"Error: {ex.Message}");
+    }
         }
+
+       public async Task AddOrUpdateShoe(){
+        try{
+                Model.setUsuage();
+                ShoeServiceProxy.Current.AddOrUpdate(Model);
+        }
+        catch (Exception ex) {
+      
+        Console.WriteLine($"Error adding/updating shoe: {ex.Message}");
+         }
+        }
+
+         public void RefreshPage()
+        {
+            NotifyPropertyChanged();
+
+
+        }
+    public event PropertyChangedEventHandler? PropertyChanged;
+
+    private void NotifyPropertyChanged([CallerMemberName] string propertyName = "")
+    {
+        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+       
+       
+    }
+
 
 
     }
