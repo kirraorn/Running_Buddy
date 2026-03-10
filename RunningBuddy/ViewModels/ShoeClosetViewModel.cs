@@ -21,6 +21,7 @@ namespace RunningBuddy.ViewModels
         public ShoeClosetViewModel()
         {
             _shoeSvc = ShoeServiceProxy.Current;
+            
         }
        
 
@@ -36,6 +37,15 @@ namespace RunningBuddy.ViewModels
                 return new ObservableCollection<ShoeDetailViewModel>(Shoes);
             }
         }
+        public ICommand DeleteShoeCommand => new Command<ShoeDetailViewModel>((shoe) =>
+        {
+            if (shoe == null) return;
+
+            _shoeSvc.DeleteShoe(shoe.Model.Id);
+            RefreshPage();
+        });
+
+    
 
         //GENERAL FUNCTIONS--------------------------------------------------------
 
