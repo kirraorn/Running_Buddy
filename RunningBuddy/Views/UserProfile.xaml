@@ -13,10 +13,23 @@
                 <RowDefinition Height="Auto" /> <RowDefinition Height="Auto" /> <RowDefinition Height="Auto" /> <RowDefinition Height="Auto" /> </Grid.RowDefinitions>
 
             <Grid Grid.Row="0" ColumnDefinitions="Auto, *">
-                <Label Grid.Column="1" Text="{Binding UserName, StringFormat='{0}'}" FontSize="40" VerticalOptions="Center" FontAttributes="Bold" />
-                <Button Grid.Column="2" Text="Edit" Clicked ="EditClickedAsync" FontSize="12" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,5,0" />
+                <Label Grid.Column="1" 
+                FontSize="40" 
+                VerticalOptions="Center" 
+                FontAttributes="Bold" 
+                TextColor="White">
+                    <Label.Text>
+                        <MultiBinding StringFormat="{}{0}: {1} Total Mi">
+                            <Binding Path="UserName" />
+                            <Binding Path="TotalMiles" />
+                        </MultiBinding>
+                    </Label.Text>
+                </Label>
+                <Button Grid.Column="3" Text="Edit" Clicked ="EditClickedAsync" FontSize="12" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,5,0" />
                 
             </Grid>
+            
+
 
             <Grid Grid.Row="1" RowDefinitions="Auto, Auto">
                 <Label Grid.Row="0" Text="Weekly Summary" FontSize="18" FontAttributes="Bold" TextColor="LightBlue" />
@@ -40,6 +53,7 @@
                     </Grid>
                 </Frame>
             </Grid>
+
 
             <Grid Grid.Row="2" RowDefinitions="Auto, Auto">
                 <Label Grid.Row="0" Text="PR (Personal Records)" FontSize="18" FontAttributes="Bold" TextColor="LightGreen" />
