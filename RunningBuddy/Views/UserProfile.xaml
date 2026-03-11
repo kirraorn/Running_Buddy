@@ -2,6 +2,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="RunningBuddy.Views.UserProfile"
+             xmlns:models="clr-namespace:RunningBuddy.Models"
              BackgroundColor="#0F0F0F"
              Title="UserProfile">
 
@@ -25,7 +26,7 @@
                         </MultiBinding>
                     </Label.Text>
                 </Label>
-                <Button Grid.Column="3" Text="Edit" Clicked ="EditClickedAsync" FontSize="12" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,5,0" />
+                <Button Grid.Column="3" FontFamily="FontAwsome7" Text="{x:Static models:FontAwsome7.PenToSquare}"  Clicked ="EditClickedAsync"  HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,5,0" />
                 
             </Grid>
             
