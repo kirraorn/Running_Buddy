@@ -14,7 +14,7 @@ public partial class MainPage : ContentPage
     {
         InitializeComponent();
         BindingContext = new MainPageViewModel();
-        CheckConnectivity();
+        //CheckConnectivity();
     }
 
 
@@ -39,7 +39,7 @@ public partial class MainPage : ContentPage
             }
         }
     }
-
+    
     private void CheckConnectivity()
     {
         // Using MAUI's built-in Connectivity API
@@ -73,4 +73,6 @@ public partial class MainPage : ContentPage
             await vm.SetZipCodeAsync();
         }
     }
+
+    
 }

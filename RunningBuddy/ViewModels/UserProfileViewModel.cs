@@ -48,6 +48,15 @@ internal class UserProfileViewModel : INotifyPropertyChanged
         }
     }
 
+    public Double TotalMiles
+    {
+        get
+        {
+            return _userSvc.MainUser.TotalMilage;
+        }
+    }
+
+
     //PR DATA ACCESS-----------------------------------------------------------
     public PrDetailViewModel SelectedRoute { get; set; } //Will be used when there is a edit route screen
     public ObservableCollection<PrDetailViewModel> PRs
