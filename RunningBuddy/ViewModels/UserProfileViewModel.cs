@@ -62,6 +62,27 @@ internal class UserProfileViewModel : INotifyPropertyChanged
         }
     }
 
+    // Workout history filtered to runs completed in the last 7 days.
+    public ObservableCollection<RouteDetailViewModel> WeeklyWorkouts
+    {
+        get
+        {
+            var startDate = DateTime.Today.AddDays(-7);
+            var today = DateTime.Now;
+
+            var workouts = (_routSvc.RouteList ?? new List<Route>())
+                .Where(route =>
+                {
+                    var runDate = route.Date != default ? route.Date : route.Time;
+                    return runDate >= startDate && runDate <= today;
+                })
+                .OrderByDescending(route => route.Date != default ? route.Date : route.Time)
+                .Select(route => new RouteDetailViewModel(route));
+
+            return new ObservableCollection<RouteDetailViewModel>(workouts);
+        }
+    }
+
     public event PropertyChangedEventHandler? PropertyChanged;
 
     private void NotifyPropertyChanged([CallerMemberName] string propertyName = "")

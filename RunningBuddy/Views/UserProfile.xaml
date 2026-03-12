@@ -8,16 +8,23 @@
     
 
     <ScrollView>
+    
         <Grid Padding="25" RowSpacing="25">
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" /> <RowDefinition Height="Auto" /> <RowDefinition Height="Auto" /> <RowDefinition Height="Auto" /> </Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
 
+            <!-- Name and Edit Button -->
             <Grid Grid.Row="0" ColumnDefinitions="Auto, *">
                 <Label Grid.Column="1" Text="{Binding UserName, StringFormat='{0}'}" FontSize="40" VerticalOptions="Center" FontAttributes="Bold" />
-                <Button Grid.Column="2" Text="Edit" Clicked ="EditClickedAsync" FontSize="12" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,5,0" />
-                
+                <Button Grid.Column="2" Text="Edit" Clicked ="EditClickedAsync" FontSize="12" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,5,0" />  
             </Grid>
 
+            <!-- Weekly Summary -->
             <Grid Grid.Row="1" RowDefinitions="Auto, Auto">
                 <Label Grid.Row="0" Text="Weekly Summary" FontSize="18" FontAttributes="Bold" TextColor="LightBlue" />
                 
@@ -41,6 +48,7 @@
                 </Frame>
             </Grid>
 
+            <!-- Personal Records -->
             <Grid Grid.Row="2" RowDefinitions="Auto, Auto">
                 <Label Grid.Row="0" Text="PR (Personal Records)" FontSize="18" FontAttributes="Bold" TextColor="LightGreen" />
 
@@ -86,6 +94,7 @@
                 </CollectionView>
             </Grid>
 
+            <!-- Cold Sensitivity Score -->
             <Grid Grid.Row="3" RowDefinitions="Auto, Auto, Auto">
                 <Label Grid.Row="0" Text="Cold Sensitivity Score" FontSize="18" FontAttributes="Bold" TextColor="Orange" />
                 
@@ -102,6 +111,54 @@
                     <Label Grid.Column="0" Text="1 (Loves Cold)" FontSize="12" TextColor="Gray" />
                     <Label Grid.Column="1" Text="10 (Hates Cold)" FontSize="12" TextColor="Gray" HorizontalOptions="End" />
                 </Grid>
+            </Grid>
+
+            <!-- Performance History -->
+            <Grid Grid.Row="4" RowDefinitions="Auto, Auto">
+                <Label Grid.Row="0" Text="Workout History" FontSize="18" FontAttributes="Bold" TextColor="#FF9290EE" />
+
+                <CollectionView Grid.Row="1" ItemsSource="{Binding WeeklyWorkouts}" SelectionMode="None" Margin="0,8,0,0">
+                    <CollectionView.ItemsLayout>
+                        <LinearItemsLayout Orientation="Vertical" ItemSpacing="6" />
+                    </CollectionView.ItemsLayout>
+
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Border StrokeShape="RoundRectangle 12"
+                                    Padding="20"
+                                    BackgroundColor="#1A1A1A"
+                                    StrokeThickness="0"
+                                    Margin="0,5">
+
+                                <Grid RowDefinitions="Auto, Auto" ColumnDefinitions="*, Auto" RowSpacing="8">
+                                    <Label Grid.Row="0" Grid.Column="0"
+                                           Text="{Binding Model.Name}"
+                                           TextColor="White"
+                                           FontSize="18"
+                                           FontAttributes="Bold" />
+
+                                    <Label Grid.Row="0" Grid.Column="1"
+                                           Text="{Binding Model.Length, StringFormat='{0:F1} mi'}"
+                                           TextColor="#4CAF50"
+                                           FontSize="18"
+                                           FontAttributes="Bold"
+                                           HorizontalOptions="End" />
+
+                                    <HorizontalStackLayout Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Spacing="10" Opacity="0.6">
+                                        <Label Text="Date:" FontSize="12" TextColor="White" />
+                                        <Label Text="{Binding Model.Date, StringFormat='{0:MMM dd, yyyy}'}"
+                                               FontSize="12"
+                                               TextColor="White" />
+                                        <Label Text="Elevation:" FontSize="12" TextColor="White" Margin="12,0,0,0" />
+                                        <Label Text="{Binding Model.Elevation, StringFormat='{0} ft'}"
+                                               FontSize="12"
+                                               TextColor="White" />
+                                    </HorizontalStackLayout>
+                                </Grid>
+                            </Border>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
             </Grid>
             
         </Grid>
