@@ -17,8 +17,8 @@ public partial class MainPage : ContentPage
         //CheckConnectivity();
     }
 
-    
-    protected async override void OnAppearing()
+
+    protected override async void OnAppearing()
     {
         base.OnAppearing();
 
