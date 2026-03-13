@@ -29,5 +29,29 @@ public partial class UserProfile : ContentPage
 		}
 	}
 
+	 public async void AddPRClickedAsync(object sender, EventArgs e)
+{
+    string distInput = await DisplayPromptAsync("New PR", "Distance (miles):", "Next", "Cancel", keyboard: Keyboard.Numeric);
+    if (string.IsNullOrWhiteSpace(distInput)) return;
 
+    string timeInput = await DisplayPromptAsync("New PR", "Time (MM:SS):", "Save", "Cancel", "00:00");
+    
+    if (double.TryParse(distInput, out double d) && TimeSpan.TryParse("00:" + timeInput, out TimeSpan t))
+    {
+        var newPr = new RunningBuddy.Models.PR 
+        { 
+            Distance = d, 
+            BestTime = t, 
+            DateRan = DateTime.Now 
+        };
+
+        PrServiceProxy.Current.AddOrUpdate(newPr);
+
+        // Refresh the list in the ViewModel
+        if (BindingContext is UserProfileViewModel vm)
+        {
+            vm.RefreshPRs();
+        }
+    }
+}
 }
