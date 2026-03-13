@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Windows.Input;
 using System.Text;
 using System.Threading.Tasks;
 using RunningBuddy.Models;
@@ -25,6 +26,12 @@ internal class UserProfileViewModel : INotifyPropertyChanged
         _userSvc = UserServiceProxy.Current;
         _prSvc = PrServiceProxy.Current;
         _routSvc = RouteServiceProxy.Current;
+
+        EditPRCommand = new Command<PrDetailViewModel>(async (vm) => await ExecuteEditPR(vm));
+        DeletePRCommand = new Command<PrDetailViewModel>(async (vm) => await ExecuteDeletePR(vm));
+
+   
+        RefreshPRs();
     }
 
     //USER DATA ACCESS---------------------------------------------------------
@@ -59,15 +66,53 @@ internal class UserProfileViewModel : INotifyPropertyChanged
 
     //PR DATA ACCESS-----------------------------------------------------------
     public PrDetailViewModel SelectedRoute { get; set; } //Will be used when there is a edit route screen
-    public ObservableCollection<PrDetailViewModel> PRs
+   private ObservableCollection<PrDetailViewModel> _prsCollection;
+   public ObservableCollection<PrDetailViewModel> PRs
     {
-        get
+        get => _prsCollection;
+        set
         {
+            _prsCollection = value;
+            NotifyPropertyChanged();
+        }
+    }
 
-            var prs = _prSvc.PRList.Select(t => new PrDetailViewModel(t));
-            _prSvc.DisplayPRs();
+    public ICommand EditPRCommand { get; }
+    public ICommand DeletePRCommand { get; }
 
-            return new ObservableCollection<PrDetailViewModel>(prs);
+    
+
+
+    public void RefreshPRs()
+    {
+        var prList = _prSvc.PRList.Select(t => new PrDetailViewModel(t));
+        PRs = new ObservableCollection<PrDetailViewModel>(prList);
+    }
+
+    private async Task ExecuteDeletePR(PrDetailViewModel vm)
+    {
+        if (vm?.Model == null) return;
+
+        bool confirm = await Application.Current.MainPage.DisplayAlert("Delete Record", "Delete this PR?", "Yes", "No");
+        if (confirm)
+        {
+            _prSvc.DeletePR(vm.Model.Id);
+            RefreshPRs(); // Update UI
+        }
+    }
+
+    private async Task ExecuteEditPR(PrDetailViewModel vm)
+    {
+        if (vm?.Model == null) return;
+
+        // Example: Edit Distance
+        string result = await Application.Current.MainPage.DisplayPromptAsync("Edit PR", "Enter new distance:", "Save", "Cancel", vm.Model.Distance.ToString(), keyboard: Keyboard.Numeric);
+        
+        if (double.TryParse(result, out double newDist))
+        {
+            vm.Model.Distance = newDist;
+            _prSvc.AddOrUpdate(vm.Model);
+            RefreshPRs();
         }
     }
 

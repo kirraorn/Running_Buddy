@@ -64,49 +64,88 @@
 
 
             <Grid Grid.Row="2" RowDefinitions="Auto, Auto">
-                <Label Grid.Row="0" Text="PR (Personal Records)" FontSize="18" FontAttributes="Bold" TextColor="LightGreen" />
+    
+    <Grid Grid.Row="0" ColumnDefinitions="*, Auto" Margin="0,0,0,10">
+        <Label Grid.Column="0" 
+               Text="PR (Personal Records)" 
+               FontSize="18" 
+               FontAttributes="Bold" 
+               TextColor="LightGreen" 
+               VerticalOptions="Center" />
+        
+        <Button Grid.Column="1" 
+                FontFamily="FontAwsome7" 
+                Text="{x:Static models:FontAwsome7.Plus}" 
+                Clicked="AddPRClickedAsync" 
+                BackgroundColor="Transparent"
+                TextColor="LightGreen"
+                FontSize="20"
+                Padding="10,0"/>
+    </Grid>
 
-                <CollectionView ItemsSource="{Binding PRs}" Grid.Row="1" SelectionMode="None">
-                    <CollectionView.ItemsLayout>
-                        <LinearItemsLayout Orientation="Vertical" ItemSpacing="6" />
-                    </CollectionView.ItemsLayout>
+    <CollectionView Grid.Row="1" ItemsSource="{Binding PRs}" SelectionMode="None">
+        <CollectionView.ItemsLayout>
+            <LinearItemsLayout Orientation="Vertical" ItemSpacing="6" />
+        </CollectionView.ItemsLayout>
 
-                    <CollectionView.ItemTemplate>
-                        <DataTemplate>
-                            <Border StrokeShape="RoundRectangle 12" 
-                    Padding="20" 
-                    BackgroundColor="#1A1A1A" 
-                    StrokeThickness="0"
-                    Margin="0,5">
+        <CollectionView.ItemTemplate>
+            <DataTemplate>
+                <Border StrokeShape="RoundRectangle 12" 
+                        Padding="20" 
+                        BackgroundColor="#1A1A1A" 
+                        StrokeThickness="0"
+                        Margin="0,5">
 
-                                <Grid RowDefinitions="Auto, Auto" ColumnDefinitions="*, Auto" RowSpacing="8">
+                    <Grid RowDefinitions="Auto, Auto" ColumnDefinitions="*, Auto" RowSpacing="8">
+                        <VerticalStackLayout Grid.Row="0" Grid.Column="0" Grid.RowSpan="2">
+                            <Label Text="{Binding Model.Distance, StringFormat='{0} Mile PR'}" 
+                                   TextColor="White" 
+                                   FontSize="18" 
+                                   FontAttributes="Bold"/>
+                            
+                            <HorizontalStackLayout Spacing="10" Opacity="0.5" Margin="0,5,0,0">
+                                <Label Text="📅 Set on:" FontSize="12" TextColor="White"/>
+                                <Label Text="{Binding Model.DateRan, StringFormat='{0:MMM dd, yyyy}'}" 
+                                       FontSize="12" 
+                                       TextColor="White"/>
+                            </HorizontalStackLayout>
+                        </VerticalStackLayout>
 
-                                    <Label Grid.Row="0" Grid.Column="0" 
-                                    Text="{Binding Model.Distance, StringFormat='{0} Mile PR'}" 
-                                    TextColor="White" 
-                                    FontSize="18" 
-                                    FontAttributes="Bold"/>
+                        <VerticalStackLayout Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" HorizontalOptions="End">
+                            <Label Text="{Binding Model.BestTime, StringFormat='{0:mm}:{0:ss}'}" 
+                                   TextColor="#4CAF50" 
+                                   FontSize="18" 
+                                   FontAttributes="Bold"
+                                   HorizontalOptions="End"/>
 
-                                    <Label Grid.Row="0" Grid.Column="1" 
-                                    Text="{Binding Model.BestTime, StringFormat='{0:mm}:{0:ss}'}" 
-                                    TextColor="#4CAF50" 
-                                    FontSize="18" 
-                                    FontAttributes="Bold"
-                                    HorizontalOptions="End"/>
-
-                                    <HorizontalStackLayout Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Spacing="10" Opacity="0.5">
-                                        <Label Text="📅 Set on:" FontSize="12" TextColor="White"/>
-                                        <Label Text="{Binding Model.DateRan, StringFormat='{0:MMM dd, yyyy}'}" 
-                                        FontSize="12" 
-                                        TextColor="White"/>
-                                    </HorizontalStackLayout>
-
-                                </Grid>
-                            </Border>
-                        </DataTemplate>
-                    </CollectionView.ItemTemplate>
-                </CollectionView>
-            </Grid>
+                            <HorizontalStackLayout Spacing="5" HorizontalOptions="End" Margin="0,8,0,0">
+                                <Button FontFamily="FontAwsome7" 
+                                        Text="{x:Static models:FontAwsome7.Pen}" 
+                                        Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.EditPRCommand}"
+                                        CommandParameter="{Binding .}"
+                                        BackgroundColor="Transparent" 
+                                        TextColor="Gray" 
+                                        FontSize="14"
+                                        HeightRequest="35"
+                                        WidthRequest="35"/>
+                                
+                                <Button FontFamily="FontAwsome7" 
+                                        Text="{x:Static models:FontAwsome7.Trash}" 
+                                        Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.DeletePRCommand}"
+                                        CommandParameter="{Binding .}"
+                                        BackgroundColor="Transparent" 
+                                        TextColor="#FF5252" 
+                                        FontSize="14"
+                                        HeightRequest="35"
+                                        WidthRequest="35"/>
+                            </HorizontalStackLayout>
+                             </VerticalStackLayout>
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+         </Grid>
 
             <!-- Cold Sensitivity Score -->
             <Grid Grid.Row="3" RowDefinitions="Auto, Auto, Auto">
