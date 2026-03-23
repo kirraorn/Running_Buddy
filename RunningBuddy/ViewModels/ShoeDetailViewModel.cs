@@ -12,47 +12,60 @@ using RunningBuddy.Models;
 
 namespace RunningBuddy.ViewModels
 {
-    public class ShoeDetailViewModel
+    [QueryProperty(nameof(Model), "Shoe")]
+    public class ShoeDetailViewModel : INotifyPropertyChanged
     {
+        private Shoe? _model;
+
+
+        public Shoe? Model 
+        { 
+            get => _model;
+            set 
+            {
+                _model = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        public ICommand? DeleteCommand { get; set; }
+        public ICommand? EditCommand { get; set; }
+
         public ShoeDetailViewModel()
         {
-            Model = new Shoe();
 
             DeleteCommand = new Command(DoDelete);
-
         }
 
-        public ShoeDetailViewModel(int id)
+
+        public ShoeDetailViewModel(int id) : this()
         {
             Model = ShoeServiceProxy.Current.GetById(id) ?? new Shoe();
-
-            DeleteCommand = new Command(DoDelete);
-
-
-        }
-
-        public ShoeDetailViewModel(Shoe? model)
-        {
-            Model = model ?? new Shoe();
-            DeleteCommand = new Command(DoDelete);
-
-
         }
 
         public void DoDelete()
         {
-            ShoeServiceProxy.Current.DeleteShoe(Model.Id); //was ID, might cause problems
+            if (Model != null)
+            {
+                ShoeServiceProxy.Current.DeleteShoe(Model.Id);
+            }
         }
 
-        // alex test fn
-        public int DoEdit()
+        public async Task AddOrUpdateShoe()
         {
-            return Model.Id;
+            try 
+            {
+                if (Model != null)
+                {
+                    Model.setUsuage(); 
+                    ShoeServiceProxy.Current.AddOrUpdate(Model);
+                }
+            }
+            catch (Exception ex) 
+            {
+                Console.WriteLine($"Error adding/updating shoe: {ex.Message}");
+            }
         }
-
-        public Shoe? Model { get; set; }
-        public ICommand? DeleteCommand { get; set; }
-
 
         public async Task AddOrUpdateTrip()
         {
@@ -65,33 +78,13 @@ namespace RunningBuddy.ViewModels
     }
         }
 
-       public async Task AddOrUpdateShoe(){
-        try{
-                Model.setUsuage();
-                ShoeServiceProxy.Current.AddOrUpdate(Model);
-        }
-        catch (Exception ex) {
       
-        Console.WriteLine($"Error adding/updating shoe: {ex.Message}");
-         }
-        }
+        public event PropertyChangedEventHandler? PropertyChanged;
 
-         public void RefreshPage()
+        private void NotifyPropertyChanged([CallerMemberName] string propertyName = "")
         {
-            NotifyPropertyChanged();
-
-
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-    public event PropertyChangedEventHandler? PropertyChanged;
-
-    private void NotifyPropertyChanged([CallerMemberName] string propertyName = "")
-    {
-        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-       
-       
     }
 
-
-
-    }
 }

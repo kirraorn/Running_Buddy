@@ -1,8 +1,14 @@
 {
-  "profiles": {
-    "Windows Machine": {
-      "commandName": "MsixPackage",
-      "nativeDebugging": false
-    }
-  }
+  "version": "0.2.0",
+  "configurations": [
+      {
+          "name": ".NET MAUI MacCatalyst",
+          "type": "dotnet",
+          "request": "launch",
+          "projectPath": "${workspaceFolder}/RunningBuddy/RunningBuddy.csproj",
+          "framework": "net8.0-maccatalyst",
+          "configuration": "Debug",
+          "preLaunchTask": "dotnet-build"
+      }
+  ]
 }

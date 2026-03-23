@@ -55,45 +55,62 @@
                 </CollectionView.ItemsLayout>
 
                 <CollectionView.ItemTemplate>
-                    <DataTemplate>
-                        <Border StrokeShape="RoundRectangle 12" 
+    <DataTemplate>
+        <Border StrokeShape="RoundRectangle 12" 
                 Padding="20" 
                 BackgroundColor="#1A1A1A" 
                 StrokeThickness="0">
 
-                            <Grid RowDefinitions="Auto, Auto, Auto, Auto" ColumnDefinitions="*, Auto" RowSpacing="8">
+            <Grid RowDefinitions="Auto, Auto, Auto, Auto" ColumnDefinitions="*, Auto, Auto" RowSpacing="8">
 
-                                <Label Grid.Row="0" Grid.Column="0" Text="{Binding Model.Name}" FontSize="16" TextColor="White" FontAttributes="Bold"/>
+                <Label Grid.Row="0" Grid.Column="0" 
+                       Text="{Binding Model.Name}" 
+                       FontSize="16" TextColor="White" FontAttributes="Bold"
+                       VerticalOptions="Center"/>
 
-                                <Button Grid.Column="1" Grid.Row="0" FontFamily="FontAwsome7" Text="{x:Static models:FontAwsome7.TrashCan}"  BackgroundColor="PaleVioletRed" Command="{Binding Source={RelativeSource AncestorType={x:Type vm:ShoeClosetViewModel}}, Path=DeleteShoeCommand}"
-                                CommandParameter="{Binding .}" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,5,0" />
-                                
-                                <Grid Grid.Row="2" Grid.ColumnSpan="2" ColumnDefinitions="*, *">
-                                    <Label Grid.Column="1" Text="{Binding Model.MaxMilage, StringFormat='Max: {0} mi'}" HorizontalOptions="End" TextColor="#888888" FontSize="14" />
-                                </Grid>
+                 <Button Grid.Row="0" Grid.Column="1" 
+                        FontFamily="FontAwsome7" 
+                        Text="{x:Static models:FontAwsome7.PenToSquare}" 
+                        BackgroundColor="#4DB6AC" 
+                        TextColor="White"
+                        Clicked="EditClicked"
+                        HeightRequest="40" 
+                        WidthRequest="40"
+                        Margin="0,0,5,0" />
 
-                                <VerticalStackLayout Grid.Row="3" Grid.ColumnSpan="2" Spacing="5">
-                                    <ProgressBar Progress="{Binding Model.percentUsed}" ProgressColor="#4DB6AC" HeightRequest="10" ScaleY="4"/>
-                                    <!--Need to calculate progress-->
+                <Button Grid.Row="0" Grid.Column="2" 
+                        FontFamily="FontAwsome7" 
+                        Text="{x:Static models:FontAwsome7.TrashCan}"  
+                        BackgroundColor="PaleVioletRed" 
+                        TextColor="White"
+                        Command="{Binding Source={RelativeSource AncestorType={x:Type vm:ShoeClosetViewModel}}, Path=DeleteShoeCommand}"
+                        CommandParameter="{Binding .}" 
+                        HeightRequest="40" WidthRequest="40" />
+                
+                <Grid Grid.Row="2" Grid.ColumnSpan="3" ColumnDefinitions="*, *">
+                    <Label Grid.Column="1" Text="{Binding Model.MaxMilage, StringFormat='Max: {0} mi'}" HorizontalOptions="End" TextColor="#888888" FontSize="14" />
+                </Grid>
 
-                                    <Label Text="{Binding Model.MilesRemaining, StringFormat='{0} mi remaining'}" 
+                <VerticalStackLayout Grid.Row="3" Grid.ColumnSpan="3" Spacing="5">
+                    <ProgressBar Progress="{Binding Model.percentUsed}" ProgressColor="#4DB6AC" HeightRequest="10" ScaleY="4"/>
+                    <Label Text="{Binding Model.MilesRemaining, StringFormat='{0} mi remaining'}" 
                            TextColor="#5C7C8C" 
                            FontSize="12" />
 
-                                    <Button Text="+ Log Mileage" 
+                    <Button Text="+ Log Mileage" 
                             BackgroundColor="#1A1A1A" 
                             TextColor="White" 
                             HeightRequest="35" 
                             WidthRequest="120" 
                             HorizontalOptions="Start" 
                             Margin="0,5,0,0"/>
-                                </VerticalStackLayout>
+                </VerticalStackLayout>
 
-                            </Grid>
-                        </Border>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
+                    </Grid>
+                </Border>
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+                    </CollectionView>
 
         </VerticalStackLayout>
     </ScrollView>

@@ -26,12 +26,13 @@ namespace RunningBuddy.ViewModels
        
 
         //SHOE DATA ACCESS--------------------------------------------------------
-        public ShoeDetailViewModel SelectedShoe { get; set; } //Will be used when there is a edit route screen
+        public ShoeDetailViewModel? SelectedShoe { get; set; } //Will be used when there is a edit shoe screen
+         public int SelecteShoeId => SelectedShoe?.Model?.Id ?? 0;
         public ObservableCollection<ShoeDetailViewModel> Shoes
         {
             get
             {
-                var Shoes = _shoeSvc.ShoeList.Select(t => new ShoeDetailViewModel(t));
+                var Shoes = _shoeSvc.ShoeList.Select(t => new ShoeDetailViewModel(t.Id));
                 _shoeSvc.DisplayShoes();
 
                 return new ObservableCollection<ShoeDetailViewModel>(Shoes);
@@ -45,7 +46,7 @@ namespace RunningBuddy.ViewModels
             RefreshPage();
         });
 
-    
+  
 
         //GENERAL FUNCTIONS--------------------------------------------------------
 
