@@ -35,4 +35,4 @@ public partial class ShoeClosetPage : ContentPage
 }
 
 
-}
+}  
