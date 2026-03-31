@@ -3,7 +3,7 @@ using RunningBuddy.Models;
 
 namespace RunningBuddy.Views;
 
-[QueryProperty(nameof(RouteId), "RouteId")]
+[QueryProperty(nameof(RouteId), "routeId")]
 public partial class RouteDetail : ContentPage
 {
     private int _routeId;
@@ -26,14 +26,28 @@ public partial class RouteDetail : ContentPage
         // Populate the picker with your Enum values from Route.cs
         TerrainPicker.ItemsSource = Enum.GetValues(typeof(Route.Terrain));
     }
+    internal RouteDetail(RouteDetailViewModel viewModel)
+    {
+        InitializeComponent();
+        BindingContext = viewModel;
+
+        // Populate the picker with your Enum values from Route.cs
+        TerrainPicker.ItemsSource = Enum.GetValues(typeof(Route.Terrain));
+    }
+
 
     private async void OnSaveClicked(object sender, EventArgs e)
     {
-        var vm = BindingContext as RouteDetailViewModel;
-        if (vm != null)
+        if (BindingContext is RouteDetailViewModel viewModel)
         {
-            vm.AddOrUpdateTrip(); // Saves to your JSON via Proxy
-            await Shell.Current.GoToAsync(".."); // Go back to dashboard
+            await viewModel.AddOrUpdateTrip();
+            await Shell.Current.GoToAsync("..");
         }
+    }
+
+
+    private async void CancelClicked(object sender, EventArgs e)
+    {
+        await Shell.Current.GoToAsync("..");
     }
 }

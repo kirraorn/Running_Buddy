@@ -1,45 +1,90 @@
-using System.Collections.ObjectModel;
 using RunningBuddy.Models;
 using RunningBuddy.Services;
+using RunningBuddy.ViewModels;
+using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
-using Microsoft.Maui.Controls;
+using System.Linq;
+using System.Runtime.CompilerServices;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace RunningBuddy.ViewModels;
-
-public class RoutePageViewModel : BindableObject
+namespace RunningBuddy.ViewModels
 {
-   private ObservableCollection<Route> _routes;
-    public ObservableCollection<Route> Routes 
-    { 
-        get => _routes;
-        set { _routes = value; OnPropertyChanged(); }
-    }
-
-    public int TotalRoutes => Routes?.Count ?? 0;
-    public double TotalMiles => Routes?.Sum(r => r.Length) ?? 0;
-    public int TotalFavorites => Routes?.Count(r => r.IsFavorite) ?? 0;
-
-    // Use Shell to navigate to your detail/add page
-    public ICommand CreateRouteCommand => new Command(async () => 
-        await Shell.Current.GoToAsync($"{nameof(Views.RouteDetail)}?RouteId=0"));
-
-    public RoutePageViewModel()
+    internal class RoutePageViewModel : INotifyPropertyChanged
     {
-        // Pull the actual list from your Proxy
-        RefreshRoutes();
-    }
+        private RouteServiceProxy _routeSvc;
+        //private double total;
+        //private Route a;
 
-    public void RefreshRoutes()
-    {
-        var list = RouteServiceProxy.Current.RouteList ?? new List<Route>();
-        Routes = new ObservableCollection<Route>(list);
-        
-        // Notify the UI that stats have changed
-        OnPropertyChanged(nameof(TotalRoutes));
-        OnPropertyChanged(nameof(TotalMiles));
-        OnPropertyChanged(nameof(TotalFavorites));
-    }
 
-    
+        public RoutePageViewModel()
+        {
+            _routeSvc = RouteServiceProxy.Current;
+            //total = _routeSvc.TotalMPG;
+        }
+
+        public RouteDetailViewModel SelectedRoute { get; set; }
+        public ObservableCollection<RouteDetailViewModel> Routes
+        {
+            get
+            {
+                var Routes = _routeSvc.RouteList.Select(t => new RouteDetailViewModel(t));
+                _routeSvc.DisplayRoutes();
+
+                return new ObservableCollection<RouteDetailViewModel>(Routes);
+            }
+        }
+
+
+
+
+
+        public int SelectedRouteId => SelectedRoute?.Model?.Id ?? 0;
+
+
+
+
+        public void DeleteRoute()
+        {
+            if (SelectedRoute == null)
+            {
+                return;
+            }
+
+            RouteServiceProxy.Current.DeleteRoute(SelectedRoute.Model.Id);
+            NotifyPropertyChanged(nameof(Routes));
+
+        }
+
+        public ICommand DeleteRouteCommand => new Command<RouteDetailViewModel>((route) =>
+        {
+            if (route == null) return;
+
+            _routeSvc.DeleteRoute(route.Model.Id);
+            RefreshPage();
+        });
+
+
+
+
+        //Alex was here
+
+        public void RefreshPage()
+        {
+            NotifyPropertyChanged(nameof(Routes));
+
+
+
+        }
+
+        public event PropertyChangedEventHandler? PropertyChanged;
+
+        private void NotifyPropertyChanged([CallerMemberName] string propertyName = "")
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+    }
 }

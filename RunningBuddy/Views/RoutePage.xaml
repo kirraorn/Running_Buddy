@@ -1,6 +1,8 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="RunningBuddy.Views.RoutePage"
+             xmlns:models="clr-namespace:RunningBuddy.Models"
+             xmlns:vm="clr-namespace:RunningBuddy.ViewModels"
              BackgroundColor="#0F0F0F">
 
     <ScrollView>
@@ -53,15 +55,35 @@
                             <Grid ColumnDefinitions="*, Auto">
                                 <VerticalStackLayout Spacing="10">
                                     <HorizontalStackLayout Spacing="10">
-                                        <Label Text="{Binding Name}" FontSize="18" FontAttributes="Bold" TextColor="White"/>
+                                        <Label Text="{Binding Model.Name}" FontSize="18" FontAttributes="Bold" TextColor="White"/>
                                         <Border BackgroundColor="#333333" Padding="8,2" StrokeShape="RoundRectangle 4">
-                                            <Label Text="{Binding Terrain}" TextColor="Gray" FontSize="12"/>
+                                            <Label Text="{Binding Model.Terrain}" TextColor="Gray" FontSize="12"/>
                                         </Border>
+                                        <Button  
+                                            FontFamily="FontAwsome7" 
+                                            Text="{x:Static models:FontAwsome7.PenToSquare}" 
+                                            BackgroundColor="#4DB6AC" 
+                                            TextColor="White"
+                                            Clicked="EditClicked"
+                                            CommandParameter="{Binding Model.Id}"
+                                            HeightRequest="40" 
+                                            WidthRequest="40"
+                                            Margin="0,0,5,0" 
+                                            />
+
+                                        <Button 
+                                            FontFamily="FontAwsome7" 
+                                            Text="{x:Static models:FontAwsome7.TrashCan}"  
+                                            BackgroundColor="PaleVioletRed" 
+                                            TextColor="White"
+                                            Command="{Binding Source={RelativeSource AncestorType={x:Type vm:RoutePageViewModel}}, Path=DeleteRouteCommand}"
+                                            CommandParameter="{Binding .}" 
+                                            HeightRequest="40" WidthRequest="40" />
                                     </HorizontalStackLayout>
                                     
                                     <HorizontalStackLayout Spacing="15">
-                                        <Label Text="{Binding Length, StringFormat='{0} mi'}" TextColor="Gray"/>
-                                        <Label Text="{Binding Elevation, StringFormat='{0} ft gain'}" TextColor="Gray"/>
+                                        <Label Text="{Binding Model.Length, StringFormat='{0} mi'}" TextColor="Gray"/>
+                                        <Label Text="{Binding Model.Elevation, StringFormat='{0} ft gain'}" TextColor="Gray"/>
                                     </HorizontalStackLayout>
                                 </VerticalStackLayout>
                             </Grid>
@@ -80,16 +102,36 @@
                             <Grid ColumnDefinitions="*, Auto">
                                 <VerticalStackLayout Spacing="10">
                                     <HorizontalStackLayout Spacing="10">
-                                        <Label Text="{Binding Name}" FontSize="18" FontAttributes="Bold" TextColor="White"/>
+                                        <Label Text="{Binding Model.Name}" FontSize="18" FontAttributes="Bold" TextColor="White"/>
                                         <Border BackgroundColor="#333333" Padding="8,2" StrokeShape="RoundRectangle 4">
-                                            <Label Text="{Binding Terrain}" TextColor="Gray" FontSize="12"/>
+                                            <Label Text="{Binding Model.Terrain}" TextColor="Gray" FontSize="12"/>
                                         </Border>
+                                        <Button  
+                                            FontFamily="FontAwsome7" 
+                                            Text="{x:Static models:FontAwsome7.PenToSquare}" 
+                                            BackgroundColor="#4DB6AC" 
+                                            TextColor="White"
+                                            Clicked="EditClicked"
+                                            CommandParameter="{Binding Model.Id}" 
+                                            HeightRequest="40" 
+                                            WidthRequest="40"
+                                            Margin="0,0,5,0" />
+
+                                        <Button 
+                                            FontFamily="FontAwsome7" 
+                                            Text="{x:Static models:FontAwsome7.TrashCan}"  
+                                            BackgroundColor="PaleVioletRed" 
+                                            TextColor="White"
+                                            Command="{Binding Source={RelativeSource AncestorType={x:Type vm:RoutePageViewModel}}, Path=DeleteRouteCommand}"
+                                            CommandParameter="{Binding .}" 
+                                            HeightRequest="40" WidthRequest="40" />
                                     </HorizontalStackLayout>
                                     
                                     <HorizontalStackLayout Spacing="15">
-                                        <Label Text="{Binding Length, StringFormat='{0} mi'}" TextColor="Gray"/>
-                                        <Label Text="{Binding Elevation, StringFormat='{0} ft gain'}" TextColor="Gray"/>
+                                        <Label Text="{Binding Model.Length, StringFormat='{0} mi'}" TextColor="Gray"/>
+                                        <Label Text="{Binding Model.Elevation, StringFormat='{0} ft gain'}" TextColor="Gray"/>
                                     </HorizontalStackLayout>
+                                    
                                 </VerticalStackLayout>
                             </Grid>
                         </Frame>
