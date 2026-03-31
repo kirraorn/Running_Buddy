@@ -28,7 +28,7 @@
                     TextColor="White" BackgroundColor="#262626" />
 
             <HorizontalStackLayout Spacing="20" HorizontalOptions="Center" Margin="0,30,0,0">
-                <Button Text="Delete" Command="{Binding DeleteCommand}"
+                <Button Text="Cancel" Clicked="CancelClicked"
                         BackgroundColor="#EF4444" TextColor="White" WidthRequest="120" />
                 <Button Text="Save Route" Clicked="OnSaveClicked"
                         BackgroundColor="#A3E635" TextColor="Black" FontAttributes="Bold" WidthRequest="150" />

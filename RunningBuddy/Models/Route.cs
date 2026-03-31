@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -19,6 +20,8 @@ namespace RunningBuddy.Models
         public bool IsFavorite {get;set;}
 
         public enum Terrain {Track,Asphault,Gravel,Trail,Dirt,Grass} //Currently assuming a dropdown selection - Riley
+
+        
 
     }
 }

@@ -52,7 +52,7 @@ namespace RunningBuddy.ViewModels
         public ICommand? DeleteCommand { get; set; }
 
 
-        public void AddOrUpdateTrip()
+        public async Task AddOrUpdateTrip()
         {
             RouteServiceProxy.Current.AddOrUpdate(Model);
         }
