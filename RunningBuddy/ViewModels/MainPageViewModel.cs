@@ -30,6 +30,8 @@ internal class MainPageViewModel : INotifyPropertyChanged
     {
         _userSvc = UserServiceProxy.Current;
         _routSvc = RouteServiceProxy.Current;
+
+        _ = LoadWeatherAsync(); //speed up test -Alex
     }
 
 
@@ -107,32 +109,40 @@ internal class MainPageViewModel : INotifyPropertyChanged
 
         if (string.IsNullOrWhiteSpace(zipCode))
         {
-            // No zip code saved yet — leave defaults
             WeatherCondition = "Set your zip code";
             return;
         }
 
-        var weather = await WeatherService.GetCurrentWeatherAsync(zipCode);
-
-        if (weather != null)
+        try
         {
-            WeatherTemp = $"{weather.currentTemp:F0}°F";
-            WeatherCondition = weather.ConditionText;
-            WeatherIconUrl = weather.ConditionIconUrl;
-            WeatherHumidity = $"{weather.Humidity:F0}%";
-            WeatherWind = $"{weather.windSpeed:F1} MPH";
-            WeatherVisibility = $"{weather.VisibilityMiles:F0} mi";
+            // Start both tasks at the same time
+            var weatherTask = WeatherService.GetCurrentWeatherAsync(zipCode);
+            var locationTask = WeatherService.GetLocationNameAsync(zipCode);
 
-            // Get location name
-            var locName = await WeatherService.GetLocationNameAsync(zipCode);
-            if (!string.IsNullOrEmpty(locName))
+            // Wait for both to finish in parallel
+            await Task.WhenAll(weatherTask, locationTask);
+
+            var weather = await weatherTask;
+            var locName = await locationTask;
+
+            if (weather != null)
             {
-                LocationName = locName;
+                WeatherTemp = $"{weather.currentTemp:F0}°F";
+                WeatherCondition = weather.ConditionText;
+                WeatherIconUrl = weather.ConditionIconUrl;
+                WeatherHumidity = $"{weather.Humidity:F0}%";
+                WeatherWind = $"{weather.windSpeed:F1} MPH";
+                WeatherVisibility = $"{weather.VisibilityMiles:F0} mi";
+                LocationName = locName ?? "Unknown Location";
+            }
+            else
+            {
+                WeatherCondition = "Unable to load weather";
             }
         }
-        else
+        catch (Exception)
         {
-            WeatherCondition = "Unable to load weather";
+            WeatherCondition = "Offline / Error";
         }
     }
 

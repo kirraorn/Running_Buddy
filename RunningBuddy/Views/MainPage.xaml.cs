@@ -23,23 +23,25 @@ public partial class MainPage : ContentPage
         base.OnAppearing();
 
         var vm = BindingContext as MainPageViewModel;
-        if (vm != null)
-        {
-            vm.RefreshPage();
+        if (vm == null) return;
 
-            // Check if user has a zip code saved; if not, prompt them
-            var user = RunningBuddy.Services.UserServiceProxy.Current.MainUser;
-            if (string.IsNullOrWhiteSpace(user.ZipCode))
-            {
-                await vm.SetZipCodeAsync();
-            }
-            else
-            {
-                await vm.LoadWeatherAsync();
-            }
+        vm.RefreshPage();
+
+        var user = RunningBuddy.Services.UserServiceProxy.Current.MainUser;
+
+        if (string.IsNullOrWhiteSpace(user.ZipCode))
+        {
+            // We DO want to await this because it's a UI prompt the user must interact with
+            await vm.SetZipCodeAsync();
+        }
+        else
+        {
+            // DO NOT use 'await' here. 
+            // This fires the task in the background so the UI renders immediately.
+            _ = vm.LoadWeatherAsync();
         }
     }
-    
+
     private void CheckConnectivity()
     {
         // Using MAUI's built-in Connectivity API
