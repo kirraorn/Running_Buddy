@@ -9,7 +9,7 @@ namespace RunningBuddy.Models
     internal class Clothing
     {
         public String hat_gloves {  get; set; } = "";
-                public String top { get; set; } = "";
+        public String top { get; set; } = "";
         public String bottom { get; set; } = "";
 
 

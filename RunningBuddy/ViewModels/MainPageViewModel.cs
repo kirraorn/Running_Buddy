@@ -26,12 +26,21 @@ internal class MainPageViewModel : INotifyPropertyChanged
     private string _weatherVisibility = "— mi";
     private string _locationName = "";
 
+    //clothing data
+    private Weather _currentWeather;
+    private Clothing _recommened;
+    private string _head;
+    private string _top;
+    private string _bottom;
+
     public MainPageViewModel()
     {
         _userSvc = UserServiceProxy.Current;
         _routSvc = RouteServiceProxy.Current;
 
+        _recommened = new Clothing();
         _ = LoadWeatherAsync(); //speed up test -Alex
+
     }
 
 
@@ -106,43 +115,31 @@ internal class MainPageViewModel : INotifyPropertyChanged
     public async Task LoadWeatherAsync()
     {
         string zipCode = _userSvc.MainUser.ZipCode;
+        if (string.IsNullOrWhiteSpace(zipCode)) return;
 
-        if (string.IsNullOrWhiteSpace(zipCode))
+        // One single call for everything
+        var (weather, locName) = await WeatherService.GetFullWeatherDataAsync(zipCode);
+
+        if (weather != null)
         {
-            WeatherCondition = "Set your zip code";
-            return;
-        }
+            // Update clothing logic
+            _recommened.setClothing(weather, _userSvc.MainUser.ColdPreference);
+            _head = _recommened.hat_gloves;
+            _top = _recommened.top;
+            _bottom = _recommened.bottom;
+            
+            NotifyPropertyChanged(nameof(Hat));
+            NotifyPropertyChanged(nameof(Top));
+            NotifyPropertyChanged(nameof(Bottom));
 
-        try
-        {
-            // Start both tasks at the same time
-            var weatherTask = WeatherService.GetCurrentWeatherAsync(zipCode);
-            var locationTask = WeatherService.GetLocationNameAsync(zipCode);
-
-            // Wait for both to finish in parallel
-            await Task.WhenAll(weatherTask, locationTask);
-
-            var weather = await weatherTask;
-            var locName = await locationTask;
-
-            if (weather != null)
-            {
-                WeatherTemp = $"{weather.currentTemp:F0}°F";
-                WeatherCondition = weather.ConditionText;
-                WeatherIconUrl = weather.ConditionIconUrl;
-                WeatherHumidity = $"{weather.Humidity:F0}%";
-                WeatherWind = $"{weather.windSpeed:F1} MPH";
-                WeatherVisibility = $"{weather.VisibilityMiles:F0} mi";
-                LocationName = locName ?? "Unknown Location";
-            }
-            else
-            {
-                WeatherCondition = "Unable to load weather";
-            }
-        }
-        catch (Exception)
-        {
-            WeatherCondition = "Offline / Error";
+            // Update Weather
+            LocationName = locName;
+            WeatherTemp = $"{weather.currentTemp:F0}°F";
+            WeatherCondition = weather.ConditionText;
+            WeatherIconUrl = weather.ConditionIconUrl;
+            WeatherHumidity = $"{weather.Humidity:F0}%";
+            WeatherWind = $"{weather.windSpeed:F1} MPH";
+            WeatherVisibility = $"{weather.VisibilityMiles:F0} mi";
         }
     }
 
@@ -169,6 +166,28 @@ internal class MainPageViewModel : INotifyPropertyChanged
             await LoadWeatherAsync();
         }
     }
+
+
+
+    //Clothing Recommender Functions-------------------------------------------
+    public string Hat
+    {
+        get => _head;
+        set { _head = value; NotifyPropertyChanged(); }
+    }
+
+    public string Top
+    {
+        get => _top;
+        set { _top = value; NotifyPropertyChanged(); }
+    }
+
+    public string Bottom
+    {
+        get => _bottom;
+        set { _bottom = value; NotifyPropertyChanged(); }
+    }
+
 
     //GENERAL FUNCTIONS--------------------------------------------------------
     public void RefreshPage()

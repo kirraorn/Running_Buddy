@@ -74,7 +74,7 @@
                             <Label Text="🧢" FontSize="20" Grid.Column="0" VerticalOptions="Center"/>
                             <VerticalStackLayout Grid.Column="1">
                                 <Label Text="Head &amp; Hands" FontSize="16" TextColor="#666666"/>
-                                <Label Text="None needed" TextColor="White" FontAttributes="Bold"/>
+                                <Label Text="{Binding Hat}" TextColor="White" FontAttributes="Bold"/>
                             </VerticalStackLayout>
                         </Grid>
                     </Border>
@@ -85,7 +85,7 @@
                             <Label Text="👕" FontSize="20" Grid.Column="0" VerticalOptions="Center"/>
                             <VerticalStackLayout Grid.Column="1">
                                 <Label Text="Top Layer" FontSize="16" TextColor="#666666"/>
-                                <Label Text="Short-sleeve Shirt" TextColor="White" FontAttributes="Bold"/>
+                                <Label Text="{Binding Top}" TextColor="White" FontAttributes="Bold"/>
                             </VerticalStackLayout>
                         </Grid>
                     </Border>
@@ -96,7 +96,7 @@
                             <Label Text="👖" FontSize="20" Grid.Column="0" VerticalOptions="Center"/>
                             <VerticalStackLayout Grid.Column="1">
                                 <Label Text="Bottoms" FontSize="16" TextColor="#666666"/>
-                                <Label Text="Shorts or Pants" TextColor="White" FontAttributes="Bold"/>
+                                <Label Text="{Binding Bottom}" TextColor="White" FontAttributes="Bold"/>
                             </VerticalStackLayout>
                         </Grid>
                     </Border>

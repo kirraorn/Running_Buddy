@@ -11,15 +11,13 @@ namespace RunningBuddy.Services
 
         /// Fetches current weather data from WeatherAPI for the given zip code.
         /// Only manual setup right now, maybe keep it that way? Unsure.
-        public static async Task<Weather?> GetCurrentWeatherAsync(string zipCode)
+        public static async Task<(Weather? Weather, string? Location)> GetFullWeatherDataAsync(string zipCode)
         {
             try
             {
                 string url = $"{BaseUrl}?key={ApiKey}&q={zipCode}&aqi=no";
                 var response = await _httpClient.GetAsync(url);
-
-                if (!response.IsSuccessStatusCode)
-                    return null;
+                if (!response.IsSuccessStatusCode) return (null, null);
 
                 var json = await response.Content.ReadAsStringAsync();
                 using var doc = JsonDocument.Parse(json);
@@ -36,42 +34,15 @@ namespace RunningBuddy.Services
                     windSpeed = current.GetProperty("wind_mph").GetDouble(),
                     VisibilityMiles = current.GetProperty("vis_miles").GetDouble(),
                     ConditionText = condition.GetProperty("text").GetString() ?? "Unknown",
-                    ConditionIconUrl = condition.GetProperty("icon").GetString() ?? "",
-                    harshConditions = condition.GetProperty("text").GetString() ?? ""
+                    // FIX: Ensure the URL has https:
+                    ConditionIconUrl = "https:" + (condition.GetProperty("icon").GetString() ?? ""),
                 };
 
-                return weather;
+                string locName = $"{location.GetProperty("name").GetString()}, {location.GetProperty("region").GetString()}";
+
+                return (weather, locName);
             }
-            catch (Exception)
-            {
-                return null;
-            }
-        }
-
-        /// Returns the location name ("Tallahassee, Florida") from zip code
-        public static async Task<string?> GetLocationNameAsync(string zipCode)
-        {
-            try
-            {
-                string url = $"{BaseUrl}?key={ApiKey}&q={zipCode}&aqi=no";
-                var response = await _httpClient.GetAsync(url);
-
-                if (!response.IsSuccessStatusCode)
-                    return null;
-
-                var json = await response.Content.ReadAsStringAsync();
-                using var doc = JsonDocument.Parse(json);
-                var location = doc.RootElement.GetProperty("location");
-
-                string name = location.GetProperty("name").GetString() ?? "";
-                string region = location.GetProperty("region").GetString() ?? "";
-
-                return $"{name}, {region}";
-            }
-            catch (Exception)
-            {
-                return null;
-            }
+            catch { return (null, null); }
         }
     }
 }
