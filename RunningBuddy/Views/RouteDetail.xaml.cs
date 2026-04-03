@@ -22,17 +22,21 @@ public partial class RouteDetail : ContentPage
     {
         InitializeComponent();
         BindingContext = new RouteDetailViewModel();
-        
-        // Populate the picker with your Enum values from Route.cs
-        TerrainPicker.ItemsSource = Enum.GetValues(typeof(Route.Terrain));
+        SetupTerrainPicker();
     }
     internal RouteDetail(RouteDetailViewModel viewModel)
     {
         InitializeComponent();
         BindingContext = viewModel;
+        SetupTerrainPicker();
+    }
 
-        // Populate the picker with your Enum values from Route.cs
-        TerrainPicker.ItemsSource = Enum.GetValues(typeof(Route.Terrain));
+    private void SetupTerrainPicker()
+    {
+        TerrainPicker.ItemsSource = new List<string>
+        {
+            "Track","Asphalt","Gravel","Trail","Dirt","Grass"
+        };
     }
 
 

@@ -26,7 +26,7 @@ namespace RunningBuddy.ViewModels
             //total = _routeSvc.TotalMPG;
         }
 
-        public RouteDetailViewModel SelectedRoute { get; set; }
+        public RouteDetailViewModel? SelectedRoute { get; set; }
         public ObservableCollection<RouteDetailViewModel> Routes
         {
             get
@@ -37,6 +37,25 @@ namespace RunningBuddy.ViewModels
                 return new ObservableCollection<RouteDetailViewModel>(Routes);
             }
         }
+
+        public ObservableCollection<RouteDetailViewModel> FavoriteRoutes
+        {
+            get
+            {
+                var favorites = _routeSvc.RouteList
+                    .Where(r => r.IsFavorite)
+                    .Select(r => new RouteDetailViewModel(r));
+                _routeSvc.DisplayRoutes();
+
+                return new ObservableCollection<RouteDetailViewModel>(favorites);
+            }
+        }
+
+        public int TotalRoutes => _routeSvc.RouteList.Count;
+
+        public double TotalMiles => _routeSvc.RouteList.Sum(r => r.Length);
+
+        public int TotalFavorites => _routeSvc.RouteList.Count(r => r.IsFavorite);
 
 
 
@@ -49,7 +68,7 @@ namespace RunningBuddy.ViewModels
 
         public void DeleteRoute()
         {
-            if (SelectedRoute == null)
+            if (SelectedRoute?.Model == null)
             {
                 return;
             }
@@ -61,7 +80,7 @@ namespace RunningBuddy.ViewModels
 
         public ICommand DeleteRouteCommand => new Command<RouteDetailViewModel>((route) =>
         {
-            if (route == null) return;
+            if (route?.Model == null) return;
 
             _routeSvc.DeleteRoute(route.Model.Id);
             RefreshPage();
@@ -75,6 +94,10 @@ namespace RunningBuddy.ViewModels
         public void RefreshPage()
         {
             NotifyPropertyChanged(nameof(Routes));
+            NotifyPropertyChanged(nameof(FavoriteRoutes));
+            NotifyPropertyChanged(nameof(TotalRoutes));
+            NotifyPropertyChanged(nameof(TotalMiles));
+            NotifyPropertyChanged(nameof(TotalFavorites));
 
 
 

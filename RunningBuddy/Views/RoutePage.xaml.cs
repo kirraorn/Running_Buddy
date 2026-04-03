@@ -10,6 +10,12 @@ public partial class RoutePage : ContentPage
         BindingContext = new RoutePageViewModel();
     }
 
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
+        (BindingContext as RoutePageViewModel)?.RefreshPage();
+    }
+
     private void ContentPage_NavigatedTo(object sender, NavigatedToEventArgs e)
     {
         (BindingContext as RoutePageViewModel)?.RefreshPage();
