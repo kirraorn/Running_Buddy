@@ -33,7 +33,7 @@ namespace RunningBuddy.ViewModels
 
         public ShoeDetailViewModel()
         {
-
+            Model = new Shoe();
             DeleteCommand = new Command(DoDelete);
         }
 

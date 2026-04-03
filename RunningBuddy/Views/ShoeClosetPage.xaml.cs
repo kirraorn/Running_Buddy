@@ -11,6 +11,15 @@ public partial class ShoeClosetPage : ContentPage
         BindingContext = new ShoeClosetViewModel();
     }
 
+	protected override void OnAppearing()
+	{
+		base.OnAppearing();
+		if (BindingContext is ShoeClosetViewModel viewModel)
+		{
+			viewModel.RefreshPage();
+		}
+	}
+
 	 private void AddClicked(object sender, EventArgs e)
     {
         Shell.Current.GoToAsync("//ShoeDetailView");
