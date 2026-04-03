@@ -14,12 +14,12 @@ namespace RunningBuddy.Models
         public double Length { get; set; }
         public DateTime Time { get; set; }
         public DateTime Date { get; set;}
-
+        public string TerrainType { get; set; } = "";
         public double Elevation {get;set;}
 
         public bool IsFavorite {get;set;}
 
-        public enum Terrain {Track,Asphault,Gravel,Trail,Dirt,Grass} //Currently assuming a dropdown selection - Riley
+        // public enum Terrain {Track,Asphault,Gravel,Trail,Dirt,Grass} //Currently assuming a dropdown selection - Riley
 
         
 

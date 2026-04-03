@@ -24,8 +24,12 @@
             </Grid>
 
             <Label Text="Terrain" TextColor="White" FontAttributes="Bold" />
-            <Picker x:Name="TerrainPicker" Title="Select Terrain" 
-                    TextColor="White" BackgroundColor="#262626" />
+            <Picker x:Name="TerrainPicker" SelectedItem="{Binding Model.TerrainType}" />
+
+            <HorizontalStackLayout Spacing="10" VerticalOptions="Center">
+                <Label Text="Favorite Route" TextColor="White" FontAttributes="Bold" VerticalOptions="Center" />
+                <Switch IsToggled="{Binding Model.IsFavorite}" OnColor="#FACC15" ThumbColor="White" />
+            </HorizontalStackLayout>
 
             <HorizontalStackLayout Spacing="20" HorizontalOptions="Center" Margin="0,30,0,0">
                 <Button Text="Cancel" Clicked="CancelClicked"

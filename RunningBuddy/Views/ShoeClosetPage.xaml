@@ -19,31 +19,31 @@
                         FontAttributes="Bold" CornerRadius="8" Padding="15,0" HeightRequest="45" />
             </Grid>
 
-            <FlexLayout Wrap="Wrap" JustifyContent="Start" Margin="0,0,0,10">
+            <!-- <FlexLayout Wrap="Wrap" JustifyContent="Start" Margin="0,0,0,10">
                 <Button Text="All" BackgroundColor="#26A69A" TextColor="White" CornerRadius="15" HeightRequest="35" Margin="0,0,10,10" Padding="15,0"/>
                 <Button Text="Road" BackgroundColor="#1A1A1A" TextColor="#AAAAAA" CornerRadius="15" HeightRequest="35" Margin="0,0,10,10" Padding="15,0"/>
                 <Button Text="Trail" BackgroundColor="#1A1A1A" TextColor="#AAAAAA" CornerRadius="15" HeightRequest="35" Margin="0,0,10,10" Padding="15,0"/>
                 <Button Text="Mixed" BackgroundColor="#1A1A1A" TextColor="#AAAAAA" CornerRadius="15" HeightRequest="35" Margin="0,0,10,10" Padding="15,0"/>
-            </FlexLayout>
+            </FlexLayout> -->
 
             <Grid ColumnDefinitions="*, *, *" ColumnSpacing="15" HeightRequest="100">
                 <Border Grid.Column="0" StrokeShape="RoundRectangle 12" BackgroundColor="#1A1A1A" StrokeThickness="0">
                     <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="5">
-                        <Label Text="Total-Shoes" TextColor="#4DB6AC" FontSize="24" FontAttributes="Bold" HorizontalTextAlignment="Center"/>
+                        <Label Text="{Binding TotalShoes}" TextColor="#4DB6AC" FontSize="24" FontAttributes="Bold" HorizontalTextAlignment="Center"/>
                         <Label Text="Total Shoes" TextColor="#666666" FontSize="12" HorizontalTextAlignment="Center"/>
                     </VerticalStackLayout>
                 </Border>
 
                 <Border Grid.Column="1" StrokeShape="RoundRectangle 12" BackgroundColor="#1A1A1A" StrokeThickness="0">
                     <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="5">
-                        <Label Text="Total-Miles" TextColor="#4DB6AC" FontSize="24" FontAttributes="Bold" HorizontalTextAlignment="Center"/>
+                        <Label Text="{Binding TotalMilesLogged}" TextColor="#4DB6AC" FontSize="24" FontAttributes="Bold" HorizontalTextAlignment="Center"/>
                         <Label Text="Total Miles Logged" TextColor="#666666" FontSize="12" HorizontalTextAlignment="Center"/>
                     </VerticalStackLayout>
                 </Border>
 
                 <Border Grid.Column="2" StrokeShape="RoundRectangle 12" BackgroundColor="#1A1A1A" StrokeThickness="0">
                     <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="5">
-                        <Label Text="Needs-Replacing" TextColor="#E57373" FontSize="24" FontAttributes="Bold" HorizontalTextAlignment="Center"/>
+                        <Label Text="{Binding TotalNeedReplacing}" TextColor="#E57373" FontSize="24" FontAttributes="Bold" HorizontalTextAlignment="Center"/>
                         <Label Text="Need Replacing" TextColor="#666666" FontSize="12" HorizontalTextAlignment="Center"/>
                     </VerticalStackLayout>
                 </Border>
@@ -100,6 +100,7 @@
                     <Button Text="+ Log Mileage" 
                             BackgroundColor="#1A1A1A" 
                             TextColor="White" 
+                            Clicked="EditClicked"
                             HeightRequest="35" 
                             WidthRequest="120" 
                             HorizontalOptions="Start" 

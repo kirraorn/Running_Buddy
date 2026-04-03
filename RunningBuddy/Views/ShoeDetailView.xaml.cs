@@ -6,6 +6,12 @@ namespace RunningBuddy.Views;
 
 public partial class ShoeDetailView : ContentPage
 {
+	public ShoeDetailView()
+	{
+		InitializeComponent();
+		BindingContext = new ShoeDetailViewModel();
+	}
+
    public ShoeDetailView(ShoeDetailViewModel viewModel)
 	{
 		InitializeComponent();
