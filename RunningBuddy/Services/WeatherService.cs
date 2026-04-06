@@ -7,7 +7,7 @@ namespace RunningBuddy.Services
     {
         private static readonly HttpClient _httpClient = new HttpClient();
         private const string ApiKey = "82e735610b1449d8bcc00306260303";
-        private const string BaseUrl = "http://api.weatherapi.com/v1/current.json";
+        private const string BaseUrl = "https://api.weatherapi.com/v1/current.json";
 
         /// Fetches current weather data from WeatherAPI for the given zip code.
         /// Only manual setup right now, maybe keep it that way? Unsure.
