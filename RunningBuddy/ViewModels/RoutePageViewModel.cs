@@ -31,10 +31,12 @@ namespace RunningBuddy.ViewModels
         {
             get
             {
-                var Routes = _routeSvc.RouteList.Select(t => new RouteDetailViewModel(t));
+                 var nonFavorites = _routeSvc.RouteList
+                    .Where(r => r.IsFavorite == false)
+                    .Select(r => new RouteDetailViewModel(r));
                 _routeSvc.DisplayRoutes();
 
-                return new ObservableCollection<RouteDetailViewModel>(Routes);
+                return new ObservableCollection<RouteDetailViewModel>(nonFavorites);
             }
         }
 
