@@ -154,11 +154,12 @@
                 <Slider Grid.Row="1" 
                         Minimum="1" 
                         Maximum="5" 
-                        Value="3" 
+                        Value="{Binding ColdPref}" 
                         MinimumTrackColor="LightBlue" 
                         MaximumTrackColor="DarkGray" 
                         ThumbColor="White"
-                        Margin="0,15,0,5" />
+                        Margin="0,15,0,5" 
+                        />
                 
                 <Grid Grid.Row="2" ColumnDefinitions="*, *">
                     <Label Grid.Column="0" Text="1 (Low Cold Tolerance)" FontSize="12" TextColor="Gray" />
