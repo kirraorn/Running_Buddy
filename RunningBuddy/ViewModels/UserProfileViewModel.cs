@@ -55,6 +55,24 @@ internal class UserProfileViewModel : INotifyPropertyChanged
         }
     }
 
+    public double ColdPref
+    {
+        get
+        {
+            return _userSvc.MainUser.ColdPreference;
+        }
+
+        set
+        {
+            if (_userSvc.MainUser.ColdPreference != value)
+            {
+                _userSvc.MainUser.ColdPreference = value;
+                _userSvc.SaveAll();
+                NotifyPropertyChanged();
+            }
+        }
+    }
+
     public Double TotalMiles
     {
         get
