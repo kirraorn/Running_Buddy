@@ -1,157 +1,369 @@
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Maui.Controls;
 using RunningBuddy.Models;
 using RunningBuddy.Services;
 
 namespace RunningBuddy.ViewModels;
 
-
 internal class MainPageViewModel : INotifyPropertyChanged
 {
-    private UserServiceProxy _userSvc;
-    private RouteServiceProxy _routSvc;
+    private readonly UserServiceProxy _userSvc;
+    private readonly RouteServiceProxy _routSvc;
 
-    // Weather backing fields
+    private string _userName = string.Empty;
+
     private string _weatherTemp = "—°F";
     private string _weatherCondition = "Loading...";
-    private string _weatherIconUrl = "";
+    private string _weatherIconUrl = string.Empty;
     private string _weatherHumidity = "—%";
     private string _weatherWind = "— MPH";
     private string _weatherVisibility = "— mi";
-    private string _locationName = "";
+    private string _locationName = string.Empty;
 
-    //clothing data
-    private Weather _currentWeather;
     private Clothing _recommened;
-    private string _head;
-    private string _top;
-    private string _bottom;
+    private string _hat = string.Empty;
+    private string _top = string.Empty;
+    private string _bottom = string.Empty;
+
+    private ObservableCollection<RouteDetailViewModel> _routes = new();
+    private RouteDetailViewModel? _selectedRoute;
+
+    private string _todayWorkoutName = "No workout scheduled";
+    private string _todayWorkoutDistance = "— miles";
+    private bool _hasWorkoutToday;
 
     public MainPageViewModel()
     {
         _userSvc = UserServiceProxy.Current;
         _routSvc = RouteServiceProxy.Current;
-
         _recommened = new Clothing();
-        _ = LoadWeatherAsync(); //speed up test -Alex
 
+        UserName = _userSvc.MainUser.Name ?? string.Empty;
+        RefreshRoutes();
+
+        _ = LoadWeatherAsync();
+        _ = LoadTodayWorkoutAsync();
     }
 
-
-    //USER DATA ACCESS---------------------------------------------------------
-    public String UserName
+    public string UserName
     {
-        get
+        get => _userName;
+        set
         {
-            return _userSvc.MainUser.Name;
-            //return "test";
+            if (_userName == value)
+            {
+                return;
+            }
+
+            _userName = value;
+            NotifyPropertyChanged();
         }
     }
 
-    //WEATHER DATA ACCESS------------------------------------------------------
     public string WeatherTemp
     {
         get => _weatherTemp;
-        set { _weatherTemp = value; NotifyPropertyChanged(); }
+        set
+        {
+            if (_weatherTemp == value)
+            {
+                return;
+            }
+
+            _weatherTemp = value;
+            NotifyPropertyChanged();
+        }
     }
 
     public string WeatherCondition
     {
         get => _weatherCondition;
-        set { _weatherCondition = value; NotifyPropertyChanged(); }
+        set
+        {
+            if (_weatherCondition == value)
+            {
+                return;
+            }
+
+            _weatherCondition = value;
+            NotifyPropertyChanged();
+        }
     }
 
     public string WeatherIconUrl
     {
         get => _weatherIconUrl;
-        set { _weatherIconUrl = value; NotifyPropertyChanged(); }
+        set
+        {
+            if (_weatherIconUrl == value)
+            {
+                return;
+            }
+
+            _weatherIconUrl = value;
+            NotifyPropertyChanged();
+        }
     }
 
     public string WeatherHumidity
     {
         get => _weatherHumidity;
-        set { _weatherHumidity = value; NotifyPropertyChanged(); }
+        set
+        {
+            if (_weatherHumidity == value)
+            {
+                return;
+            }
+
+            _weatherHumidity = value;
+            NotifyPropertyChanged();
+        }
     }
 
     public string WeatherWind
     {
         get => _weatherWind;
-        set { _weatherWind = value; NotifyPropertyChanged(); }
+        set
+        {
+            if (_weatherWind == value)
+            {
+                return;
+            }
+
+            _weatherWind = value;
+            NotifyPropertyChanged();
+        }
     }
 
     public string WeatherVisibility
     {
         get => _weatherVisibility;
-        set { _weatherVisibility = value; NotifyPropertyChanged(); }
+        set
+        {
+            if (_weatherVisibility == value)
+            {
+                return;
+            }
+
+            _weatherVisibility = value;
+            NotifyPropertyChanged();
+        }
     }
 
     public string LocationName
     {
         get => _locationName;
-        set { _locationName = value; NotifyPropertyChanged(); }
+        set
+        {
+            if (_locationName == value)
+            {
+                return;
+            }
+
+            _locationName = value;
+            NotifyPropertyChanged();
+        }
     }
-    //ROUTE DATA ACCESS--------------------------------------------------------
-    public RouteDetailViewModel SelectedRoute { get; set; } //Will be used when there is a edit route screen
+
+    public string TodayWorkoutName
+    {
+        get => _todayWorkoutName;
+        set
+        {
+            if (_todayWorkoutName == value)
+            {
+                return;
+            }
+
+            _todayWorkoutName = value;
+            NotifyPropertyChanged();
+        }
+    }
+
+    public string TodayWorkoutDistance
+    {
+        get => _todayWorkoutDistance;
+        set
+        {
+            if (_todayWorkoutDistance == value)
+            {
+                return;
+            }
+
+            _todayWorkoutDistance = value;
+            NotifyPropertyChanged();
+        }
+    }
+
+    public bool HasWorkoutToday
+    {
+        get => _hasWorkoutToday;
+        set
+        {
+            if (_hasWorkoutToday == value)
+            {
+                return;
+            }
+
+            _hasWorkoutToday = value;
+            NotifyPropertyChanged();
+        }
+    }
+
+    public string Hat
+    {
+        get => _hat;
+        set
+        {
+            if (_hat == value)
+            {
+                return;
+            }
+
+            _hat = value;
+            NotifyPropertyChanged();
+        }
+    }
+
+    public string Top
+    {
+        get => _top;
+        set
+        {
+            if (_top == value)
+            {
+                return;
+            }
+
+            _top = value;
+            NotifyPropertyChanged();
+        }
+    }
+
+    public string Bottom
+    {
+        get => _bottom;
+        set
+        {
+            if (_bottom == value)
+            {
+                return;
+            }
+
+            _bottom = value;
+            NotifyPropertyChanged();
+        }
+    }
+
     public ObservableCollection<RouteDetailViewModel> Routes
     {
-        get
+        get => _routes;
+        set
         {
-            var Routes = _routSvc.RouteList.Select(t => new RouteDetailViewModel(t));
-            _routSvc.DisplayRoutes();
+            if (_routes == value)
+            {
+                return;
+            }
 
-            return new ObservableCollection<RouteDetailViewModel>(Routes);
+            _routes = value;
+            NotifyPropertyChanged();
         }
     }
 
+    public RouteDetailViewModel? SelectedRoute
+    {
+        get => _selectedRoute;
+        set
+        {
+            if (_selectedRoute == value)
+            {
+                return;
+            }
 
-    //WEATHER METHODS----------------------------------------------------------
-    /// Loads weather from the API using the users saved zip code.
+            _selectedRoute = value;
+            NotifyPropertyChanged();
+        }
+    }
+
     public async Task LoadWeatherAsync()
     {
-        string zipCode = _userSvc.MainUser.ZipCode;
-        if (string.IsNullOrWhiteSpace(zipCode)) return;
-
-        // One single call for everything
-        var (weather, locName) = await WeatherService.GetFullWeatherDataAsync(zipCode);
-
-        if (weather != null)
+        string zipCode = _userSvc.MainUser.ZipCode ?? string.Empty;
+        if (string.IsNullOrWhiteSpace(zipCode))
         {
-            // Update clothing logic
-            _recommened.setClothing(weather, _userSvc.MainUser.ColdPreference);
-            _head = _recommened.hat_gloves;
-            _top = _recommened.top;
-            _bottom = _recommened.bottom;
-            
-            NotifyPropertyChanged(nameof(Hat));
-            NotifyPropertyChanged(nameof(Top));
-            NotifyPropertyChanged(nameof(Bottom));
-
-            // Update Weather
-            LocationName = locName;
-            WeatherTemp = $"{weather.currentTemp:F0}°F";
-            WeatherCondition = weather.ConditionText;
-            WeatherIconUrl = weather.ConditionIconUrl;
-            WeatherHumidity = $"{weather.Humidity:F0}%";
-            WeatherWind = $"{weather.windSpeed:F1} MPH";
-            WeatherVisibility = $"{weather.VisibilityMiles:F0} mi";
+            return;
         }
+
+        var (weather, locName) = await WeatherService.GetFullWeatherDataAsync(zipCode);
+        if (weather is null)
+        {
+            return;
+        }
+
+        _recommened.setClothing(weather, _userSvc.MainUser.ColdPreference);
+
+        Hat = _recommened.hat_gloves ?? string.Empty;
+        Top = _recommened.top ?? string.Empty;
+        Bottom = _recommened.bottom ?? string.Empty;
+
+        LocationName = locName ?? string.Empty;
+        WeatherTemp = $"{weather.currentTemp:F0}°F";
+        WeatherCondition = weather.ConditionText ?? string.Empty;
+        WeatherIconUrl = weather.ConditionIconUrl ?? string.Empty;
+        WeatherHumidity = $"{weather.Humidity:F0}%";
+        WeatherWind = $"{weather.windSpeed:F1} MPH";
+        WeatherVisibility = $"{weather.VisibilityMiles:F0} mi";
     }
 
-    /// Asks for a zip code, saves it and reloads weather.
+    public Task LoadTodayWorkoutAsync()
+    {
+        try
+        {
+            var workouts = WorkoutServiceProxy.Current.GetUpcomingWorkouts();
+            var todayWorkout = workouts.FirstOrDefault(w => w.Date.Date == DateTime.Today);
+
+            if (todayWorkout is not null)
+            {
+                TodayWorkoutName = todayWorkout.RouteName;
+                TodayWorkoutDistance = $"{todayWorkout.Distance:F1} miles";
+                HasWorkoutToday = true;
+            }
+            else
+            {
+                TodayWorkoutName = "No workout scheduled";
+                TodayWorkoutDistance = "— miles";
+                HasWorkoutToday = false;
+            }
+        }
+        catch (Exception ex)
+        {
+            System.Diagnostics.Debug.WriteLine($"Error loading today's workout: {ex.Message}");
+            TodayWorkoutName = "No workout scheduled";
+            TodayWorkoutDistance = "— miles";
+            HasWorkoutToday = false;
+        }
+
+        return Task.CompletedTask;
+    }
+
     public async Task SetZipCodeAsync()
     {
-        string currentZip = _userSvc.MainUser.ZipCode;
+        string currentZip = _userSvc.MainUser.ZipCode ?? string.Empty;
         string prompt = string.IsNullOrWhiteSpace(currentZip)
             ? "Enter your zip code to get weather data:"
             : $"Current zip code: {currentZip}. Enter a new zip code:";
 
-        string result = await Application.Current.MainPage.DisplayPromptAsync(
+        var page = Application.Current?.MainPage;
+        if (page is null)
+        {
+            return;
+        }
+
+        string? result = await page.DisplayPromptAsync(
             "Weather Location",
             prompt,
             accept: "Save",
@@ -167,34 +379,12 @@ internal class MainPageViewModel : INotifyPropertyChanged
         }
     }
 
-
-
-    //Clothing Recommender Functions-------------------------------------------
-    public string Hat
-    {
-        get => _head;
-        set { _head = value; NotifyPropertyChanged(); }
-    }
-
-    public string Top
-    {
-        get => _top;
-        set { _top = value; NotifyPropertyChanged(); }
-    }
-
-    public string Bottom
-    {
-        get => _bottom;
-        set { _bottom = value; NotifyPropertyChanged(); }
-    }
-
-
-    //GENERAL FUNCTIONS--------------------------------------------------------
     public void RefreshPage()
     {
-        NotifyPropertyChanged(nameof(UserName));
-
-
+        UserName = _userSvc.MainUser.Name ?? string.Empty;
+        RefreshRoutes();
+        _ = LoadWeatherAsync();
+        _ = LoadTodayWorkoutAsync();
     }
 
     public event PropertyChangedEventHandler? PropertyChanged;
@@ -202,11 +392,13 @@ internal class MainPageViewModel : INotifyPropertyChanged
     private void NotifyPropertyChanged([CallerMemberName] string propertyName = "")
     {
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-       
-       
     }
 
-
-
+    private void RefreshRoutes()
+    {
+        _routSvc.DisplayRoutes();
+        Routes = new ObservableCollection<RouteDetailViewModel>(
+            _routSvc.RouteList.Select(route => new RouteDetailViewModel(route)));
+    }
 }
 

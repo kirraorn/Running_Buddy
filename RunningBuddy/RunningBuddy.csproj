@@ -47,6 +47,12 @@
 		<Compile Update="Views\ShoeClosetPage.xaml.cs">
 			<DependentUpon>ShoeClosetPage.xaml</DependentUpon>
 		</Compile>
+		<Compile Update="Views\CalendarPage.xaml.cs">
+			<DependentUpon>CalendarPage.xaml</DependentUpon>
+		</Compile>
+		<Compile Update="Views\CalendarDetailPage.xaml.cs">
+			<DependentUpon>CalendarDetailPage.xaml</DependentUpon>
+		</Compile>
 	</ItemGroup>
 
 	<ItemGroup>
@@ -54,6 +60,12 @@
 			<Generator>MSBuild:Compile</Generator>
 		</MauiXaml>
 		<MauiXaml Update="Views\RoutePage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\CalendarPage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\CalendarDetailPage.xaml">
 			<Generator>MSBuild:Compile</Generator>
 		</MauiXaml>
 	</ItemGroup>

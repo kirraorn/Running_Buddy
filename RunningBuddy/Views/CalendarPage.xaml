@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="RunningBuddy.Views.CalendarPage"
+             BackgroundColor="#0F0F0F">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="20">
+            <!-- Title -->
+            <Grid ColumnDefinitions="*, Auto">
+                <VerticalStackLayout Grid.Column="0">
+                    <Label Text="Calendar" FontSize="40" FontAttributes="Bold" TextColor="White"/>
+                    <Label Text="Track your running activity" TextColor="#888888" FontSize="14"/>
+                </VerticalStackLayout>
+                
+                <Button Grid.Column="1" Text="+ Add Workout" 
+                        BackgroundColor="#A3E635" TextColor="Black" 
+                        CornerRadius="8" Padding="15,0" HeightRequest="40"
+                        VerticalOptions="Start"
+                        Clicked="AddWorkoutClicked"/>
+            </Grid>
+
+            <!-- Month/Year Navigation -->
+            <Grid ColumnDefinitions="Auto, *, Auto" ColumnSpacing="15" Padding="10,0">
+                <Button Grid.Column="0" Text="←" 
+                        BackgroundColor="#1A1A1A" TextColor="#A3E635" 
+                        CornerRadius="8" WidthRequest="50" HeightRequest="40"
+                        Clicked="PreviousMonthClicked"/>
+                
+                <Label Grid.Column="1" 
+                       Text="{Binding CurrentMonthYear}" 
+                       FontSize="20" FontAttributes="Bold" 
+                       TextColor="White" 
+                       HorizontalTextAlignment="Center" 
+                       VerticalOptions="Center"/>
+                
+                <Button Grid.Column="2" Text="→" 
+                        BackgroundColor="#1A1A1A" TextColor="#A3E635" 
+                        CornerRadius="8" WidthRequest="50" HeightRequest="40"
+                        Clicked="NextMonthClicked"/>
+            </Grid>
+
+            <!-- Day Headers -->
+            <Grid ColumnDefinitions="*, *, *, *, *, *, *" ColumnSpacing="5" RowSpacing="5">
+                <Label Grid.Column="0" Text="Sun" TextColor="#666666" FontAttributes="Bold" HorizontalTextAlignment="Center"/>
+                <Label Grid.Column="1" Text="Mon" TextColor="#666666" FontAttributes="Bold" HorizontalTextAlignment="Center"/>
+                <Label Grid.Column="2" Text="Tue" TextColor="#666666" FontAttributes="Bold" HorizontalTextAlignment="Center"/>
+                <Label Grid.Column="3" Text="Wed" TextColor="#666666" FontAttributes="Bold" HorizontalTextAlignment="Center"/>
+                <Label Grid.Column="4" Text="Thu" TextColor="#666666" FontAttributes="Bold" HorizontalTextAlignment="Center"/>
+                <Label Grid.Column="5" Text="Fri" TextColor="#666666" FontAttributes="Bold" HorizontalTextAlignment="Center"/>
+                <Label Grid.Column="6" Text="Sat" TextColor="#666666" FontAttributes="Bold" HorizontalTextAlignment="Center"/>
+            </Grid>
+
+            <!-- Calendar Grid -->
+            <Grid x:Name="CalendarGrid" 
+                  ColumnDefinitions="*, *, *, *, *, *, *" 
+                  ColumnSpacing="5" RowSpacing="5"/>
+
+            <!-- Upcoming Events -->
+            <Label Text="📅 Upcoming Workouts" TextColor="#A3E635" FontAttributes="Bold" Margin="0,20,0,0" FontSize="18"/>
+            
+            <CollectionView ItemsSource="{Binding UpcomingRuns}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Border Padding="15" Margin="0,5" StrokeShape="RoundRectangle 12" BackgroundColor="#1A1A1A" StrokeThickness="0">
+                            <Grid ColumnDefinitions="*, Auto, Auto" ColumnSpacing="15">
+                                <VerticalStackLayout Grid.Column="0" Spacing="5">
+                                    <Label Text="{Binding Date, StringFormat='{0:dddd, MMMM d}'}" 
+                                           TextColor="White" FontAttributes="Bold" FontSize="14"/>
+                                    <Label Text="{Binding Description}" 
+                                           TextColor="#888888" FontSize="12"/>
+                                </VerticalStackLayout>
+                                <Label Grid.Column="1" 
+                                       Text="{Binding Distance, StringFormat='{0:F1} mi'}" 
+                                       TextColor="#A3E635" FontSize="12" 
+                                       VerticalOptions="Center"/>
+                                <Button Grid.Column="2"
+                                        Text="Delete"
+                                        CommandParameter="{Binding Id}"
+                                        Clicked="DeleteWorkoutClicked"
+                                        BackgroundColor="#3B1F1F"
+                                        TextColor="#FF8A80"
+                                        FontSize="12"
+                                        CornerRadius="8"
+                                        Padding="10,4"
+                                        VerticalOptions="Center"/>
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

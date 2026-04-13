@@ -33,6 +33,11 @@
         Route="RoutePage" />
 
     <ShellContent
+        Title="Calendar"
+        ContentTemplate="{DataTemplate local:CalendarPage}"
+        Route="CalendarPage" />
+
+    <ShellContent
         Title="ShoeDetailView"
         ContentTemplate="{DataTemplate local:ShoeDetailView}"
         Route="ShoeDetailView" />
