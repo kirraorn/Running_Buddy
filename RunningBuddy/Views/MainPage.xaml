@@ -141,9 +141,9 @@
 
                     <Border StrokeShape="RoundRectangle 12" Padding="20" BackgroundColor="#1A1A1A" StrokeThickness="0">
                         <Grid RowDefinitions="Auto, Auto" ColumnDefinitions="*, Auto" RowSpacing="5">
-                            <Label Text="Easy Run" TextColor="White" Grid.Row="0" Grid.Column="0" FontAttributes="Bold"/>
-                            <HorizontalStackLayout Grid.Row="1" Grid.Column="0" Spacing="10" Opacity="0.5">
-                                <Label Text="4 miles" FontSize="12" TextColor="White"/>
+                                <Label Text="{Binding TodayWorkoutName}" TextColor="White" Grid.Row="0" Grid.Column="0" FontAttributes="Bold"/>
+                                <HorizontalStackLayout Grid.Row="1" Grid.Column="0" Spacing="10" Opacity="0.5">
+                                    <Label Text="{Binding TodayWorkoutDistance}" FontSize="12" TextColor="White"/>
                             </HorizontalStackLayout>
                         </Grid>
                     </Border>

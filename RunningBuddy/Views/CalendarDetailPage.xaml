@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="RunningBuddy.Views.CalendarDetailPage"
+             BackgroundColor="#0F0F0F"
+             Title="Add Workout">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="20">
+            <!-- Title -->
+            <Label Text="Add Workout" FontSize="32" FontAttributes="Bold" TextColor="White"/>
+            <Label Text="Select a route and date for your workout" TextColor="#888888" FontSize="14"/>
+
+            <!-- Route Selection -->
+            <VerticalStackLayout Spacing="10">
+                <Label Text="Select Route" FontSize="16" FontAttributes="Bold" TextColor="White"/>
+                <Button x:Name="RouteSelectButton"
+                    Text="Choose a route..."
+                    BackgroundColor="#1A1A1A"
+                    TextColor="White"
+                    HorizontalOptions="Fill"
+                    Clicked="ChooseRouteClicked"/>
+            </VerticalStackLayout>
+
+            <!-- Date Selection -->
+            <VerticalStackLayout Spacing="10">
+                <Label Text="Select Date" FontSize="16" FontAttributes="Bold" TextColor="White"/>
+                <DatePicker Date="{Binding SelectedDate, Mode=TwoWay}"
+                            BackgroundColor="#1A1A1A"
+                            TextColor="White"/>
+            </VerticalStackLayout>
+
+            <!-- Notes Section -->
+            <VerticalStackLayout Spacing="10">
+                <Label Text="Notes (Optional)" FontSize="16" FontAttributes="Bold" TextColor="White"/>
+                <Editor x:Name="NotesEditor"
+                        Text="{Binding Notes}"
+                        Placeholder="Add notes about your workout..."
+                        BackgroundColor="#1A1A1A"
+                        TextColor="White"
+                        PlaceholderColor="#666666"
+                        HeightRequest="100"
+                        CharacterSpacing="0.5"/>
+            </VerticalStackLayout>
+
+            <!-- Route Details (if selected) -->
+            <Border Padding="15" Margin="0,10" StrokeShape="RoundRectangle 12" BackgroundColor="#1A1A1A" StrokeThickness="0"
+                    IsVisible="{Binding IsRouteSelected}">
+                <VerticalStackLayout Spacing="8">
+                    <Label Text="Route Details" FontSize="14" FontAttributes="Bold" TextColor="#A3E635"/>
+                    <Grid ColumnDefinitions="*, Auto">
+                        <Label Grid.Column="0" Text="Distance:" TextColor="#888888" FontSize="12"/>
+                        <Label Grid.Column="1" Text="{Binding SelectedRoute.Length, StringFormat='{0:F1} mi'}" TextColor="White" FontSize="12"/>
+                    </Grid>
+                    <Grid ColumnDefinitions="*, Auto">
+                        <Label Grid.Column="0" Text="Terrain:" TextColor="#888888" FontSize="12"/>
+                        <Label Grid.Column="1" Text="{Binding SelectedRoute.TerrainType}" TextColor="White" FontSize="12"/>
+                    </Grid>
+                    <Grid ColumnDefinitions="*, Auto">
+                        <Label Grid.Column="0" Text="Elevation:" TextColor="#888888" FontSize="12"/>
+                        <Label Grid.Column="1" Text="{Binding SelectedRoute.Elevation, StringFormat='{0:F0} ft'}" TextColor="White" FontSize="12"/>
+                    </Grid>
+                </VerticalStackLayout>
+            </Border>
+
+            <!-- Action Buttons -->
+            <Grid ColumnDefinitions="*, *" ColumnSpacing="15" Margin="0,20,0,0">
+                <Button Grid.Column="0" Text="Cancel" 
+                        BackgroundColor="#424242" TextColor="White" 
+                        CornerRadius="8" Clicked="CancelClicked"/>
+                <Button Grid.Column="1" Text="Save Workout" 
+                        BackgroundColor="#A3E635" TextColor="Black" 
+                        CornerRadius="8" Clicked="SaveClicked"/>
+            </Grid>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

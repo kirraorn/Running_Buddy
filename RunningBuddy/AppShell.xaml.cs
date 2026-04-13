@@ -8,7 +8,8 @@ public partial class AppShell : Shell
 	public AppShell()
 	{
 		InitializeComponent();
-          Routing.RegisterRoute(nameof(RouteDetail), typeof(RouteDetail));
+        Routing.RegisterRoute(nameof(RouteDetail), typeof(RouteDetail));
+        Routing.RegisterRoute("CalendarDetail", typeof(CalendarDetailPage));
 	}
 
     private async void ProfileClicked(object sender, EventArgs e) =>

@@ -25,7 +25,12 @@ public static class MauiProgram
      
         builder.Services.AddSingleton<ShoeClosetPage>();
         builder.Services.AddSingleton<ShoeClosetViewModel>();
-      
+
+        builder.Services.AddSingleton<CalendarPage>();
+        builder.Services.AddSingleton<CalendarViewModel>();
+
+        builder.Services.AddTransient<CalendarDetailPage>();
+        builder.Services.AddTransient<CalendarDetailViewModel>();
 
 #if DEBUG
         builder.Logging.AddDebug();
