@@ -19,6 +19,7 @@ internal class UserProfileViewModel : INotifyPropertyChanged
     private RouteServiceProxy _routSvc; //not implemented yet
     private ShoeClosetViewModel _shoeSvc; //not implemented yet
     private PrServiceProxy _prSvc;
+    private WorkoutServiceProxy _workoutSvc;
 
 
     public UserProfileViewModel()
@@ -26,6 +27,7 @@ internal class UserProfileViewModel : INotifyPropertyChanged
         _userSvc = UserServiceProxy.Current;
         _prSvc = PrServiceProxy.Current;
         _routSvc = RouteServiceProxy.Current;
+        _workoutSvc = WorkoutServiceProxy.Current;
 
         EditPRCommand = new Command<PrDetailViewModel>(async (vm) => await ExecuteEditPR(vm));
         DeletePRCommand = new Command<PrDetailViewModel>(async (vm) => await ExecuteDeletePR(vm));
@@ -105,6 +107,7 @@ internal class UserProfileViewModel : INotifyPropertyChanged
     {
         var prList = _prSvc.PRList.Select(t => new PrDetailViewModel(t));
         PRs = new ObservableCollection<PrDetailViewModel>(prList);
+        NotifyPropertyChanged(nameof(WeeklyWorkouts));
     }
 
     private async Task ExecuteDeletePR(PrDetailViewModel vm)
@@ -135,25 +138,21 @@ internal class UserProfileViewModel : INotifyPropertyChanged
     }
 
     // Workout history filtered to runs completed in the last 7 days.
-    public ObservableCollection<RouteDetailViewModel> WeeklyWorkouts
+    public ObservableCollection<Workout> WeeklyWorkouts
+{
+    get
     {
-        get
-        {
-            var startDate = DateTime.Today.AddDays(-7);
-            var today = DateTime.Now;
+        var startDate = DateTime.Today.AddDays(-7);
+        var endDate = DateTime.Today.AddDays(1);
 
-            var workouts = (_routSvc.RouteList ?? new List<Route>())
-                .Where(route =>
-                {
-                    var runDate = route.Date != default ? route.Date : route.Time;
-                    return runDate >= startDate && runDate <= today;
-                })
-                .OrderByDescending(route => route.Date != default ? route.Date : route.Time)
-                .Select(route => new RouteDetailViewModel(route));
+        var history = (_workoutSvc.WorkoutList ?? new List<Workout>())
+            .Where(w => w.Date.Date >= startDate && w.Date.Date < endDate)
+            .OrderByDescending(w => w.Date)
+            .ToList();
 
-            return new ObservableCollection<RouteDetailViewModel>(workouts);
-        }
+        return new ObservableCollection<Workout>(history);
     }
+}
 
     public event PropertyChangedEventHandler? PropertyChanged;
 
