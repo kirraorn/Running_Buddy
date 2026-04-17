@@ -37,6 +37,18 @@ internal class MainPageViewModel : INotifyPropertyChanged
     private string _todayWorkoutDistance = "— miles";
     private bool _hasWorkoutToday;
 
+    // Scheduled run fields
+    private DateTime _scheduledRunDate = DateTime.Today;
+    private TimeSpan _scheduledRunTime = new TimeSpan(7, 0, 0); // default 7:00 AM
+    private string _scheduledHat = string.Empty;
+    private string _scheduledTop = string.Empty;
+    private string _scheduledBottom = string.Empty;
+    private string _scheduledWeatherTemp = "—°F";
+    private string _scheduledWeatherCondition = "";
+    private string _scheduledWeatherIconUrl = string.Empty;
+    private bool _hasScheduledForecast;
+    private bool _isLoadingForecast;
+
     public MainPageViewModel()
     {
         _userSvc = UserServiceProxy.Current;
@@ -399,6 +411,130 @@ internal class MainPageViewModel : INotifyPropertyChanged
         _routSvc.DisplayRoutes();
         Routes = new ObservableCollection<RouteDetailViewModel>(
             _routSvc.RouteList.Select(route => new RouteDetailViewModel(route)));
+    }
+
+    // ── Scheduled Run Properties ──────────────────────────────────────
+
+    public DateTime ScheduledRunDate
+    {
+        get => _scheduledRunDate;
+        set
+        {
+            if (_scheduledRunDate != value)
+            {
+                _scheduledRunDate = value;
+                NotifyPropertyChanged();
+            }
+        }
+    }
+
+    public DateTime MinScheduledDate => DateTime.Today;
+    public DateTime MaxScheduledDate => DateTime.Today.AddDays(2); // 3 days out max (today + 2)
+
+    public TimeSpan ScheduledRunTime
+    {
+        get => _scheduledRunTime;
+        set
+        {
+            if (_scheduledRunTime != value)
+            {
+                _scheduledRunTime = value;
+                NotifyPropertyChanged();
+            }
+        }
+    }
+
+    public string ScheduledHat
+    {
+        get => _scheduledHat;
+        set { if (_scheduledHat != value) { _scheduledHat = value; NotifyPropertyChanged(); } }
+    }
+
+    public string ScheduledTop
+    {
+        get => _scheduledTop;
+        set { if (_scheduledTop != value) { _scheduledTop = value; NotifyPropertyChanged(); } }
+    }
+
+    public string ScheduledBottom
+    {
+        get => _scheduledBottom;
+        set { if (_scheduledBottom != value) { _scheduledBottom = value; NotifyPropertyChanged(); } }
+    }
+
+    public string ScheduledWeatherTemp
+    {
+        get => _scheduledWeatherTemp;
+        set { if (_scheduledWeatherTemp != value) { _scheduledWeatherTemp = value; NotifyPropertyChanged(); } }
+    }
+
+    public string ScheduledWeatherCondition
+    {
+        get => _scheduledWeatherCondition;
+        set { if (_scheduledWeatherCondition != value) { _scheduledWeatherCondition = value; NotifyPropertyChanged(); } }
+    }
+
+    public string ScheduledWeatherIconUrl
+    {
+        get => _scheduledWeatherIconUrl;
+        set { if (_scheduledWeatherIconUrl != value) { _scheduledWeatherIconUrl = value; NotifyPropertyChanged(); } }
+    }
+
+    public bool HasScheduledForecast
+    {
+        get => _hasScheduledForecast;
+        set { if (_hasScheduledForecast != value) { _hasScheduledForecast = value; NotifyPropertyChanged(); } }
+    }
+
+    public bool IsLoadingForecast
+    {
+        get => _isLoadingForecast;
+        set { if (_isLoadingForecast != value) { _isLoadingForecast = value; NotifyPropertyChanged(); } }
+    }
+
+    /// <summary>
+    /// Fetches forecast weather for the scheduled date/time and recommends clothing.
+    /// </summary>
+    public async Task LoadScheduledWeatherAsync()
+    {
+        string zipCode = _userSvc.MainUser.ZipCode ?? string.Empty;
+        if (string.IsNullOrWhiteSpace(zipCode)) return;
+
+        IsLoadingForecast = true;
+        HasScheduledForecast = false;
+
+        try
+        {
+            DateTime scheduledDateTime = _scheduledRunDate.Date + _scheduledRunTime;
+
+            var (weather, locName) = await WeatherService.GetForecastWeatherAsync(zipCode, scheduledDateTime);
+            if (weather is null)
+            {
+                ScheduledWeatherTemp = "Forecast unavailable";
+                ScheduledWeatherCondition = "Try a date within 3 days";
+                return;
+            }
+
+            var scheduledClothing = new Clothing();
+            scheduledClothing.setClothing(weather, _userSvc.MainUser.ColdPreference);
+
+            ScheduledHat = scheduledClothing.hat_gloves;
+            ScheduledTop = scheduledClothing.top;
+            ScheduledBottom = scheduledClothing.bottom;
+            ScheduledWeatherTemp = $"{weather.currentTemp:F0}°F";
+            ScheduledWeatherCondition = weather.ConditionText;
+            ScheduledWeatherIconUrl = weather.ConditionIconUrl;
+            HasScheduledForecast = true;
+        }
+        catch (Exception ex)
+        {
+            System.Diagnostics.Debug.WriteLine($"Scheduled weather error: {ex.Message}");
+            ScheduledWeatherTemp = "Error loading forecast";
+        }
+        finally
+        {
+            IsLoadingForecast = false;
+        }
     }
 }
 
