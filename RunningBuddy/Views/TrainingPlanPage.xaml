@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="RunningBuddy.Views.TrainingPlanPage"
+             BackgroundColor="#0F0F0F"
+             Title="Training Plan">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="25" Spacing="25">
+
+            <!-- Title -->
+            <VerticalStackLayout Spacing="5">
+                <Label Text="🏃 Training Plan" FontSize="36" FontAttributes="Bold" TextColor="White"/>
+                <Label Text="Choose a plan type and start date to build your training schedule" 
+                       TextColor="#888888" FontSize="14"/>
+            </VerticalStackLayout>
+
+            <!-- Active Plan Banner (if any) -->
+            <Border StrokeShape="RoundRectangle 12" Padding="15" StrokeThickness="0"
+                    IsVisible="{Binding HasActivePlan}">
+                <Border.Background>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                        <GradientStop Color="#2E1A3E" Offset="0.1" />
+                        <GradientStop Color="#1A1A1A" Offset="1.0" />
+                    </LinearGradientBrush>
+                </Border.Background>
+                <VerticalStackLayout Spacing="5">
+                    <Label Text="📋 Current Plan" TextColor="#BB86FC" FontAttributes="Bold" FontSize="14"/>
+                    <Label Text="{Binding ActivePlanInfo}" TextColor="White" FontSize="16"/>
+                    <Label Text="Starting a new plan will remove your current plan and its workouts from the calendar." 
+                           TextColor="#666666" FontSize="12"/>
+                </VerticalStackLayout>
+            </Border>
+
+            <!-- Plan Type Selection -->
+            <Border StrokeShape="RoundRectangle 16" Padding="20" BackgroundColor="#1A1A1A" StrokeThickness="0">
+                <VerticalStackLayout Spacing="15">
+                    <Label Text="Select Plan Type" FontSize="18" FontAttributes="Bold" TextColor="#A3E635"/>
+                    
+                    <Picker x:Name="PlanTypePicker"
+                            Title="Choose a plan..."
+                            ItemsSource="{Binding PlanTypes}"
+                            SelectedItem="{Binding SelectedPlanType, Mode=TwoWay}"
+                            TextColor="White"
+                            TitleColor="#666666"
+                            BackgroundColor="#252525"/>
+
+                    <!-- Plan Description -->
+                    <Border StrokeShape="RoundRectangle 8" Padding="12" BackgroundColor="#252525" StrokeThickness="0">
+                        <Label Text="{Binding PlanDescription}" TextColor="#AAAAAA" FontSize="13" LineBreakMode="WordWrap"/>
+                    </Border>
+                </VerticalStackLayout>
+            </Border>
+
+            <!-- Start Date Selection -->
+            <Border StrokeShape="RoundRectangle 16" Padding="20" BackgroundColor="#1A1A1A" StrokeThickness="0">
+                <VerticalStackLayout Spacing="15">
+                    <Label Text="Start Date" FontSize="18" FontAttributes="Bold" TextColor="#A3E635"/>
+                    
+                    <DatePicker Date="{Binding SelectedStartDate, Mode=TwoWay}"
+                                MinimumDate="{Binding MinimumDate}"
+                                BackgroundColor="#252525"
+                                TextColor="White"/>
+                </VerticalStackLayout>
+            </Border>
+
+            <!-- Plan Preview -->
+            <Border StrokeShape="RoundRectangle 16" Padding="20" StrokeThickness="0">
+                <Border.Background>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                        <GradientStop Color="#1A2E22" Offset="0.1" />
+                        <GradientStop Color="#121212" Offset="1.0" />
+                    </LinearGradientBrush>
+                </Border.Background>
+                <VerticalStackLayout Spacing="10">
+                    <Label Text="📊 Plan Preview" TextColor="#A3E635" FontAttributes="Bold" FontSize="16"/>
+                    <Label Text="{Binding PlanDuration}" TextColor="White" FontSize="15"/>
+                    
+                    <BoxView HeightRequest="1" Color="#333333" Margin="0,5"/>
+
+                    <Label Text="Workouts will be automatically added to your Calendar." 
+                           TextColor="#888888" FontSize="12"/>
+                    <Label Text="A goal will be created linked to this plan." 
+                           TextColor="#888888" FontSize="12"/>
+                </VerticalStackLayout>
+            </Border>
+
+            <!-- Action Buttons -->
+            <Grid ColumnDefinitions="*, *" ColumnSpacing="15" Margin="0,10,0,0">
+                <Button Grid.Column="0" Text="Cancel" 
+                        BackgroundColor="#424242" TextColor="White" 
+                        CornerRadius="12" FontSize="16" HeightRequest="50"
+                        Clicked="CancelClicked"/>
+                <Button Grid.Column="1" Text="🚀 Start Plan" 
+                        BackgroundColor="#A3E635" TextColor="Black" 
+                        CornerRadius="12" FontSize="16" FontAttributes="Bold" HeightRequest="50"
+                        Clicked="StartPlanClicked"/>
+            </Grid>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
