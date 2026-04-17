@@ -34,6 +34,7 @@ internal class UserProfileViewModel : INotifyPropertyChanged
 
    
         RefreshPRs();
+        RefreshActivePlan();
     }
 
     //USER DATA ACCESS---------------------------------------------------------
@@ -66,9 +67,11 @@ internal class UserProfileViewModel : INotifyPropertyChanged
 
         set
         {
-            if (_userSvc.MainUser.ColdPreference != value)
+            // Clamp to valid slider range (1-5)
+            double clamped = Math.Clamp(value, 1.0, 5.0);
+            if (_userSvc.MainUser.ColdPreference != clamped)
             {
-                _userSvc.MainUser.ColdPreference = value;
+                _userSvc.MainUser.ColdPreference = clamped;
                 _userSvc.SaveAll();
                 NotifyPropertyChanged();
             }
@@ -108,6 +111,52 @@ internal class UserProfileViewModel : INotifyPropertyChanged
         var prList = _prSvc.PRList.Select(t => new PrDetailViewModel(t));
         PRs = new ObservableCollection<PrDetailViewModel>(prList);
         NotifyPropertyChanged(nameof(WeeklyWorkouts));
+    }
+
+    //TRAINING PLAN DATA ACCESS-------------------------------------------------
+    private string _activePlanName = "No active plan";
+    private string _activePlanProgress = "Start a training plan from the + New Plan button above.";
+
+    public string ActivePlanName
+    {
+        get => _activePlanName;
+        set
+        {
+            if (_activePlanName != value)
+            {
+                _activePlanName = value;
+                NotifyPropertyChanged();
+            }
+        }
+    }
+
+    public string ActivePlanProgress
+    {
+        get => _activePlanProgress;
+        set
+        {
+            if (_activePlanProgress != value)
+            {
+                _activePlanProgress = value;
+                NotifyPropertyChanged();
+            }
+        }
+    }
+
+    public void RefreshActivePlan()
+    {
+        var activePlan = TrainingPlanService.Current.GetActivePlan();
+        if (activePlan != null)
+        {
+            int currentWeek = TrainingPlanService.Current.GetCurrentWeek(activePlan);
+            ActivePlanName = $"{activePlan.PlanType}";
+            ActivePlanProgress = $"Week {currentWeek} of {activePlan.DurationWeeks} • Started {activePlan.StartDate:MMM d, yyyy}";
+        }
+        else
+        {
+            ActivePlanName = "No active plan";
+            ActivePlanProgress = "Start a training plan from the + New Plan button above.";
+        }
     }
 
     private async Task ExecuteDeletePR(PrDetailViewModel vm)
