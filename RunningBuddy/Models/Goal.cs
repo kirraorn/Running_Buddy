@@ -12,6 +12,8 @@ namespace RunningBuddy.Models
         public double Distance { get; set; }
         public TimeSpan Time { get; set; }
         public DateTime Date { get; set;}
+        public int? TrainingPlanId { get; set; }
+        public string PlanType { get; set; } = ""; 
 
     }
 }
