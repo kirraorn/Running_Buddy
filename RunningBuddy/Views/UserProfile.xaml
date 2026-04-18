@@ -17,6 +17,7 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
 
             <!-- Name and Edit Button -->
@@ -62,8 +63,37 @@
                 </Frame>
             </Grid>
 
-
+            <!-- Active Training Plan -->
             <Grid Grid.Row="2" RowDefinitions="Auto, Auto">
+                <Grid Grid.Row="0" ColumnDefinitions="*, Auto" Margin="0,0,0,10">
+                    <Label Grid.Column="0" 
+                           Text="🏃 Training Plan" 
+                           FontSize="18" 
+                           FontAttributes="Bold" 
+                           TextColor="#A3E635" 
+                           VerticalOptions="Center" />
+                    
+                    <Button Grid.Column="1" 
+                            Text="+ New Plan" 
+                            Clicked="NewPlanClicked" 
+                            BackgroundColor="Transparent"
+                            TextColor="#A3E635"
+                            FontSize="14"
+                            Padding="10,0"/>
+                </Grid>
+
+                <Border Grid.Row="1" StrokeShape="RoundRectangle 12" 
+                        Padding="20" BackgroundColor="#1A1A1A" StrokeThickness="0">
+                    <VerticalStackLayout Spacing="8">
+                        <Label Text="{Binding ActivePlanName}" 
+                               TextColor="White" FontSize="16" FontAttributes="Bold"/>
+                        <Label Text="{Binding ActivePlanProgress}" 
+                               TextColor="#888888" FontSize="13"/>
+                    </VerticalStackLayout>
+                </Border>
+            </Grid>
+
+            <Grid Grid.Row="3" RowDefinitions="Auto, Auto">
     
     <Grid Grid.Row="0" ColumnDefinitions="*, Auto" Margin="0,0,0,10">
         <Label Grid.Column="0" 
@@ -147,8 +177,9 @@
         </CollectionView>
          </Grid>
 
+
             <!-- Cold Sensitivity Score -->
-            <Grid Grid.Row="3" RowDefinitions="Auto, Auto, Auto">
+            <Grid Grid.Row="4" RowDefinitions="Auto, Auto, Auto">
                 <Label Grid.Row="0" Text="Cold Sensitivity Score" FontSize="18" FontAttributes="Bold" TextColor="Orange" />
                 
                 <Slider Grid.Row="1" 
@@ -168,7 +199,7 @@
             </Grid>
 
             <!-- Performance History -->
-            <Grid Grid.Row="4" RowDefinitions="Auto, Auto">
+            <Grid Grid.Row="5" RowDefinitions="Auto, Auto">
                 <Label Grid.Row="0" Text="Workout History" FontSize="18" FontAttributes="Bold" TextColor="#FF9290EE" />
 
                 <CollectionView Grid.Row="1" ItemsSource="{Binding WeeklyWorkouts}" SelectionMode="None" Margin="0,8,0,0">
