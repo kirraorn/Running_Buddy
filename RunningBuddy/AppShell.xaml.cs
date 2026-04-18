@@ -1,4 +1,4 @@
-﻿using RunningBuddy.Views;
+using RunningBuddy.Views;
 
 namespace RunningBuddy;
 
@@ -10,6 +10,7 @@ public partial class AppShell : Shell
 		InitializeComponent();
         Routing.RegisterRoute(nameof(RouteDetail), typeof(RouteDetail));
         Routing.RegisterRoute("CalendarDetail", typeof(CalendarDetailPage));
+        Routing.RegisterRoute("TrainingPlanPage", typeof(TrainingPlanPage));
 	}
 
     private async void ProfileClicked(object sender, EventArgs e) =>
