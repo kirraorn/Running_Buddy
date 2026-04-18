@@ -54,4 +54,9 @@ public partial class UserProfile : ContentPage
         }
     }
 }
+
+    private async void NewPlanClicked(object sender, EventArgs e)
+    {
+        await Shell.Current.GoToAsync("TrainingPlanPage");
+    }
 }
