@@ -135,6 +135,94 @@
                 </VerticalStackLayout>
             </Grid>
 
+            <!-- Schedule a Run Card -->
+            <Border StrokeShape="RoundRectangle 20" Padding="25" StrokeThickness="0">
+                <Border.Background>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                        <GradientStop Color="#1A1E2E" Offset="0.1" />
+                        <GradientStop Color="#121212" Offset="1.0" />
+                    </LinearGradientBrush>
+                </Border.Background>
+
+                <VerticalStackLayout Spacing="15">
+                    <Label Text="⏰ Schedule a Run" TextColor="#64B5F6" FontAttributes="Bold" FontSize="20"/>
+                    <Label Text="Pick a date and time to see what to wear" TextColor="#888888" FontSize="13"/>
+
+                    <Grid ColumnDefinitions="*, *, Auto" ColumnSpacing="15">
+                        <!-- Date Picker -->
+                        <VerticalStackLayout Grid.Column="0" Spacing="5">
+                            <Label Text="Date" TextColor="#666666" FontSize="12"/>
+                            <DatePicker Date="{Binding ScheduledRunDate, Mode=TwoWay}"
+                                        MinimumDate="{Binding MinScheduledDate}"
+                                        MaximumDate="{Binding MaxScheduledDate}"
+                                        BackgroundColor="#1A1A1A"
+                                        TextColor="White"/>
+                        </VerticalStackLayout>
+
+                        <!-- Time Picker -->
+                        <VerticalStackLayout Grid.Column="1" Spacing="5">
+                            <Label Text="Time" TextColor="#666666" FontSize="12"/>
+                            <TimePicker Time="{Binding ScheduledRunTime, Mode=TwoWay}"
+                                        BackgroundColor="#1A1A1A"
+                                        TextColor="White"/>
+                        </VerticalStackLayout>
+
+                        <!-- Get Forecast Button -->
+                        <Button Grid.Column="2" Text="Get Forecast"
+                                BackgroundColor="#64B5F6" TextColor="Black"
+                                CornerRadius="8" FontSize="13" FontAttributes="Bold"
+                                VerticalOptions="End" HeightRequest="40" Padding="15,0"
+                                Clicked="OnGetForecastClicked"/>
+                    </Grid>
+
+                    <!-- Loading Indicator -->
+                    <ActivityIndicator IsRunning="{Binding IsLoadingForecast}" 
+                                       IsVisible="{Binding IsLoadingForecast}"
+                                       Color="#64B5F6"/>
+
+                    <!-- Scheduled Forecast Results -->
+                    <VerticalStackLayout IsVisible="{Binding HasScheduledForecast}" Spacing="10">
+                        
+                        <!-- Forecast Weather Info -->
+                        <HorizontalStackLayout Spacing="10" Margin="0,5,0,0">
+                            <Image Source="{Binding ScheduledWeatherIconUrl}" 
+                                   WidthRequest="40" HeightRequest="40" VerticalOptions="Center"/>
+                            <Label Text="{Binding ScheduledWeatherTemp}" FontSize="24" FontAttributes="Bold" TextColor="White" VerticalOptions="Center"/>
+                            <Label Text="{Binding ScheduledWeatherCondition}" TextColor="#AAAAAA" VerticalOptions="Center"/>
+                        </HorizontalStackLayout>
+
+                        <BoxView HeightRequest="1" Color="#333333" Margin="0,5"/>
+
+                        <!-- Scheduled Clothing Recommendation -->
+                        <Label Text="Recommended for this time:" TextColor="#64B5F6" FontSize="14" FontAttributes="Bold"/>
+                        
+                        <Grid ColumnDefinitions="*, *, *" ColumnSpacing="10">
+                            <Border Grid.Column="0" StrokeShape="RoundRectangle 10" Padding="12" BackgroundColor="#1A1A1A" StrokeThickness="0">
+                                <VerticalStackLayout Spacing="4">
+                                    <Label Text="🧢" FontSize="18" HorizontalOptions="Center"/>
+                                    <Label Text="Head &amp; Hands" FontSize="11" TextColor="#666666" HorizontalTextAlignment="Center"/>
+                                    <Label Text="{Binding ScheduledHat}" TextColor="White" FontAttributes="Bold" FontSize="12" HorizontalTextAlignment="Center"/>
+                                </VerticalStackLayout>
+                            </Border>
+                            <Border Grid.Column="1" StrokeShape="RoundRectangle 10" Padding="12" BackgroundColor="#1A1A1A" StrokeThickness="0">
+                                <VerticalStackLayout Spacing="4">
+                                    <Label Text="👕" FontSize="18" HorizontalOptions="Center"/>
+                                    <Label Text="Top" FontSize="11" TextColor="#666666" HorizontalTextAlignment="Center"/>
+                                    <Label Text="{Binding ScheduledTop}" TextColor="White" FontAttributes="Bold" FontSize="12" HorizontalTextAlignment="Center"/>
+                                </VerticalStackLayout>
+                            </Border>
+                            <Border Grid.Column="2" StrokeShape="RoundRectangle 10" Padding="12" BackgroundColor="#1A1A1A" StrokeThickness="0">
+                                <VerticalStackLayout Spacing="4">
+                                    <Label Text="👖" FontSize="18" HorizontalOptions="Center"/>
+                                    <Label Text="Bottoms" FontSize="11" TextColor="#666666" HorizontalTextAlignment="Center"/>
+                                    <Label Text="{Binding ScheduledBottom}" TextColor="White" FontAttributes="Bold" FontSize="12" HorizontalTextAlignment="Center"/>
+                                </VerticalStackLayout>
+                            </Border>
+                        </Grid>
+                    </VerticalStackLayout>
+                </VerticalStackLayout>
+            </Border>
+
              <!-- Workout Planner Card -->
             <VerticalStackLayout Grid.Column="1" Spacing="15">
                     <Label Text="Todays Workout" TextColor="#fa6262" FontAttributes="Bold" FontSize="20"/>
@@ -153,3 +241,4 @@
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>
+
