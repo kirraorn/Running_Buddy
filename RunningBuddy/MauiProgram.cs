@@ -1,4 +1,4 @@
-﻿using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging;
 using RunningBuddy.ViewModels;
 using RunningBuddy.Views;        
 
@@ -31,6 +31,9 @@ public static class MauiProgram
 
         builder.Services.AddTransient<CalendarDetailPage>();
         builder.Services.AddTransient<CalendarDetailViewModel>();
+
+        builder.Services.AddTransient<TrainingPlanPage>();
+        builder.Services.AddTransient<TrainingPlanViewModel>();
 
 #if DEBUG
         builder.Logging.AddDebug();
