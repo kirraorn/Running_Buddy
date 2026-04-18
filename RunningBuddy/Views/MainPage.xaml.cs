@@ -1,4 +1,4 @@
-﻿//using Microsoft.Maui.Networking;
+//using Microsoft.Maui.Networking;
 using System.Net.NetworkInformation; // Added this for NetworkInterface
 using RunningBuddy.ViewModels;
 namespace RunningBuddy.Views;
@@ -72,6 +72,16 @@ public partial class MainPage : ContentPage
         if (vm != null)
         {
             await vm.SetZipCodeAsync();
+        }
+    }
+
+    // Event handler for the Get Forecast button (scheduled run)
+    private async void OnGetForecastClicked(object sender, EventArgs e)
+    {
+        var vm = BindingContext as MainPageViewModel;
+        if (vm != null)
+        {
+            await vm.LoadScheduledWeatherAsync();
         }
     }
 
